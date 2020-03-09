@@ -1,0 +1,28 @@
+{
+	"name": "CombineOrganiser",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"lint": "eslint \"**/*.ts\" --quiet",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+		"start": "node ./server",
+		"test": "npm run link",
+		"watch:server": "nodemon ./server",
+		"watch": "concurrently \"npm run watch:server\" \"npm start --prefix=client\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/cynwong/CombineOrganiser.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/cynwong/CombineOrganiser/issues"
+	},
+	"homepage": "https://github.com/cynwong/CombineOrganiser#readme",
+	"devDependencies": {
+		"concurrently": "^5.1.0"
+	}
+}
