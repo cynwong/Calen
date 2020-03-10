@@ -1,21 +1,7 @@
-import express, { Application, Request, Response } from 'express';
+import app from './app';
 
-// TODO this import/no-named-as-default and import/named are going in cycle
-// how do we fix this.
-// import { dbConnect } from './server/dbConnect';
+const HOST = 'http://127.0.0.1';
+const PORT = process.env.PORT || 8080;
 
-const app: Application = express();
-const port = process.env.PORT || 3000;
-
-app.get('/', (_req: Request, res: Response) => res.send('Hello world!'));
-
-
-// init server
-(async () => {
-	try {
-		// await dbConnect();
-		app.listen(port, () => console.info(`App running on port ${port}`));
-	} catch (err) {
-		console.error(err);
-	}
-})();
+// set up server
+app.listen(PORT, () => console.info(`Server listening on: ${HOST}:${PORT}`));
