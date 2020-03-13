@@ -1,7 +1,15 @@
 import app from './app';
 
-const HOST = 'http://127.0.0.1';
+import dbConnect from './database/dbConnect';
+
 const PORT = process.env.PORT || 8080;
 
-// set up server
-app.listen(PORT, () => console.info(`Server listening on: ${HOST}:${PORT}`));
+// init server
+(async () => {
+	try {
+		await dbConnect();
+		app.listen(PORT, () => console.log(`App running on port ${PORT}`));
+	} catch (err) {
+		console.error(err);
+	}
+})(); 
