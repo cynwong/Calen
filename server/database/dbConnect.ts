@@ -6,7 +6,7 @@ dotenv.config({
 	path: path.resolve(__dirname, 'config', '.env'),
 });
 
-export const dbConnect = async (): Promise<void> => {
+const dbConnect = async (): Promise<void> => {
 	const {
 		NODE_ENV: nodeEnv,
 		LOCAL_DB_CONNECTION_URI: localDB,
@@ -32,3 +32,5 @@ export const dbConnect = async (): Promise<void> => {
 	await connect();
 	mongoose.connection.on('disconnected', connect);
 };
+
+export default dbConnect;
