@@ -45,11 +45,11 @@ export const isAuthenticated = (req: Request, res: Response, next: NextFunction)
 }
 
 // do not allow login-user to access
-export const forwardIfAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+export const forwardIfNotAuthenticated = (req: Request, res: Response, next: NextFunction) => {
 	if (!req.isAuthenticated()) {
 		return next();
 	}
-	res.redirect('/login');
+	return res.redirect('/login'); //TODO go to dashboard
 }
 
 // import { Strategy as LocalStrategy } from 'passport-local';
