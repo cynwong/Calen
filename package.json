@@ -41,7 +41,8 @@
 		"eslint-plugin-import": "^2.20.1",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.19.0",
-		"eslint-plugin-react-hooks": "^1.7.0"
+		"eslint-plugin-react-hooks": "^1.7.0",
+		"react-router-dom": "^5.1.2"
 	},
 	"dependencies": {
 		"bcrypt": "^4.0.1",
@@ -50,6 +51,7 @@
 		"express": "^4.17.1",
 		"mongoose": "^5.9.3",
 		"morgan": "^1.9.1",
+		"node-sass": "^4.13.1",
 		"passport": "^0.4.1",
 		"passport-local": "^1.0.0",
 		"ts-mongoose": "0.0.21",
