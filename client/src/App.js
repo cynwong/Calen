@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './Components/Pages/Home';
 import SignUp from './Components/Pages/SignUp';
 
-import './App.css';
+import './App.scss';
 
 function App() {
 	return (
