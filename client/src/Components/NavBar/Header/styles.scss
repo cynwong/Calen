@@ -1,0 +1,10 @@
+@import '../../../styleLib/colours';
+
+.header {
+	padding: 0.8rem 1.5rem;
+	background-color: $dark-green-colour;
+	color: $mistyrose-colour;
+	display: flex;
+	flex-flow: row nowrap;
+	
+}
