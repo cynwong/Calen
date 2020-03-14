@@ -5,8 +5,33 @@
 	width: 5rem;
 	height: 2rem;
 	color: $button-colour;
+	background-color: $button-bg-colour;
+	border-radius: $rounded-corner;
 	margin-top: 0.3rem;
 	margin-bottom: 0.5rem;
+
+	background-position: center;
+	transition: background 0.8s;
+	outline: none;
+
+	&:hover, &:focus {
+		background: 
+			darken($button-bg-colour, 8%)
+			radial-gradient(circle, transparent 1%, darken($button-bg-colour, 8%) 1%)
+			center /15000%;
+	}
+
+	&:active {
+		outline: none;
+		background: #44535e radial-gradient(circle, transparent 1%, #434f59 1%) center/15000%;
+		background-size: 100%;
+		transition: background 0s;
+	}
+
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+
 }
 
 $borderStyle: 
@@ -16,7 +41,7 @@ $borderStyle:
 		2px 0 2px $border-color;
 
 // border radius
-$rounded-corner: 10px;
+$rounded-corner: 0.5rem;
 $pill-corner: 50px;
 
 // screen breakpoints
