@@ -9,7 +9,6 @@ export default function Input(props) {
 		autoCapitalize,
 		placeholder,
 		onBlur,
-		onClick,
 	} = props;
 	return (
 		<div className='inputWrapper'>
