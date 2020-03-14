@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+
+import './styles.scss';
 
 export default function SignUp() {
 	return (
@@ -6,24 +8,27 @@ export default function SignUp() {
 			<form>
 				<h1>Create your Account</h1>
 				<div className='formContentWrapper'>
-					<div className='nameHolder'>
-						<div className='firstNameHolder'>
-							<input type="text" name="firstName" id="firstName" autoCapitalize='word' value='' placeholder='First name'/>
+					<div className='contentContainer'>
+						<div className='inputWrapper'>
+							<input type="text" name="firstName" id="firstName" autoCapitalize='word' placeholder='First name'/>
 						</div>
-						<div className='lastNameHolder'>
-							<input type="text" name="lastName" id="lastName" autoCapitalize='word' value='' placeholder='Last name'/>
+						<div className='inputWrapper'>
+							<input type="text" name="lastName" id="lastName" autoCapitalize='word' placeholder='Last name'/>
 						</div>
 					</div>
-					<div className="emailHolder">
-						<input type="text" name="email" id="email" autoCapitalize='off' value='' placeholder='Email'/>
+					<div className="inputWrapper">
+						<input type="text" name="email" id="email" autoCapitalize='off' placeholder='Email'/>
 					</div>
-					<div className="passwordContainer">
-						<div className='passwordHolder'>
+					<div className="contentContainer">
+						<div className='inputWrapper'>
 							<input type="password" name="password" id="password" placeholder='Password'/>
 						</div>
-						<div className='confirmPasswordHolder'>
+						<div className='inputWrapper'>
 							<input type="text" name="confirmPassword" id="confirmPassword" placeholder='Confirm password'/>
 						</div>
+					</div>
+					<div className="footer">
+						<button className='btnSignUp'>Sign Up</button>
 					</div>
 				</div>
 			</form>
