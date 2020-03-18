@@ -3,7 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 
 // routes
-import apiSignUpRoute from './routes/api/signup';
+import apiRoutes from './routes/api';
 
 const app:Application = express();
 
@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // import routes
-app.use('/api/signup', apiSignUpRoute);
+app.use('/api', apiRoutes);
 
 // for production
 if(process.env.NODE_ENV === 'production') {
