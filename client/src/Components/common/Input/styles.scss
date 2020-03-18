@@ -1,25 +1,17 @@
 @import '../../../styleLib/colours', '../../../styleLib/default';
 
-.inputWrapper {
-	margin: 0.5rem;
-	height: 1.3rem;
-	box-shadow: $borderStyle;
+.input {
+	width: 5rem;
+	display: inline-block;
 	border-radius: $rounded-corner;
-	padding: 0 0.5rem;
-	box-sizing: border-box;
+	background: $whitesmoke-colour;
+	border: 0;
+	outline: none;
+	margin: 0 0.3rem;
+	padding:0.25rem 0.35rem;
+	box-shadow: 0 0 #9f9f9f, 0 2px #9f9f9f, 2px 2px #9f9f9f, 2px 0 #9f9f9f;
+}
 
-	& input {
-		width: 100%;
-		height: 90%;
-		display: block;
-		border: 0;
-		border-radius: $rounded-corner;
-		background: transparent;
-		outline: none;
-		margin: 0 auto;
-	}
-
-	& input:active, input:focus {
-		outline: none;
-	}
+.input:active, input:focus {
+	outline: none;
 }

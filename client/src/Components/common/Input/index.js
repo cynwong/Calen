@@ -2,24 +2,25 @@ import React from 'react';
 
 import './styles.scss';
 
-export default function Input(props) {
+export default function FormInput(props) {
 	const {
 		name,
 		type,
 		autoCapitalize,
 		placeholder,
 		onBlur,
+		onClick
 	} = props;
 	return (
-		<div className='inputWrapper'>
-			<input 
-				type={type? type: 'text'} 
-				name={name}
-				id={name}
-				autoCapitalize={autoCapitalize? autoCapitalize : 'off'} 
-				placeholder={placeholder}
-				onBlur = {onBlur}
-			/>
-		</div>
+		<input 
+			className='input'
+			type={type ? type: 'text'} 
+			name={name}
+			id={name}
+			autoCapitalize={autoCapitalize? autoCapitalize : 'off'} 
+			placeholder={placeholder ? placeholder : ''}
+			onBlur = {onBlur ? onBlur : null}
+			onClick = {onClick ? onClick : null}
+		/>
 	)
 }
