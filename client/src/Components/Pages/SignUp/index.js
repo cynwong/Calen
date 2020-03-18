@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Alert from '../../common/Alert';
-import Input from '../../common/Input';
+import FormInput from '../../common/FormInput';
 
 import API from '../../../utils/API';
 
@@ -140,10 +140,18 @@ export default function SignUp(props) {
 				return props.history.push('/');
 			}
 		} catch (err) {
-			setErrors({
-				...errors,
-				server: [...err.response.data.errors]
-			})
+			console.log(err.response)
+			if(err.response && err.response.data && err.response.data.errors){
+				setErrors({
+					...errors,
+					server: [...err.response.data.errors]
+				})
+			}else {
+				setErrors({
+					...errors,
+					server: ['Something went wrong. Try again later.']
+				})
+			}
 		}
 		
 	}
@@ -185,14 +193,14 @@ export default function SignUp(props) {
 						}
 					</div>
 					<div className='contentContainer'>
-						<Input 
+						<FormInput 
 							name="firstName" 
 							autoCapitalize='word' 
 							placeholder='First name'
 							value={firstName}
 							onBlur= {handleFocusOut}
 						/>
-						<Input 
+						<FormInput 
 							name="lastName" 
 							autoCapitalize='word' 
 							placeholder='Last name'
@@ -211,7 +219,7 @@ export default function SignUp(props) {
 							)
 						}
 					</div>
-					<Input 
+					<FormInput 
 							name="email" 
 							placeholder='Email'
 							value={email}
@@ -236,14 +244,14 @@ export default function SignUp(props) {
 						}
 					</div>
 					<div className="contentContainer">
-						<Input 
+						<FormInput 
 								type="password" 
 								name="password" 
 								placeholder='Password'
 								value={password}
 								onBlur= {handleFocusOut}
 						/>
-						<Input 
+						<FormInput 
 								type="password" 
 								name="confirmPassword" 
 								placeholder='Confirm password'
