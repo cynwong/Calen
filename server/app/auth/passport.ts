@@ -1,12 +1,14 @@
+import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
+
 import { User, UserDocument } from '../../database/models/User';
 
 const localStrategy = new LocalStrategy(
 	{
-		usernameField: 'email',
+		usernameField: 'username',
+		passwordField: 'password'
 	},
 	(username: string, password: string, done): void => {
-		console.log(username, password)
 		User.findOne({ email: username.toLowerCase()}, (err, user) => {
 			if (err) { return done(err); }
 			if(!user) {
@@ -15,28 +17,27 @@ const localStrategy = new LocalStrategy(
 			if(!user.validatePassword(password)) {
 				return done(new Error('Incorrect username or password'), false);
 			}
-			done(undefined, user);
+			done(null, user);
 		});
 	}
 );
 
-export default (pp: any) => {
-	console.log('start configuration');
-	// local strategy
-	pp.use(localStrategy);
+// add strategies to passport
+passport.use(localStrategy);
 
-	pp.serializeUser((user:UserDocument, done: (_:undefined, userId:string)=>void) :void=> {console.log('serialize');done(undefined, user.id)});
-	pp.deserializeUser(async (id: string, done:(e:Error|null, u:UserDocument|boolean)=>void): Promise<void> => {
-		try {
-			const user = await User.findById(id);
-			console.log('deserialize');
-			done (null, user as UserDocument);
-		} catch (err) {
-			console.log(err);
-			done(err, false);
-		}
-	});
-}
+passport.serializeUser((user:UserDocument, done: (_:undefined, userId:string)=>void) :void=> done(undefined, user.id));
+passport.deserializeUser(async (id: string, done:(e:Error|null, u:UserDocument|boolean)=>void): Promise<void> => {
+	try {
+		const user = await User.findById(id);
+		done (null, user as UserDocument);
+	} catch (err) {
+		console.log(err);
+		done(err, false);
+	}
+});
+
+export default passport;
+
 
 
 // Local Strategy
