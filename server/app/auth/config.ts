@@ -1,1 +1,2 @@
-export const secretKey:string = 'CO_secret';
+
+export const secretKey:string = process.env.SECRET_KEY!;
