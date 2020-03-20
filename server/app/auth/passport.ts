@@ -1,96 +1,56 @@
-import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
-import { Request, Response, NextFunction } from 'express';
+import { User, UserDocument } from '../../database/models/User';
 
-import { User } from '../../database/models/User';
-
-passport.serializeUser<any, any>((user, done) => done(undefined, user.id));
-passport.deserializeUser<any, any>((id, done): void => {
-	User.findById(id, (err,user) => {
-		if(err) {
-			return done(err, false);
-		}
-		done(undefined, user);
-	});
-});
-
-// Local Strategy
-passport.use(new LocalStrategy( 
+const localStrategy = new LocalStrategy(
 	{
-		usernameField: 'email', 
-		passwordField: 'password'
+		usernameField: 'email',
 	},
-	(email, password, done) => {
-		User.findOne ({ email: email.toLowerCase() }, (err, user: any) => {
-			if(err) { return done(err); }
-			const errMsg = { message: 'Incorrect username or password' };
+	(username: string, password: string, done): void => {
+		console.log(username, password)
+		User.findOne({ email: username.toLowerCase()}, (err, user) => {
+			if (err) { return done(err); }
 			if(!user) {
-				return done(undefined, false, errMsg);
+				return done(new Error('Incorrect username or password'), false);
 			}
 			if(!user.validatePassword(password)) {
-				return done(undefined, false, errMsg);
+				return done(new Error('Incorrect username or password'), false);
 			}
-			return done(undefined, user);
+			done(undefined, user);
 		});
 	}
-));
+);
 
-// Authentication Middleware functions
-// Do not allow user to access without login 
-export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	res.redirect('/login');
+export default (pp: any) => {
+	console.log('start configuration');
+	// local strategy
+	pp.use(localStrategy);
+
+	pp.serializeUser((user:UserDocument, done: (_:undefined, userId:string)=>void) :void=> {console.log('serialize');done(undefined, user.id)});
+	pp.deserializeUser(async (id: string, done:(e:Error|null, u:UserDocument|boolean)=>void): Promise<void> => {
+		try {
+			const user = await User.findById(id);
+			console.log('deserialize');
+			done (null, user as UserDocument);
+		} catch (err) {
+			console.log(err);
+			done(err, false);
+		}
+	});
 }
 
-// do not allow login-user to access
-export const forwardIfNotAuthenticated = (req: Request, res: Response, next: NextFunction) => {
-	if (!req.isAuthenticated()) {
-		return next();
-	}
-	return res.redirect('/login'); //TODO go to dashboard
-}
 
-// import { Strategy as LocalStrategy } from 'passport-local';
-// import passport from 'passport';
+// Local Strategy
+// passport.use('local', new LocalStrategy( 
+// 	{
+// 		usernameField: 'email', 
+// 		passwordField: 'password'
+// 	},
+// 	async (email:string, password:string, done):Promise<void> => {
+// 		console.log('basic')
+		
+// 	}
+// ));
 
-// import { IUser, User } from '../../database/models/User';
 
-// export default function (passport:) {
-// 	passport.use(
-// 		'login',
-// 		new LocalStrategy(
-// 			{ 
-// 				usernameField: 'email',
-// 				passwordField: 'password'
-// 			},
-// 			async (email, password, done) => {
-// 				try {
-// 					// find user
-// 					const user = await User.findOne({ email });
-// 					if (!user) {
-// 						return done(null, false, { message: 'Incorrect username / password'});
-// 					}
-// 					// Validate password
-// 					if (!user.validatePassword(password)) {
-// 						return done(null, false, { message: 'Incorrect username / password'});
-// 					}
-// 					return done(null, user);
-// 				} catch (err) {
-// 					return done(err);
-// 				}
-// 			}
-// 		)
-// 	);
-// 	passport.serializeUser(({ id: }, done) => done(null, id));
 
-// 	passport.deserializeUser(async (id, done) => {
-// 		try {
-// 			const dbUser = await User.findById(id);
-// 			return done(null, dbUser);
-// 		} catch (error) {
-// 			return done(error);
-// 		}
-// 	});
-// }
+// export default passport;
