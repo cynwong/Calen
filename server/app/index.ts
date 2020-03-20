@@ -2,18 +2,14 @@ import cors from 'cors';
 import express, { Application } from 'express';
 import expressSession from 'express-session';
 import morgan from 'morgan';
-import passport from 'passport';
 
 import { secretKey } from './auth/config';
-import configurePassport from './auth/passport';
+import passport from './auth/passport';
 
 // routes
 import apiRoutes from './routes/api';
 
 const app:Application = express();
-
-// configure passport
-configurePassport(passport);
 
 // set cors & logs middlewares
 app.use(cors());
