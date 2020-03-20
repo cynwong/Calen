@@ -1,13 +1,14 @@
 import { Router, Request, Response } from 'express';
 
-import { UserDocument, User } from '../../../../database/models/User';
-import { forwardIfNotAuthenticated } from '../../../auth/passport';
+import { UserDocument } from '../../../../database/models/User';
+import { createUser } from '../../../../database/controllers/UserController';
+import { forwardIfNotAuthenticated } from '../../../auth/expressPassport';
 
 import { validateEmail, validatePassword } from '../../../lib/validate';
 
-const apiSignUpRoute = Router();
+const signUpRoute = Router();
 
-apiSignUpRoute.post(
+signUpRoute.post(
 	'/',
 	forwardIfNotAuthenticated,
 	async (req: Request, res: Response) => {
@@ -34,12 +35,12 @@ apiSignUpRoute.post(
 			if( errors.length !== 0 ) {
 				res.status(400).json({ errors });
 			}
-			await User.create({
+			await createUser({
 				firstName,
 				lastName,
 				email,
 				password
-			});
+			} as UserDocument);
 			res.status(200).json({ success: true });
 		} catch (err) {
 			res.status(500).json({
@@ -49,4 +50,4 @@ apiSignUpRoute.post(
 	}
 );
 
-export default apiSignUpRoute;
+export default signUpRoute;
