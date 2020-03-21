@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import './styles.scss';
 
-export default function FormInput(props) {
+const Input = forwardRef((props, ref) => {
 	const {
 		name,
 		type,
@@ -17,10 +17,14 @@ export default function FormInput(props) {
 			type={type ? type: 'text'} 
 			name={name}
 			id={name}
+			ref={ref}
 			autoCapitalize={autoCapitalize? autoCapitalize : 'off'} 
 			placeholder={placeholder ? placeholder : ''}
 			onBlur = {onBlur ? onBlur : null}
 			onClick = {onClick ? onClick : null}
 		/>
 	)
-}
+});
+
+
+export default Input;
