@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 
 import Alert from '../../common/Alert';
 import FormInput from '../../common/FormInput';
