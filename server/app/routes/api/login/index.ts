@@ -26,7 +26,14 @@ loginRoute.post(
 					console.error(loginErr);
 					return next(loginErr);
 				}
-				res.status(200).json({ success: true });
+				res.status(200).json({ 
+					success: true,
+					user: {
+						username: user.email,
+						firstName: user.firstName,
+						lastName: user.lastName
+					}
+				});
 			});
 		})(req,res,next);
 	}
