@@ -8,4 +8,18 @@ export default {
 			postData
 		);
 	},
+	// login 
+	login: function(username, password) {
+		return axios.post(
+			'/api/login',
+			{ username, password }
+		);
+	},
+	// logOut 
+	logOut: function() {
+		console.log('logout function')
+		return axios.get(
+			'/api/logout',
+		);
+	},
 }

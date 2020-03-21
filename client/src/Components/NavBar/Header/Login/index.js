@@ -6,20 +6,36 @@ import Button from '../../../common/Button';
 import AppContext from '../../../../utils/AppContext';
 
 export default function Login() {
-	const { fullName, fnLogin } = useContext(AppContext);
+	const { user, fnLogin, fnLogOut } = useContext(AppContext);
 	const usernameEl = useRef();
 	const passwordEl = useRef();
 
 	const handleLoginClick = (e) => {
 		e.preventDefault();
-		console.log(usernameEl.current.value);
+		const username = usernameEl.current.value;
+		const password = passwordEl.current.value;
+		fnLogin(username,password);
+		usernameEl.current.value = '';
+		passwordEl.current.value = '';
+	}
+
+	const handleLogoutClick = (e) => {
+		e.preventDefault();
+		fnLogOut();
 	}
 
 
 	return (
 		<div className='login-container'>
-			{fullName ? (
-				<p>Welcome, {fullName}.</p>
+			{user.firstName ? (
+				<div>
+					<p>Welcome, {user.firstName}.</p>
+					<Button 
+						name='btn-logout'
+						label="Logout"
+						onClick ={handleLogoutClick}
+					/>
+				</div>
 			) : (
 				<form >
 					<Input 
