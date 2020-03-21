@@ -11,18 +11,17 @@ import API from './utils/API';
 import './App.scss';
 
 function App() {
-	const [login, setLogin] = useState({
+	const [userInfo, setUserInfo] = useState({
 		username: undefined,
 		firstName: undefined,
 		lastName: undefined,
-		token: undefined
 	});
 	// const [error, setError] = useState('');
 	const fnLogin = async (username, password) => {
 		try {
 			const { data: { success, user } } = await API.login(username, password);
 			if(success) {
-				setLogin({
+				setUserInfo({
 					username: user.username,
 					firstName: user.firstName,
 					lastName: user.lastName
@@ -34,10 +33,9 @@ function App() {
 	}
 	const fnLogOut = async () => {
 		try {
-			console.log('log out')
 			const { data: { success } } = await API.logOut();
 			if (success) {
-				setLogin({
+				setUserInfo({
 					username: undefined,
 					firstName: undefined,
 					lastName: undefined,
@@ -49,7 +47,7 @@ function App() {
 		}
 	}
 	const appContextValues = {
-		user: login,
+		user: userInfo,
 		fnLogin,
 		fnLogOut
 	};
