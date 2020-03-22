@@ -44,7 +44,9 @@
 		"eslint-plugin-react": "^7.19.0",
 		"eslint-plugin-react-hooks": "^1.7.0",
 		"node-dev": "^4.0.0",
+		"node-sass": "^4.13.1",
 		"react-router-dom": "^5.1.2",
+		"ts-node": "^8.8.1",
 		"ts-node-dev": "^1.0.0-pre.44"
 	},
 	"dependencies": {
@@ -55,11 +57,9 @@
 		"express-session": "^1.17.0",
 		"mongoose": "^5.9.3",
 		"morgan": "^1.9.1",
-		"node-sass": "^4.13.1",
 		"passport": "^0.4.1",
 		"passport-local": "^1.0.0",
-		"ts-mongoose": "0.0.21",
-		"ts-node": "^8.6.2"
+		"ts-mongoose": "0.0.21"
 	},
 	"nodemonConfig": {
 		"ignore": [
