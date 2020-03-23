@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 
 // Authentication Middleware functions
 // Do not allow user to access without login 
-export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+export const checkIfAuthenticated = (req: Request, res: Response, next: NextFunction) => {
 	if (req.isAuthenticated()) {
 		return next();
 	}
