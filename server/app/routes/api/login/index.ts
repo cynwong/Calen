@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import passport from 'passport';
 
-import { Error } from '../../../../types/error/error';
 import { UserDocument } from '../../../../database/models/User';
+import { getAllEvents } from '../../../../database/controllers/EventController';
 
 const loginRoute = Router();
 
@@ -21,19 +21,28 @@ loginRoute.post(
 				return;
 			}
 			// log in user
-			req.logIn(user, (loginErr:Error): void => {
+			req.logIn(user, async (loginErr:Error): Promise<void> => {
 				if (loginErr) {
 					console.error(loginErr);
 					return next(loginErr);
 				}
-				res.status(200).json({ 
-					success: true,
-					user: {
-						username: user.email,
-						firstName: user.firstName,
-						lastName: user.lastName
-					}
-				});
+
+				try {
+					const events = await getAllEvents(user._id);
+					res.status(200).json({ 
+						success: true,
+						user: {
+							username: user.email,
+							firstName: user.firstName,
+							lastName: user.lastName,
+							events
+						}
+					});
+				} catch (err) {
+					
+				}
+
+				
 			});
 		})(req,res,next);
 	}
