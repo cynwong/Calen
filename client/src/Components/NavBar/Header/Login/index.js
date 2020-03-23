@@ -4,19 +4,20 @@ import Input from '../../../common/Input';
 import Button from '../../../common/Button';
 
 import AppContext from '../../../../utils/AppContext';
+import { useHistory } from 'react-router-dom';
 
 export default function Login() {
 	const { user, fnLogin, fnLogOut } = useContext(AppContext);
 	const usernameEl = useRef();
 	const passwordEl = useRef();
+	const history= useHistory();
 
-	const handleLoginClick = (e) => {
+	const handleLoginClick = async (e) => {
 		e.preventDefault();
 		const username = usernameEl.current.value;
 		const password = passwordEl.current.value;
-		fnLogin(username,password);
-		usernameEl.current.value = '';
-		passwordEl.current.value = '';
+		await fnLogin(username,password);
+		history.push('/dashboard');
 	}
 
 	const handleLogoutClick = (e) => {
