@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import Header from './Components/NavBar/Header';
-import Home from './Components/Pages/Home';
-import SignUp from './Components/Pages/SignUp';
-import DashBoard from './Components/Pages/DashBoard/DashBoard';
+import Header from './Components/NavBar/Header/Header';
+import Home from './Components/Pages/Home/Home.page';
+import SignUp from './Components/Pages/SignUp/SignUp.page';
+import DashBoard from './Components/Pages/DashBoard/DashBoard.page';
 
 import AppContext from './utils/AppContext';
 import API from './utils/API';
@@ -25,7 +25,8 @@ function App() {
 				setUserInfo({
 					username: user.username,
 					firstName: user.firstName,
-					lastName: user.lastName
+					lastName: user.lastName,
+					events: user.events ? user.events: []
 				});
 			}
 		} catch (err) {
