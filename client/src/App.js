@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core/styles';
+
 import Header from './Components/NavBar/Header/Header';
 import Home from './Components/Pages/Home/Home.page';
 import SignUp from './Components/Pages/SignUp/SignUp.page';
@@ -10,15 +12,18 @@ import AppContext from './utils/AppContext';
 import API from './utils/API';
 
 import './App.scss';
+import theme from './App.theme';
 
 function App() {
 	const [userInfo, setUserInfo] = useState({
 		username: null,
 		firstName: null,
 		lastName: null,
+		events: [],
 	});
+	const [current, setCurrentEvent] = useState({});
+
 	
-	// const [error, setError] = useState('');
 	const fnLogin = async (username, password) => {
 		try {
 			const { data: { success, user } } = await API.login(username, password);
@@ -49,12 +54,18 @@ function App() {
 			console.log(error);
 		}
 	}
+
+	const createNewEvent = ({allDay, start, end}) => {console.log('seeting');setCurrentEvent({ allDay, start, end });console.log('new',currentEvent)};
+
 	const appContextValues = {
+		currentEvent,
 		user: userInfo,
+		createNewEvent,
 		fnLogin,
-		fnLogOut
+		fnLogOut,
 	};
 	return (
+		<ThemeProvider theme={theme}>
 		<AppContext.Provider value={appContextValues} >
 			<div className="wrapper">
 				<Router>
@@ -78,6 +89,7 @@ function App() {
 				</Router>
 			</div>
 		</AppContext.Provider>
+		</ThemeProvider>
 	);
 }
 
