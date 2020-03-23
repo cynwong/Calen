@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './Components/NavBar/Header/Header';
 import Home from './Components/Pages/Home/Home.page';
 import SignUp from './Components/Pages/SignUp/SignUp.page';
 import DashBoard from './Components/Pages/DashBoard/DashBoard.page';
+import Events from './Components/Pages/Events/Events.page';
 
 import AppContext from './utils/AppContext';
 import API from './utils/API';
@@ -61,20 +62,17 @@ function App() {
 					<main>
 						<Switch>
 							<Route exact path='/' component={Home} />
-							{/* Access after user login */}
-							{userInfo.username && <Route exact path='/dashboard' component={DashBoard} />}
-							{/* Access if no user */}
-							{!userInfo.username && <Route exact path='/signup' component={SignUp} />}
-							{!userInfo.username && 
-								<Redirect 
-									from="/dashboard" 
-									to={{
-										pathname: "/",
-										state: { userInfo }
-									}}
-									push
-									exact
-								/>}
+							{
+								userInfo.username ? (
+									[
+										<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
+										<Route exact path='/events/new' key='newEvent' component={Events} />,
+									]
+								) : (
+									<Route exact path='/signup' component={SignUp} />
+								)
+							}
+							
 						</Switch>
 					</main>
 				</Router>
