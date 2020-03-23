@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './Components/NavBar/Header';
 import Home from './Components/Pages/Home';
 import SignUp from './Components/Pages/SignUp';
+import DashBoard from './Components/Pages/DashBoard';
 
 import AppContext from './utils/AppContext';
 import API from './utils/API';
@@ -57,8 +58,13 @@ function App() {
 				<Router>
 					<Header />
 					<main>
-						<Route exact path='/' component={Home} />
-						<Route exact path='/signup' component={SignUp} />
+						<Switch>
+							<Route exact path='/' component={Home} />
+							{/* Access if no user */}
+							{!userInfo.username && <Route exact path='/signup' component={SignUp} />}
+							{/* Access after user login */}
+							{userInfo.username && <Route exact path='/dashboard' component={DashBoard} />}
+						</Switch>
 					</main>
 				</Router>
 			</div>
