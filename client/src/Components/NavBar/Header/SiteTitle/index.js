@@ -7,7 +7,7 @@ export default function SiteTitle() {
 	return (
 		<div className='siteTitle'>
 			<NavLink to='/'>
-				<h1>iOrganizer</h1>
+				<h1>Calen</h1>
 			</NavLink>
 		</div>
 	)
