@@ -1,0 +1,31 @@
+
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/timegrid/main.css';
+@import '~@fullcalendar/bootstrap/main.css';
+
+
+.fc-header-toolbar {
+	.fc-left div{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+	
+	.fc-center div{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		h2 {
+			display: inline;
+			margin-left: 0.5rem;
+			margin-right: 0.5rem;
+		}
+	}
+
+	.fc-right div{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+}
