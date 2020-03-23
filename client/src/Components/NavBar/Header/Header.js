@@ -1,9 +1,9 @@
 import React from 'react';
 
-import SiteTitle from './SiteTitle';
-import Login from './Login';
+import SiteTitle from './SiteTitle/SiteTitle';
+import Login from './Login/Login';
 
-import './styles.scss';
+import './Header.styles.scss';
 
 export default function Header() {
 	return (
