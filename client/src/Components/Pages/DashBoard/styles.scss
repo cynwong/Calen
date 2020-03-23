@@ -1,0 +1,50 @@
+
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/bootstrap/main.css';
+
+@import '../../../styleLib/colours';
+@import '../../../styleLib/default';
+
+.full-calendar-container {
+	background: rgba($whitesmoke-colour, 99);
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 7px;
+	margin: 0.5rem auto;
+	padding: 1.5rem 2rem;
+	border-radius: $rounded-corner;
+
+	max-width: 85%;
+
+	@media screen and (min-width:$sm){
+		font-size: 12px;
+	}
+	@media screen and (min-width:$md){
+		font-size: 14px;
+	}
+
+	.fc-header-toolbar {
+		.fc-left div{
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+		
+		.fc-center div{
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			h2 {
+				display: inline;
+				margin-left: 0.5rem;
+				margin-right: 0.5rem;
+			}
+		}
+
+		.fc-right div{
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+	}
+}
