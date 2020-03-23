@@ -22,29 +22,4 @@
 	@media screen and (min-width:$md){
 		font-size: 14px;
 	}
-
-	.fc-header-toolbar {
-		.fc-left div{
-			display: flex;
-			align-items: center;
-			justify-content: space-around;
-		}
-		
-		.fc-center div{
-			display: flex;
-			align-items: center;
-			justify-content: space-around;
-			h2 {
-				display: inline;
-				margin-left: 0.5rem;
-				margin-right: 0.5rem;
-			}
-		}
-
-		.fc-right div{
-			display: flex;
-			align-items: center;
-			justify-content: space-around;
-		}
-	}
 }
