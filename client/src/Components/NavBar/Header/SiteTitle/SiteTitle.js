@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './styles.scss';
+import './SiteTitle.styles.scss';
 
 export default function SiteTitle() {
 	return (
