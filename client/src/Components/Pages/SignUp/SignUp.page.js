@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Alert from '../../common/Alert';
-import FormInput from '../../common/FormInput';
+import FormInput from '../../common/FormInput/FormInput';
 
 import API from '../../../utils/API';
 
