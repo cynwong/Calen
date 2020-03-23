@@ -1,9 +1,11 @@
 import { createContext } from 'react';
 
 const AppContext = createContext({
-	username: '',
-	fullName: '',
-	fnLogin: () => undefined
+	currentEvent: {},
+	user: {},
+	createNewEvent: (start, end, allDay) => undefined,
+	fnLogin: (username, password) => undefined,
+	fnLogOut: () => undefined,
 })
 
 export default AppContext;
