@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './styles.scss';
+import './FormInput.styles.scss';
 
 export default function FormInput(props) {
 	const {
@@ -9,6 +9,8 @@ export default function FormInput(props) {
 		autoCapitalize,
 		placeholder,
 		onBlur,
+		onClick,
+		onChange
 	} = props;
 	return (
 		<div className='inputWrapper'>
@@ -19,6 +21,8 @@ export default function FormInput(props) {
 				autoCapitalize={autoCapitalize? autoCapitalize : 'off'} 
 				placeholder={placeholder}
 				onBlur = {onBlur}
+				onClick = {onClick}
+				onChange = {onChange}
 			/>
 		</div>
 	)
