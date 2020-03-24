@@ -6,7 +6,7 @@ export const checkIfAuthenticated = (req: Request, res: Response, next: NextFunc
 	if (req.isAuthenticated()) {
 		return next();
 	}
-	res.redirect('/login');
+	res.status(401).json({error: 'Unauthorized'});
 }
 
 // do not allow login-user to access
