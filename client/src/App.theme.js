@@ -1,5 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import { teal } from '@material-ui/core/colors';
+import pink from '@material-ui/core/colors/pink';
 
 const theme = createMuiTheme({
 	typography: {
@@ -10,7 +11,7 @@ const theme = createMuiTheme({
 			light: teal[200],
 			main: teal[500],
 			dark: teal[900],
-			contrastText: '#1f1f1f',
+			contrastText: pink[50],
 		},
 		secondary: {
 			light: '#f381a7',
