@@ -2,7 +2,7 @@ import { Document, model, Model, Schema } from 'mongoose';
 
 export interface EventDocument extends Document {
 	_id: string,
-	Owner: Schema.Types.ObjectId,
+	creator: Schema.Types.ObjectId,
 	title: string, 
 	start: Date, 
 	end: Date,
@@ -14,7 +14,7 @@ export interface EventDocument extends Document {
 	updatedAt: Date
 }
 const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
-	Owner: {
+	creator: {
 		type: Schema.Types.ObjectId,
 		ref: 'user'
 	}, 
