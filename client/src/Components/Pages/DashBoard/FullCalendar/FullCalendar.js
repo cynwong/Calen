@@ -15,7 +15,7 @@ import AppContext from '../../../../utils/AppContext';
 import './FullCalendar.styles.scss';
 
 export default function FullCalendarComponent() {
-	const { user: {events }} = useContext(AppContext);
+	const { user: { events }} = useContext(AppContext);
 	const [modalData, setModalData] = useState({
 		open: false,
 		event: {}
@@ -28,7 +28,6 @@ export default function FullCalendarComponent() {
 		calendarWeekends: true,
 		droppable: true,
 		editable: true,
-		events,
 	}
 	const selectDates = (info) => {
 		const { allDay, endStr, startStr} = info;
@@ -63,7 +62,7 @@ export default function FullCalendarComponent() {
 						plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin ]}
 						ref={ calendarComponentRef }
 						weekends={ calendarSettings.calendarWeekends }
-						events={ calendarSettings.events }
+						events={ events }
 						navLinks={true}
 						eventLimit={true}
 						selectable={true}
