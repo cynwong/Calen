@@ -22,7 +22,6 @@ export default function EventForm({event, closeModal}) {
 
 	const handleSaveBtnClick = async (e) => {
 		e.preventDefault();
-		console.log(updatingEvent)
 		await saveEvent(updatingEvent);
 		closeModal();
 	}
