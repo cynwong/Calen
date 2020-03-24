@@ -139,7 +139,7 @@ export default function SignUp(props) {
 				return props.history.push('/');
 			}
 		} catch (err) {
-			console.log(err.response)
+			console.error(err.response)
 			if(err.response && err.response.data && err.response.data.errors){
 				setErrors({
 					...errors,
