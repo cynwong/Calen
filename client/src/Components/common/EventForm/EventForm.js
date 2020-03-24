@@ -7,18 +7,17 @@ import useStyles from './EventForm.styles.js';
 
 
 
-export default function EventForm({event}) {
-	const { createNewEvent } = useContext(AppContext);
+export default function EventForm({event, closeModal}) {
+	const { saveEvent } = useContext(AppContext);
 	const classes = useStyles();
 	const [errors, setErrors] = useState({});
 	const [updatingEvent, setUpdatingEvent] = useState({...event});
 	console.log(updatingEvent)
 
-	const handleSaveBtnClick = (e) => {
+	const handleSaveBtnClick = async (e) => {
 		e.preventDefault();
-
-		console.log(updatingEvent);
-		createNewEvent(updatingEvent);
+		await saveEvent(updatingEvent);
+		closeModal();
 	}
 
 	const handleFocusOut = (e) => {
