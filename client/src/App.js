@@ -34,9 +34,11 @@ function App() {
 					lastName: user.lastName,
 					events: user.events ? user.events: []
 				});
+				return;
 			}
 		} catch (err) {
 			console.error(err); //TODO
+			return err;
 		}
 	}
 	const fnLogOut = async () => {
@@ -48,17 +50,39 @@ function App() {
 					firstName: null,
 					lastName: null,
 				});
-				
+				return;
 			}
-		} catch (error) {
-			console.log(error);
+		} catch (err) {
+			console.error(err);
+			return err;
 		}
 	}
 
-	const createNewEvent = ({allDay, start, end}) => {console.log('seeting');setCurrentEvent({ allDay, start, end });console.log('new',currentEvent)};
+	const createNewEvent = async (updatingEvent) => {
+		try {
+			if(updatingEvent.isNew) {
+				delete updatingEvent.isNew; 
+				console.log(updatingEvent);
+				const newEvent = await API.postNewEvent(updatingEvent);
+				setUserInfo({
+					...userInfo,
+					events: [...userInfo.events, newEvent]
+				});
+				return;
+			} else {
+				console.log("updating"); // TODO
+				delete updatingEvent.isNew; 
+				const event = await API.putEvent(updatingEvent);
+
+			}
+		} catch (err) {
+			console.error(err);
+			return err;
+		}
+	};
 
 	const appContextValues = {
-		currentEvent,
+		current,
 		user: userInfo,
 		createNewEvent,
 		fnLogin,
