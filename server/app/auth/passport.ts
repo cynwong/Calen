@@ -1,5 +1,6 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
+import { ExtractJwt, Strategy as JWTStrategy } from 'passport-jwt';
 
 import { User, UserDocument } from '../../database/models/User';
 
@@ -22,36 +23,34 @@ const localStrategy = new LocalStrategy(
 	}
 );
 
+const jwtStrategy = new JWTStrategy(
+	{
+        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+        secretOrKey   : process.env.JWT_KEY
+    },
+    (jwtPayload:any, done:(err:any, user:any)=>void) => {
+        return User.findById(jwtPayload.data._id, (err, user) => {
+			if(err) {
+				return done(err, false);
+			}
+			return done(null, user);
+		});
+    }
+);
+
 // add strategies to passport
 passport.use(localStrategy);
+// passport.use(jwtStrategy);
 
-passport.serializeUser((user:UserDocument, done: (_:undefined, userId:string)=>void) :void=> done(undefined, user.id));
+passport.serializeUser((user:UserDocument, done: (_:undefined, userId:string)=>void) :void=> done(undefined, user._id));
 passport.deserializeUser(async (id: string, done:(e:Error|null, u:UserDocument|boolean)=>void): Promise<void> => {
 	try {
 		const user = await User.findById(id);
 		done (null, user as UserDocument);
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 		done(err, false);
 	}
 });
 
 export default passport;
-
-
-
-// Local Strategy
-// passport.use('local', new LocalStrategy( 
-// 	{
-// 		usernameField: 'email', 
-// 		passwordField: 'password'
-// 	},
-// 	async (email:string, password:string, done):Promise<void> => {
-// 		console.log('basic')
-		
-// 	}
-// ));
-
-
-
-// export default passport;
