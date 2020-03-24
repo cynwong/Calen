@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { teal } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
 	typography: {
@@ -6,9 +7,9 @@ const theme = createMuiTheme({
 	},
 	palette: {
 		primary: {
-			light: '#bedd9a',
-			main: '#aed581',
-			dark: '#79955a',
+			light: teal[200],
+			main: teal[500],
+			dark: teal[900],
 			contrastText: '#1f1f1f',
 		},
 		secondary: {
