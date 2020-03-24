@@ -21,7 +21,7 @@ postNewEvent.post(
 			notes
 		} = body;
 		try {
-			await createEvent({
+			const newEvent = await createEvent({
 				creator: user?._id,
 				title,
 				start,
@@ -31,7 +31,7 @@ postNewEvent.post(
 				location,
 				notes
 			} as EventDocument);
-			res.status(200).json({success: true});
+			res.status(200).json(newEvent);
 		} catch (err) {
 			console.error(err);
 			res.status(500).json({error: true});
