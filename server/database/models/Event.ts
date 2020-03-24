@@ -6,21 +6,39 @@ export interface EventDocument extends Document {
 	start: Date, 
 	end: Date,
 	allDay: boolean,
-	isDone: boolean,
 	desc: string,
+	location: string,
+	notes: string
 }
-
 const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 	Owner: {
 		type: Schema.Types.ObjectId,
 		ref: 'user'
 	}, 
-	title: String, 
-	start: Date, 
+	title: {
+		type: String,
+		trim: true,
+		required: 'Title is required.', 
+	}, 
+	start: {
+		type: Date,
+		trim: true,
+		required: 'Start Date is required.', 
+	}, 
 	end: Date,
 	allDay: Boolean,
-	isDone: Boolean,
-	desc: String,
+	desc: {
+		type: String,
+		trim: true
+	},
+	location: {
+		type: String,
+		trim: true
+	},
+	notes: {
+		type: String,
+		trim: true
+	},
 }, {
 	timestamps: true
 });
