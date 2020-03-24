@@ -58,10 +58,10 @@ function App() {
 	const saveEvent = async (updatingEvent) => {
 		try {
 			if(!updatingEvent._id) {
-				const newEvent = await API.postNewEvent(updatingEvent);
-				setUserInfo({
+				const { data } = await API.postNewEvent(updatingEvent);
+				await setUserInfo({
 					...userInfo,
-					events: [...userInfo.events, newEvent]
+					events: [...userInfo.events, data]
 				});
 				return;
 			} else {
