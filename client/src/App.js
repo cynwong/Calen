@@ -55,11 +55,9 @@ function App() {
 		}
 	}
 
-	const createNewEvent = async (updatingEvent) => {
+	const saveEvent = async (updatingEvent) => {
 		try {
-			if(updatingEvent.isNew) {
-				delete updatingEvent.isNew; 
-				console.log(updatingEvent);
+			if(!updatingEvent._id) {
 				const newEvent = await API.postNewEvent(updatingEvent);
 				setUserInfo({
 					...userInfo,
@@ -80,7 +78,7 @@ function App() {
 
 	const appContextValues = {
 		user: userInfo,
-		createNewEvent,
+		saveEvent,
 		fnLogin,
 		fnLogOut,
 	};
