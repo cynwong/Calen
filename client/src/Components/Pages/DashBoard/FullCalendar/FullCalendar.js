@@ -31,12 +31,10 @@ export default function FullCalendarComponent() {
 		events,
 	}
 	const selectDates = (info) => {
-		console.log(info)
 		const { allDay, endStr, startStr} = info;
 		setModalData({
 			open: true,
 			event: {
-				isNew: true,
 				allDay,
 				start: moment(startStr).format(dateFormatString),
 				end: moment(endStr).format(dateFormatString),
