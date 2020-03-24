@@ -18,7 +18,6 @@ export default function EventForm({event, closeModal}) {
 	const classes = useStyles();
 	const [errors, setErrors] = useState({});
 	const [updatingEvent, setUpdatingEvent] = useState({...event});
-	console.log(updatingEvent)
 
 	const handleSaveBtnClick = async (e) => {
 		e.preventDefault();
