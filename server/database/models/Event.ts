@@ -2,6 +2,7 @@ import { Document, model, Model, Schema } from 'mongoose';
 
 export interface EventDocument extends Document {
 	_id: string,
+	id: string,
 	creator: Schema.Types.ObjectId,
 	title: string, 
 	start: Date, 
@@ -43,7 +44,13 @@ const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 		trim: true
 	},
 }, {
-	timestamps: true
+	timestamps: true,
+	toObject: { virtuals: true },
+	toJSON: { virtuals: true }
+});
+
+EventSchema.virtual('id').get(function() {
+	return this?._id;
 });
 
 export const Event: Model<EventDocument> = model<EventDocument>('event', EventSchema);
