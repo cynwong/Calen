@@ -5,6 +5,7 @@ const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
+		borderRadius:10
 	},
 	paper: {
 		backgroundColor: theme.palette.background.paper,
@@ -12,7 +13,9 @@ const useStyles = makeStyles(theme => ({
 		boxShadow: theme.shadows[5],
 		padding: theme.spacing(2, 4, 3),
 		width:'80%',
-		height: '85%'
+		height: '85%',
+		borderRadius:10,
+		outline: 0
 	},
 	modalTitle: {
 		fontSize: "2rem",
