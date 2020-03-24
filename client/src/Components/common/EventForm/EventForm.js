@@ -1,5 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { TextField, Button, Switch, FormControlLabel } from '@material-ui/core';
+import { 
+	TextField,
+	Button,
+	Switch,
+	FormControlLabel,
+} from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 
 import AppContext from '../../../utils/AppContext';
 
@@ -16,6 +22,7 @@ export default function EventForm({event, closeModal}) {
 
 	const handleSaveBtnClick = async (e) => {
 		e.preventDefault();
+		console.log(updatingEvent)
 		await saveEvent(updatingEvent);
 		closeModal();
 	}
@@ -23,11 +30,22 @@ export default function EventForm({event, closeModal}) {
 	const handleFocusOut = (e) => {
 		e.preventDefault();
 		const { id, value } = e.currentTarget;
-		if(!value.trim()){
-			return setErrors({
-				...errors,
-				[id]: true
-			});
+		if(id === 'title' || id === 'start') {
+			// check if required data are there
+			if(!value.trim()){
+				return setErrors({
+					...errors,
+					[id]: true
+				});
+			}
+		}
+		// save data
+		if(id === 'desc' || id === 'notes'){
+			setUpdatingEvent({
+				...updatingEvent,
+				[id]: value.split(/\r?\n/)
+			})
+			return;
 		}
 		setUpdatingEvent({
 			...updatingEvent,
@@ -50,11 +68,16 @@ export default function EventForm({event, closeModal}) {
 	};
 	return (
 		<div className={classes.container}>
+			<div className="errorContainer">
+				{ errors.title && <Alert severity="error">Title is required.</Alert> }
+				{ errors.start && <Alert severity="error">Start date time is required.</Alert> }
+			</div>
 			<form className={classes.form}>
 				<TextField 
 					id="title"
 					label="Title"
 					variant="standard"
+					error={errors.title}
 					helperText="Required"
 					fullWidth
 					className={classes.textField}
@@ -67,6 +90,7 @@ export default function EventForm({event, closeModal}) {
 					label="Start time"
 					type="datetime-local"
 					helperText="Required"
+					error={errors.start}
 					defaultValue={updatingEvent.start}
 					className={classes.textField}
 					fullWidth
@@ -81,6 +105,7 @@ export default function EventForm({event, closeModal}) {
 					value={updatingEvent.allDay ? 'on': 'off'}
 					checked={updatingEvent.allDay}
 					control={<Switch color="primary" />}
+					// error={errors.allDay}
 					label="All Day Event"
 					labelPlacement="start"
 					onChange={handleAllDayChange}
@@ -93,6 +118,7 @@ export default function EventForm({event, closeModal}) {
 								id="end"
 								label="End time"
 								type="datetime-local"
+								// error={errors.end}
 								defaultValue={updatingEvent.end}
 								className={classes.textField}
 								fullWidth
@@ -111,6 +137,7 @@ export default function EventForm({event, closeModal}) {
 					label="Description"
 					variant="standard"
 					fullWidth
+					// error={errors.desc}
 					defaultValue={updatingEvent.desc}
 					multiline
 					className={classes.textField}
@@ -121,6 +148,7 @@ export default function EventForm({event, closeModal}) {
 					id="location"
 					label="Location"
 					variant="standard"
+					// error={errors.location}
 					defaultValue={updatingEvent.location}
 					fullWidth
 					className={classes.textField}
@@ -131,6 +159,7 @@ export default function EventForm({event, closeModal}) {
 					id="notes"
 					label="Notes"
 					variant="standard"
+					// error={errors.notes}
 					defaultValue={updatingEvent.notes}
 					fullWidth
 					multiline
