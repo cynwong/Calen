@@ -7,7 +7,7 @@ dotenv.config({
 });
 
 // load database and app
-import app from './app';
+import app from './app/app';
 import dbConnect from './database/dbConnect';
 
 const PORT = process.env.PORT || 8080;
@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 8080;
 (async () => {
 	try {
 		await dbConnect();
-		app.listen(PORT, () => console.log(`App running on port ${PORT}`));
+		app.listen(PORT, () => console.info(`App running on port ${PORT}`));
 	} catch (err) {
 		console.error(err);
 	}
