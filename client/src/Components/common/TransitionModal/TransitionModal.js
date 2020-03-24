@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Modal, Backdrop, Fade } from '@material-ui/core';
+import { Modal, Backdrop, Fade, IconButton } from '@material-ui/core';
+
+import CloseIcon from '@material-ui/icons/Close';
 
 import EventForm from '../EventForm/EventForm';
 
@@ -24,12 +26,14 @@ export default function TransitionsModal({open, event, closeModal}) {
 				<div className={classes.paper}>
 					<h2 id="transition-modal-title" className={classes.modalTitle}>
 						{event.isNew ? (
-							"Add new event"
-						) : (
-							"Edit event"
-						)
-
+								"Add new event"
+							) : (
+								"Edit event"
+							)
 						}
+						<IconButton aria-label="close" className={classes.closeButton} onClick={closeModal}>
+							<CloseIcon />
+						</IconButton>
 					</h2>
 					<EventForm event={event} closeModal={closeModal}/>
 				</div>
