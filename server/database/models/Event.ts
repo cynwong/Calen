@@ -7,9 +7,9 @@ export interface EventDocument extends Document {
 	start: Date, 
 	end: Date,
 	allDay: boolean,
-	desc: string,
+	desc: string[],
 	location: string,
-	notes: string,
+	notes: string[],
 	createdAt: Date,
 	updatedAt: Date
 }
@@ -31,7 +31,7 @@ const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 	end: Date,
 	allDay: Boolean,
 	desc: {
-		type: String,
+		type: [String],
 		trim: true
 	},
 	location: {
@@ -39,7 +39,7 @@ const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 		trim: true
 	},
 	notes: {
-		type: String,
+		type: [String],
 		trim: true
 	},
 }, {
