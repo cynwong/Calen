@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import allEventsRoute from './getAllEvents';
-import postNewEvent from './postNewEvent';
+import allEventsRoute from './subRoutes/getAllEvents';
+import postNewEvent from './subRoutes/postNewEvent';
 
 const eventsRoutes = Router();
 
