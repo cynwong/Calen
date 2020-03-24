@@ -168,7 +168,6 @@ export default function EventForm({event, closeModal}) {
 				<Button
 					variant="contained"
 					color="primary"
-					size="large"
 					className={classes.button}
 					onClick={handleSaveBtnClick}
 				>
@@ -177,8 +176,8 @@ export default function EventForm({event, closeModal}) {
 				<Button
 					variant="contained"
 					color="primary"
-					size="large"
 					className={classes.button}
+					onClick={closeModal}
 				>
 					Cancel
 				</Button>
