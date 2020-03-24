@@ -13,7 +13,6 @@ import TransitionsModal from '../../../common/TransitionModal/TransitionModal';
 import AppContext from '../../../../utils/AppContext';
 
 import './FullCalendar.styles.scss';
-import { set } from 'mongoose';
 
 export default function FullCalendarComponent() {
 	const { user: {events }} = useContext(AppContext);
