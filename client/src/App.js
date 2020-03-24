@@ -6,7 +6,6 @@ import Header from './Components/NavBar/Header/Header';
 import Home from './Components/Pages/Home/Home.page';
 import SignUp from './Components/Pages/SignUp/SignUp.page';
 import DashBoard from './Components/Pages/DashBoard/DashBoard.page';
-import Events from './Components/Pages/Events/Events.page';
 
 import AppContext from './utils/AppContext';
 import API from './utils/API';
@@ -21,8 +20,6 @@ function App() {
 		lastName: null,
 		events: [],
 	});
-	const [current, setCurrentEvent] = useState({});
-
 	
 	const fnLogin = async (username, password) => {
 		try {
@@ -71,8 +68,8 @@ function App() {
 				return;
 			} else {
 				console.log("updating"); // TODO
-				delete updatingEvent.isNew; 
-				const event = await API.putEvent(updatingEvent);
+				// delete updatingEvent.isNew; 
+				// const event = await API.putEvent(updatingEvent);
 
 			}
 		} catch (err) {
@@ -82,7 +79,6 @@ function App() {
 	};
 
 	const appContextValues = {
-		current,
 		user: userInfo,
 		createNewEvent,
 		fnLogin,
@@ -101,7 +97,6 @@ function App() {
 								userInfo.username ? (
 									[
 										<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
-										<Route exact path='/events/new' key='newEvent' component={Events} />,
 									]
 								) : (
 									<Route exact path='/signup' component={SignUp} />
