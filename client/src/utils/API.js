@@ -21,5 +21,10 @@ export default {
 			'/api/logout',
 		);
 	},
-
+	postNewEvent: (data) => {
+		return axios.post(
+			'/api/events',
+			data
+		);
+	}
 }
