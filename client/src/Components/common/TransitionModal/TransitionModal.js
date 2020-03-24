@@ -6,13 +6,13 @@ import EventForm from '../EventForm/EventForm';
 
 import useStyles from './TransitionModel.styles';
 
-export default function TransitionsModal({event, closeModal}) {
+export default function TransitionsModal({open, event, closeModal}) {
 	const classes = useStyles();
 
 	return (
 		<Modal
 			className={classes.modal}
-			open={true}
+			open={open}
 			onClose={closeModal}
 			closeAfterTransition
 			BackdropComponent={Backdrop}
@@ -31,7 +31,7 @@ export default function TransitionsModal({event, closeModal}) {
 
 						}
 					</h2>
-					<EventForm event={event} />
+					<EventForm event={event} closeModal={closeModal}/>
 				</div>
 			</Fade>
 		</Modal>
