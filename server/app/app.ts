@@ -7,7 +7,7 @@ import { secretKey } from './auth/config';
 import passport from './auth/passport';
 
 // routes
-import apiRoutes from './routes/api';
+import apiRoutes from './routes/api/api';
 
 const app:Application = express();
 
@@ -24,10 +24,10 @@ app.use(expressSession({
 	secret: secretKey as string, 
 	resave: true, 
 	saveUninitialized: true,
-	cookie: {
-		maxAge: 604800000,
-		secure: true,
-	}
+	// cookie: {
+	// 	maxAge: 604800000,
+	// 	secure: true,
+	// }
 }));
 
 // Passport middlewares
