@@ -1,6 +1,6 @@
 
-import React, { createRef, useState } from 'react';
-import ReactTooltip from 'react-tooltip';
+import React, { createRef, useState, useContext } from 'react';
+import moment from 'moment';
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -8,90 +8,75 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 
+import TransitionsModal from '../../../common/TransitionModal/TransitionModal';
+
+import AppContext from '../../../../utils/AppContext';
+
 import './FullCalendar.styles.scss';
+import { set } from 'mongoose';
 
-export default function FullCalendarComponent({events}) {
-
+export default function FullCalendarComponent() {
+	const { user: {events }} = useContext(AppContext);
+	const [modalData, setModalData] = useState({
+		open: false,
+		event: {}
+	});
 	const calendarComponentRef = createRef();
-	const [currentView, setCurrentView] = useState("dayGridMonth");
-	// const [officeHoursButtonLabel, setOfficeHoursButtonLabel] = useState('Show office hours only');
+
+	const dateFormatString = "YYYY-MM-DDThh:mm";
 
 	const calendarSettings = {
 		calendarWeekends: true,
 		droppable: true,
 		editable: true,
 		events,
-		headerLeft: 'today,showOfficeHoursOnly',
-		minTime: "09:00:00",
-		maxTime: "18:00:00",
-		// showOfficeHoursOnly: false,
-		// showOfficeHoursOnlyButtonLabel: officeHoursButtonLabel
 	}
-	const handleEventPositioned = (info) => {
-		info.el.setAttribute("data-tip","some text tip");
-		ReactTooltip.rebuild();
-	};
 	const selectDates = (info) => {
+		console.log(info)
 		const { allDay, endStr, startStr} = info;
-		console.log('selected ' + info.startStr + ' to ' + info.endStr);
-		console.log(info);
-		
+		setModalData({
+			open: true,
+			event: {
+				isNew: true,
+				allDay,
+				start: moment(startStr).format(dateFormatString),
+				end: moment(endStr).format(dateFormatString),
+			}
+		});
 	};
+
+	const closeModal = () => setModalData({open: false, event: {}});
 	const clickDate = (info) => {
 		console.log('date clicked>>>>')
 		console.log(info)
 	};
-	const eventDrop = (info) => {
-		const { event: {
-			id, 
-			start,
-			end, 
-			title, 
-			url
-		}} = info;
-		console.log('event drop', info, {id, start, end, title, url});
-	};
-	const eventResizeStop = (info) => {
-		console.log('event resize stop', info);
-	};
 	
 	return (
 		<div className='full-calendar-container'>
-			<FullCalendar 
-				defaultView={currentView}
-				header={{
-					left: calendarSettings.headerLeft,
-					center: 'prev,title,next',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-				}}
-				// customButtons={{
-				// 	showOfficeHoursOnly: {
-				// 		text: calendarSettings.showOfficeHoursOnlyButtonLabel,
-				// 		click: function() {
-				// 			setOfficeHoursButtonLabel
-				// 			setCalendarSettings({
-				// 				...calendarSettings,
-				// 				showOfficeHoursOnlyButtonLabel: calendarSettings.showOfficeHoursOnly ? 'Show office hours only' : 'Show all hours',
-				// 				showOfficeHoursOnly: !calendarSettings.showOfficeHoursOnly
-				// 			})
-				// 		}
-				// 	}
-				// }}
-				plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin ]}
-				ref={ calendarComponentRef }
-				weekends={ calendarSettings.calendarWeekends }
-				events={ calendarSettings.events }
-				eventLimit={true}
-				selectable={true}
-				editable={true}
-				minTime={calendarSettings.showOfficeHoursOnly ? calendarSettings.minTime: "00:00:00"}
-				maxTime={calendarSettings.showOfficeHoursOnly ? calendarSettings.maxTime: "24:00:00"}
-				eventDrop={eventDrop}
-				eventResizeStop={eventResizeStop}
-				select= {selectDates}
-				clickDate={clickDate}
-				eventPositioned={handleEventPositioned}
-			/>
+			{
+				modalData.open ? (
+					<TransitionsModal open={modalData.open} event={modalData.event} closeModal={closeModal} />
+				) : (
+					<FullCalendar 
+						header={{
+							left: 'today',
+							center: 'prev,title,next',
+							right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+						}}
+						plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin ]}
+						ref={ calendarComponentRef }
+						weekends={ calendarSettings.calendarWeekends }
+						events={ calendarSettings.events }
+						navLinks={true}
+						eventLimit={true}
+						selectable={true}
+						editable={true}
+						select= {selectDates}
+						clickDate={clickDate}
+					/>
+				)
+			}
+			
 		</div>
 	)
 }
