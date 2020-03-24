@@ -1,6 +1,7 @@
 import { Document, model, Model, Schema } from 'mongoose';
 
 export interface EventDocument extends Document {
+	_id: string,
 	Owner: Schema.Types.ObjectId,
 	title: string, 
 	start: Date, 
@@ -8,7 +9,9 @@ export interface EventDocument extends Document {
 	allDay: boolean,
 	desc: string,
 	location: string,
-	notes: string
+	notes: string,
+	createdAt: Date,
+	updatedAt: Date
 }
 const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 	Owner: {
