@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import pink from '@material-ui/core/colors/pink';
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -19,5 +20,9 @@ const useStyles = makeStyles(theme => ({
 		margin: theme.spacing(1),
 		marginBottom: theme.spacing(2),
 	},
+	button: {
+		margin: theme.spacing(1), 
+		color: pink[30]
+	}
 }));
 export default useStyles;
