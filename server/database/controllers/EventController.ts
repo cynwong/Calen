@@ -6,8 +6,8 @@ export const createEvent = async (data: EventDocument):Promise<any> => {
 	return Event.create(data);
 }
 
-export const getAllEvents = async (userId:Schema.Types.ObjectId):Promise<any> => {
-	return Event.find({ owner : userId });
+export const getAllEvents = async (userId:string):Promise<any> => {
+	return Event.find({ creator : userId });
 }
 
 export const getEventById = async (id:Schema.Types.ObjectId):Promise<any> => {
