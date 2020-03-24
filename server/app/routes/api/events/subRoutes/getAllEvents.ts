@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 
-import { checkIfAuthenticated } from '../../../../auth/expressPassport'
+import { checkIfAuthenticated } from '../../../../auth/expressPassport';
 import { getAllEvents } from '../../../../../database/controllers/EventController';
 
 const allEventsRoute:Router = Router();

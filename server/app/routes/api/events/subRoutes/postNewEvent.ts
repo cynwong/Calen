@@ -1,11 +1,13 @@
 import { Router, Request, Response } from 'express';
 
+import { checkIfAuthenticated } from '../../../../auth/expressPassport';
 // import { getAllEvents } from '../../../../../database/controllers/EventController';
 
 const postNewEvent:Router = Router();
 
 postNewEvent.post(
 	'/',
+	checkIfAuthenticated,
 	async (req:Request, res: Response): Promise<void> => {
 		const { user, body } = req;
 		console.log({user, body});
