@@ -4,6 +4,29 @@
 @import '~@fullcalendar/timegrid/main.css';
 @import '~@fullcalendar/bootstrap/main.css';
 
+@import '../../../../styleLib/colours';
+
+.full-calendar-container {
+	height: 100vh;
+}
+
+/* override day number color and size */
+.fc-day-number {
+	font-size: 1.5em;
+	color: #5c005c;
+}
+
+/* override day title color and size */
+.fc-day-header {
+	font-size: 1.5em;
+	color: $whitesmoke-colour;
+	background-color: $dark-green-colour;
+}
+
+.fc-button {
+	color: $whitesmoke-colour;
+	background-color: $dark-green-colour;
+}
 
 .fc-header-toolbar {
 	.fc-left div{
@@ -17,6 +40,7 @@
 		align-items: center;
 		justify-content: space-around;
 		h2 {
+			color: $dark-green-colour;
 			display: inline;
 			margin-left: 0.5rem;
 			margin-right: 0.5rem;
