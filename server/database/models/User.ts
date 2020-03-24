@@ -2,6 +2,7 @@ import { Document, model, Model, Schema } from 'mongoose';
 import { hashSync, compareSync } from 'bcrypt';
 
 export interface UserDocument extends Document {
+	_id: string,
 	firstName: string, 
 	lastName: string, 
 	email: string, 
@@ -9,6 +10,8 @@ export interface UserDocument extends Document {
 	passwordResetToken: string,
 	passwordResetExpires: Date,
 	photo: string,
+	createdAt: Date,
+	updatedAt: Date,
 	validatePassword: (password: string) => boolean;
 }
 
