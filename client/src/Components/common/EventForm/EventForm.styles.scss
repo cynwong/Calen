@@ -1,0 +1,15 @@
+
+@import '../../../styleLib/colours';
+@import '../../../styleLib/default';
+
+.container {
+	background: rgba($whitesmoke-colour, 99);
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 7px;
+	margin: 0.5rem auto;
+	padding: 1.5rem 2rem;
+	border-radius: $rounded-corner;
+
+	display: 'flex';
+	flex-wrap: 'wrap';
+}
