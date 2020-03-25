@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 
+import DashBoard from './Components/Pages/DashBoard/DashBoard.page';
 import Header from './Components/NavBar/Header/Header';
 import Home from './Components/Pages/Home/Home.page';
+import Login from './Components/Pages/Login/Login.page';
 import SignUp from './Components/Pages/SignUp/SignUp.page';
-import DashBoard from './Components/Pages/DashBoard/DashBoard.page';
 
 import AppContext from './utils/AppContext';
 import API from './utils/API';
@@ -31,11 +32,9 @@ function App() {
 					lastName: user.lastName,
 					events: user.events ? user.events: []
 				});
-				return;
 			}
 		} catch (err) {
-			console.error(err); //TODO
-			return err;
+			throw err;
 		}
 	}
 	const fnLogOut = async () => {
@@ -97,7 +96,10 @@ function App() {
 										<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
 									]
 								) : (
-									<Route exact path='/signup' component={SignUp} />
+									[
+										<Route exact path='/signup' component={SignUp} />,
+										<Route exact path='/login' component={Login} />
+									]
 								)
 							}
 							
