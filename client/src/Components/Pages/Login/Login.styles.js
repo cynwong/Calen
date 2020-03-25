@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
 		marginRight:'auto',
 		padding: theme.spacing(5),
 		color:  theme.palette.primary.main,
+		backgroundColor: theme.palette.secondary.pale,
 		maxWidth: '65%'
 	},
 	title: {
