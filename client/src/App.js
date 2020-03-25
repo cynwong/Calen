@@ -15,6 +15,7 @@ import API from './utils/API';
 
 import './App.scss';
 import theme from './App.theme';
+import useStyles from './App.styles';
 
 function App() {
 	const [userInfo, setUserInfo] = useState({
@@ -23,8 +24,10 @@ function App() {
 		lastName: null,
 		events: [],
 	});
+	const [view, setView] = useState('default');
 	const [showSideBar, setShowSideBar] = useState(false);
-	
+	const classes = useStyles(theme);
+
 	const fnLogin = async (username, password) => {
 		try {
 			const { data: { success, user } } = await API.login(username, password);
@@ -79,14 +82,22 @@ function App() {
 	};
 
 	const toggleSideBar = () => setShowSideBar(!showSideBar);
+	const changeView = (newView) => {
+		setView(newView);
+	}
 
 	const appContextValues = {
 		user: userInfo,
 		saveEvent,
+		view,
+		classes,
 		fnLogin,
 		fnLogOut,
-		toggleSideBar
+		toggleSideBar,
+		changeView
 	};
+
+	
 	return (
 		<ThemeProvider theme={theme}>
 		<AppContext.Provider value={appContextValues} >

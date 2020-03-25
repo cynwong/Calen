@@ -12,14 +12,9 @@ import Alert from '@material-ui/lab/Alert';
 
 import AppContext from '../../../utils/AppContext';
 
-import useStyles from './Login.styles';
-
 export default function LoginForm() {
-	const { fnLogin } = useContext(AppContext);
+	const { classes, fnLogin } = useContext(AppContext);
 	const [hasError, setHasError] = useState(false);
-
-
-	const classes = useStyles();
 
 	const usernameEl = useRef();
 	const passwordEl = useRef();
@@ -37,6 +32,7 @@ export default function LoginForm() {
 			handleLoginClick(e);
 		}
 	};
+
 	const handleLoginClick = async (e) => {
 		e.preventDefault();
 		const username = usernameEl.current.value;
@@ -55,14 +51,14 @@ export default function LoginForm() {
 		history.push(location);
 	};
 
-
 	useEffect(()=>{
 		usernameEl.current.focus();
 	});
+
 	return (
-		<Container className={classes.root}>
+		<Container className={classes.container}>
 			<Paper className={classes.paper}>
-				<h1 className={classes.title}>Log in</h1>
+				<h1 className={classes.formTitle}>Log in</h1>
 				{
 					hasError && 
 					<Alert severity="error">Incorrect username or password</Alert>
@@ -71,8 +67,9 @@ export default function LoginForm() {
 					<TextField 
 						id="username" 
 						label="Username"
+						className={classes.inputTextField}
 						InputProps={{
-							className: classes.input
+							className: classes.inputTextField
 						}}
 						fullWidth
 						inputRef={usernameEl}
@@ -84,8 +81,9 @@ export default function LoginForm() {
 						label="Password" 
 						type="password"
 						InputProps={{
-							className: classes.input
+							className: classes.inputTextField
 						}}
+						className={classes.inputTextField}
 						fullWidth
 						inputRef={passwordEl}
 						onKeyDown={handlePasswordKeyDown}
@@ -95,7 +93,7 @@ export default function LoginForm() {
 						variant="outlined"
 						onClick={handleLoginClick}
 						color='primary'
-						className={classes.button}
+						className={classes.formButton}
 					>
 						Login
 					</Button>
@@ -115,5 +113,5 @@ export default function LoginForm() {
 				</p>
 			</Paper>
 		</Container>
-	)
+	);
 }
