@@ -10,7 +10,7 @@ export const getAllEvents = async (userId:string):Promise<any> => {
 	return Event.find({ creator : userId });
 }
 
-export const getEventById = async (id:Schema.Types.ObjectId):Promise<any> => {
+export const getEventById = async (id:string):Promise<any> => {
 	return Event.findById(id);
 }
 
