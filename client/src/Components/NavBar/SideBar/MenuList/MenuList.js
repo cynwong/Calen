@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { 
-	CssBaseline,
 	List,
 	Divider,
 	ListItem,
@@ -20,7 +19,6 @@ export default function MenuList() {
 
 	return (
 		<>
-			<CssBaseline />
 			<div
 				className={classes.list}
 				role="presentation"
