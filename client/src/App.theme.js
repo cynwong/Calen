@@ -8,16 +8,16 @@ const theme = createMuiTheme({
 	},
 	palette: {
 		primary: {
-			light: teal[200],
-			main: teal[500],
+			light: teal[500],
+			main: teal[700],
 			dark: teal[900],
-			contrastText: pink[50],
+			contrastText: pink[100],
 		},
 		secondary: {
-			light: '#f381a7',
-			main: '#f06292',
-			dark: '#a84466',
-			contrastText: '#fcfcfc',
+			light: pink[100],
+			main: pink[200],
+			dark:pink[500],
+			contrastText: teal[900],
 		},
 		error: {
 			light: "#e57373",
