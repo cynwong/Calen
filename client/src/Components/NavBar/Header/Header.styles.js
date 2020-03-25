@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
 		fontFamily: 'Playball, Lobster, Fredoka One, cursive',
 		fontSize: '1.5rem'
 	},
+	button: {
+		color: theme.palette.secondary.pale
+	}
 }));
 
 export default useStyles;

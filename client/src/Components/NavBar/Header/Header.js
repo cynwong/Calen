@@ -85,10 +85,10 @@ export default function Header() {
 						</div>
 					) : (
 						[
-							<Button color="secondary" onClick={()=> history.push('/signup')}>
+							<Button className={classes.button} onClick={()=> history.push('/signup')}>
 								Sign up
 							</Button>,
-							<Button color="secondary" onClick={()=> history.push('/login')}>
+							<Button className={classes.button} onClick={()=> history.push('/login')}>
 								Login
 							</Button>
 						]
