@@ -14,6 +14,7 @@ const theme = createMuiTheme({
 			contrastText: pink[100],
 		},
 		secondary: {
+			pale: pink[50],
 			light: pink[100],
 			main: pink[200],
 			dark:pink[500],
