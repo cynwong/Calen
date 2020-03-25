@@ -1,8 +1,7 @@
-import { EventDocument, Event } from '../../database/models/Event';
+import { Event } from '../../database/models/Event';
 
-import { Schema } from 'mongoose';
 
-export const createEvent = async (data: EventDocument):Promise<any> => {
+export const createEvent = async (data: any):Promise<any> => {
 	return Event.create(data);
 }
 
