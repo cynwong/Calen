@@ -6,6 +6,7 @@ import DashBoard from './Components/Pages/DashBoard/DashBoard.page';
 import Header from './Components/NavBar/Header/Header';
 import Home from './Components/Pages/Home/Home.page';
 import Login from './Components/Pages/Login/Login.page';
+import SideBar from './Components/NavBar/SideBar/SideBar';
 import SignUp from './Components/Pages/SignUp/SignUp.page';
 
 import AppContext from './utils/AppContext';
@@ -21,6 +22,7 @@ function App() {
 		lastName: null,
 		events: [],
 	});
+	const [showSideBar, setShowSideBar] = useState(false);
 	
 	const fnLogin = async (username, password) => {
 		try {
@@ -75,11 +77,14 @@ function App() {
 		}
 	};
 
+	const toggleSideBar = () => setShowSideBar(!showSideBar);
+
 	const appContextValues = {
 		user: userInfo,
 		saveEvent,
 		fnLogin,
 		fnLogOut,
+		toggleSideBar
 	};
 	return (
 		<ThemeProvider theme={theme}>
@@ -87,6 +92,7 @@ function App() {
 			<div className="wrapper">
 				<Router>
 					<Header />
+					<SideBar open={showSideBar}/>
 					<main>
 						<Switch>
 							<Route exact path='/' component={Home} />
