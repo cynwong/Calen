@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from 'react';
+import React, { useRef, useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { 
 	Button,
@@ -26,6 +26,17 @@ export default function LoginForm() {
 
 	const history= useHistory();
 
+	const handleUsernameKeyDown = (e) => {
+		if (e.key === 'Enter') {
+			passwordEl.current.focus();
+		}
+	};
+
+	const handlePasswordKeyDown = (e) => {
+		if (e.key === 'Enter') {
+			handleLoginClick(e);
+		}
+	};
 	const handleLoginClick = async (e) => {
 		e.preventDefault();
 		const username = usernameEl.current.value;
@@ -37,12 +48,17 @@ export default function LoginForm() {
 			setHasError(true);
 		}
 		
-	}
+	};
+	
 	const goToPage = (e,location) => {
 		e.preventDefault();
 		history.push(location);
-	}
+	};
 
+
+	useEffect(()=>{
+		usernameEl.current.focus();
+	});
 	return (
 		<Container className={classes.root}>
 			<Paper className={classes.paper}>
@@ -51,29 +67,33 @@ export default function LoginForm() {
 					hasError && 
 					<Alert severity="error">Incorrect username or password</Alert>
 				}
-				<TextField 
-					id="username" 
-					label="Username"
-					fullWidth
-					inputRef={usernameEl}
-				/>
-				<br />
-				<TextField 
-					id="password" 
-					label="Password" 
-					type="password"
-					fullWidth
-					inputRef={passwordEl}
-				/>
-				<br />
-				<Button 
-					variant="outlined"
-					onClick={handleLoginClick}
-					color='primary'
-					className={classes.button}
-				>
-					Login
-				</Button>
+				<form onSubmit={handleLoginClick}>
+					<TextField 
+						id="username" 
+						label="Username"
+						fullWidth
+						inputRef={usernameEl}
+						onKeyDown={handleUsernameKeyDown}
+					/>
+					<br />
+					<TextField 
+						id="password" 
+						label="Password" 
+						type="password"
+						fullWidth
+						inputRef={passwordEl}
+						onKeyDown={handlePasswordKeyDown}
+					/>
+					<br />
+					<Button 
+						variant="outlined"
+						onClick={handleLoginClick}
+						color='primary'
+						className={classes.button}
+					>
+						Login
+					</Button>
+				</form>
 				<br />
 				<Divider  className={classes.divider}/>
 				<p>
