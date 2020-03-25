@@ -3,7 +3,7 @@ import { Document, model, Model, Schema } from 'mongoose';
 export interface EventDocument extends Document {
 	_id: string,
 	id: string,
-	creator: Schema.Types.ObjectId,
+	creatorId: Schema.Types.ObjectId,
 	title: string, 
 	start: Date, 
 	end: Date,
@@ -11,11 +11,16 @@ export interface EventDocument extends Document {
 	desc: string[],
 	location: string,
 	notes: string[],
+	calendarId: Schema.Types.ObjectId,
 	createdAt: Date,
 	updatedAt: Date
 }
 const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
-	creator: {
+	creatorId: {
+		type: Schema.Types.ObjectId,
+		ref: 'user'
+	}, 
+	calendarId: {
 		type: Schema.Types.ObjectId,
 		ref: 'user'
 	}, 
@@ -49,7 +54,7 @@ const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 	toJSON: { virtuals: true }
 });
 
-EventSchema.virtual('id').get(function() {
+EventSchema.virtual('id').get(function(this:EventDocument) {
 	return this?._id;
 });
 
