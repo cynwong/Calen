@@ -3,7 +3,7 @@ import { Document, model, Model, Schema } from 'mongoose';
 export interface EventDocument extends Document {
 	_id: string,
 	id: string,
-	creatorId: Schema.Types.ObjectId,
+	creatorId: string,
 	title: string, 
 	start: Date, 
 	end: Date,
@@ -11,7 +11,7 @@ export interface EventDocument extends Document {
 	desc: string[],
 	location: string,
 	notes: string[],
-	calendarId: Schema.Types.ObjectId,
+	calendarId: string,
 	createdAt: Date,
 	updatedAt: Date
 }
