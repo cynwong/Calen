@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import DashBoard from './Components/Pages/DashBoard/DashBoard.page';
 import Header from './Components/NavBar/Header/Header';
@@ -89,6 +90,7 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 		<AppContext.Provider value={appContextValues} >
+			<CssBaseline />
 			<div className="wrapper">
 				<Router>
 					<Header />
