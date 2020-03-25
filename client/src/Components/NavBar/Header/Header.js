@@ -15,7 +15,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import AppContext from '../../../utils/AppContext';
 
 import useStyles from './Header.styles';
-import './Header.styles.scss';
 
 export default function Header() {
 	const { user, fnLogOut } = useContext(AppContext);
