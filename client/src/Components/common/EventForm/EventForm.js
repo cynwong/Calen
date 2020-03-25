@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { 
-	TextField,
 	Button,
-	Switch,
 	FormControlLabel,
+	MenuItem,
+	Switch,
+	TextField,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
@@ -11,10 +12,8 @@ import AppContext from '../../../utils/AppContext';
 
 import useStyles from './EventForm.styles.js';
 
-
-
 export default function EventForm({event, closeModal}) {
-	const { saveEvent } = useContext(AppContext);
+	const { saveEvent, calendars } = useContext(AppContext);
 	const classes = useStyles();
 	const [errors, setErrors] = useState({});
 	const [updatingEvent, setUpdatingEvent] = useState({...event});
@@ -82,6 +81,22 @@ export default function EventForm({event, closeModal}) {
 					defaultValue={updatingEvent.title}
 					onBlur={handleFocusOut}
 				/>
+				{ calendars && 
+					<TextField
+						id="types"
+						select
+						label="Types"
+						value={updatingEvent.types}
+						default='calendar'
+						onBlur={handleFocusOut}
+					>
+						{calendars.map(option => (
+							<MenuItem key={option.value} value={option.value}>
+								{option.label}
+							</MenuItem>
+						))}
+					</TextField>
+				}
 				<br/>
 				<TextField
 					id="start"
