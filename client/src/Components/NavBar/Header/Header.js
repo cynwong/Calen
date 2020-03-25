@@ -43,15 +43,19 @@ export default function Header() {
 		<div className={classes.root}>
 			<AppBar position="static" className={classes.root}>
 				<Toolbar>
-					<IconButton 
-						edge="start" 
-						className={classes.menuButton} 
-						id='menu-button'
-						color="inherit"
-						onClick={toggleSideBar}
-					>
-						<MenuIcon />
-					</IconButton>
+					{
+						user.username && 
+						<IconButton 
+							edge="start" 
+							className={classes.menuButton} 
+							id='menu-button'
+							color="inherit"
+							onClick={toggleSideBar}
+						>
+							<MenuIcon />
+						</IconButton>
+					}
+					
 					<Typography variant="h6" className={classes.title}>
 						Calen
 					</Typography>
@@ -61,8 +65,10 @@ export default function Header() {
 								onClick={handleMenu}
 								color="inherit"
 							>
-								<AccountCircle />
+								<AccountCircle /> 
+								<span className={classes.username}>{user.firstName} {user.lastName}</span>
 							</IconButton>
+							
 							<Menu
 								id="menu-appbar"
 								anchorEl={anchorEl}

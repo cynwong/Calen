@@ -15,6 +15,9 @@ const useStyles = makeStyles(theme => ({
 	},
 	button: {
 		color: theme.palette.secondary.pale
+	},
+	username: {
+		fontSize: '1rem'
 	}
 }));
 
