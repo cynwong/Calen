@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 
 import { createEvent } from '../../../../../database/controllers/EventController';
 import { EventDocument } from '../../../../../database/models/Event';
+import { UserDocument } from '../../../../../database/models/User';
 
 const postNewEvent:Router = Router();
 
@@ -18,9 +19,10 @@ postNewEvent.post(
 			location,
 			notes
 		} = body;
+		const userId = user && (user as UserDocument)._id as String;
 		try {
 			const newEvent = await createEvent({
-				creator: user?._id,
+				creatorId: userId as string,
 				title,
 				start,
 				allDay,
@@ -28,7 +30,7 @@ postNewEvent.post(
 				desc,
 				location,
 				notes
-			} as EventDocument);
+			});
 			res.status(200).json(newEvent);
 		} catch (err) {
 			console.error(err);
