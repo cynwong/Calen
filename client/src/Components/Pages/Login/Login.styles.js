@@ -26,6 +26,10 @@ const useStyles = makeStyles(theme => ({
 		marginRight: 0,
 		display: 'block',
 	},
+	input: {
+		color:  theme.palette.primary.dark,
+		backgroundColor: theme.palette.secondary.pale,
+	},
 	divider: {
 		marginTop: theme.spacing(3),
 		marginBottom: theme.spacing(3)

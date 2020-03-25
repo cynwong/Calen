@@ -71,6 +71,9 @@ export default function LoginForm() {
 					<TextField 
 						id="username" 
 						label="Username"
+						InputProps={{
+							className: classes.input
+						}}
 						fullWidth
 						inputRef={usernameEl}
 						onKeyDown={handleUsernameKeyDown}
@@ -80,6 +83,9 @@ export default function LoginForm() {
 						id="password" 
 						label="Password" 
 						type="password"
+						InputProps={{
+							className: classes.input
+						}}
 						fullWidth
 						inputRef={passwordEl}
 						onKeyDown={handlePasswordKeyDown}
