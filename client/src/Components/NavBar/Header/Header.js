@@ -17,7 +17,7 @@ import AppContext from '../../../utils/AppContext';
 import useStyles from './Header.styles';
 
 export default function Header() {
-	const { user, fnLogOut } = useContext(AppContext);
+	const { user, fnLogOut, toggleSideBar } = useContext(AppContext);
 
 	const history= useHistory();
 
@@ -43,51 +43,57 @@ export default function Header() {
 		<div className={classes.root}>
 			<AppBar position="static" className={classes.root}>
 				<Toolbar>
-				<IconButton 
-					edge="start" 
-					className={classes.menuButton} 
-					id='menu-button'
-					color="inherit"
-				>
-					<MenuIcon />
-				</IconButton>
-				<Typography variant="h6" className={classes.title}>
-					Calen
-				</Typography>
-				{user.username ? (
-					<div>
-					<IconButton
-						onClick={handleMenu}
+					<IconButton 
+						edge="start" 
+						className={classes.menuButton} 
+						id='menu-button'
 						color="inherit"
+						onClick={toggleSideBar}
 					>
-						<AccountCircle />
+						<MenuIcon />
 					</IconButton>
-					<Menu
-						id="menu-appbar"
-						anchorEl={anchorEl}
-						anchorOrigin={{
-							vertical: 'top',
-							horizontal: 'right',
-						}}
-						keepMounted
-						transformOrigin={{
-							vertical: 'top',
-							horizontal: 'right',
-						}}
-						style={{top:48}}
-						open={open}
-						onClose={handleClose}
-					>
-						<MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
-						{/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
-					</Menu>
-					</div>
-				) : (
-					<Button color="secondary" onClick={()=> history.push('/login')}>
-						Login
-					</Button>
-				)
-				}
+					<Typography variant="h6" className={classes.title}>
+						Calen
+					</Typography>
+					{user.username ? (
+						<div>
+							<IconButton
+								onClick={handleMenu}
+								color="inherit"
+							>
+								<AccountCircle />
+							</IconButton>
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorEl}
+								anchorOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								style={{top:48}}
+								open={open}
+								onClose={handleClose}
+							>
+								<MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
+								{/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
+							</Menu>
+						</div>
+					) : (
+						[
+							<Button color="secondary" onClick={()=> history.push('/signup')}>
+								Sign up
+							</Button>,
+							<Button color="secondary" onClick={()=> history.push('/login')}>
+								Login
+							</Button>
+						]
+					)
+					}
 				</Toolbar>
 			</AppBar>
 		</div>
