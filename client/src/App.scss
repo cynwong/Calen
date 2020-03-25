@@ -21,3 +21,12 @@
 	background-size: cover;
 	color: $dark-green-colour;
 }
+
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+	-webkit-box-shadow: 0 0 0 30px #fce4ec inset !important;
+	-webkit-text-fill-color: #004d40 !important;
+}
