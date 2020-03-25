@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { checkIfAuthenticated } from '../../../../auth/expressPassport';
+import { checkIfAuthenticated } from '../../auth/expressPassport';
 
 import signUpRoute from './signup/signup';
 import loginRoute from './login/login';
