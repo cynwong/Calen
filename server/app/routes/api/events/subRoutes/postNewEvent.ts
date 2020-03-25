@@ -1,6 +1,5 @@
 import { Router, Request, Response } from 'express';
 
-import { checkIfAuthenticated } from '../../../../auth/expressPassport';
 import { createEvent } from '../../../../../database/controllers/EventController';
 import { EventDocument } from '../../../../../database/models/Event';
 
@@ -8,7 +7,6 @@ const postNewEvent:Router = Router();
 
 postNewEvent.post(
 	'/',
-	checkIfAuthenticated,
 	async (req:Request, res: Response): Promise<void> => {
 		const { user, body } = req;
 		const {

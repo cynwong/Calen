@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import { checkIfAuthenticated } from '../../../../auth/expressPassport';
+
 import signUpRoute from './signup/signup';
 import loginRoute from './login/login';
 import logOutRoute from './logout/logout';
@@ -12,6 +14,6 @@ router.use('/login', loginRoute);
 router.use('/logout', logOutRoute);
 
 // router.use('/events', passport.authenticate('jwt'), eventsRoutes);
-router.use('/events', eventsRoutes);
+router.use('/events', checkIfAuthenticated, eventsRoutes);
 
 export default router;
