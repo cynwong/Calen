@@ -72,9 +72,22 @@ function App() {
 			}
 		} catch (err) {
 			console.error(err);
-			return err;
+			throw err;
 		}
 	};
+	
+	const deleteEvent = async (id) => {
+		try{
+			await API.deleteEvent(id);
+			await setUserInfo({
+				...userInfo,
+				events: [...userInfo.events].filter((event) => event.id !== id)
+			});
+		} catch (err) {
+			console.error(err);
+			throw err;
+		}
+	}
 
 	const toggleSideBar = () => setShowSideBar(!showSideBar);
 	
@@ -84,14 +97,15 @@ function App() {
 
 	const appContextValues = {
 		user: userInfo,
-		saveEvent,
 		showSideBar,
 		view,
 		classes,
 		fnLogin,
 		fnLogOut,
 		toggleSideBar,
-		changeView
+		changeView,
+		saveEvent,
+		deleteEvent,
 	};
 
 	
