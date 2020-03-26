@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from '../../NavBar/Header/Header';
 import SideBar from '../../NavBar/SideBar/SideBar';
 import DashBoard from '../../Pages/DashBoard/DashBoard.page';
+import Event from '../../Pages/Event/Event.page';
 import Home from '../../Pages/Home/Home.page';
 import Login from '../../Pages/Login/Login.page';
 import NewEvent from '../../Pages/NewEvent/NewEvent.page';
@@ -25,12 +26,14 @@ export default function MainContent() {
 						user.username ? (
 							[
 								<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
+								<Route exact path='/events/new' key='newEvent'  component={NewEvent} />,
+								<Route exact path='/events/:id' key='event' component={Event} />,
 							]
 						) : (
 							[
-								<Route exact path='/signup' component={SignUp} />,
-								<Route exact path='/login' component={Login} />,
-								<Route exact path='/events/new' component={NewEvent} />
+								<Route exact path='/signup' key='signup' component={SignUp} />,
+								<Route exact path='/login' key='login' component={Login} />,
+								
 							]
 						)
 					}
