@@ -6,7 +6,8 @@ import {
 	Container,
 	Paper,
 	Divider,
-	Link
+	Link,
+	Typography
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
@@ -58,7 +59,9 @@ export default function LoginForm() {
 	return (
 		<Container className={classes.container}>
 			<Paper className={classes.paper}>
-				<h1 className={classes.formTitle}>Log in</h1>
+				<Typography variant="h2" className={classes.formTitle} gutterBottom>
+					Log in
+				</Typography>
 				{
 					hasError && 
 					<Alert severity="error">Incorrect username or password</Alert>
@@ -89,14 +92,16 @@ export default function LoginForm() {
 						onKeyDown={handlePasswordKeyDown}
 					/>
 					<br />
-					<Button 
-						variant="outlined"
-						onClick={handleLoginClick}
-						color='primary'
-						className={classes.formButton}
-					>
-						Login
-					</Button>
+					<footer className={classes.formFooter}>
+						<Button 
+							variant="outlined"
+							onClick={handleLoginClick}
+							color='primary'
+							className={classes.formButton}
+						>
+							Login
+						</Button>
+					</footer>
 				</form>
 				<br />
 				<Divider  className={classes.divider}/>
