@@ -1,17 +1,24 @@
 import { Router, Request, Response } from 'express';
+import { promisify } from 'util';
+import quickemailverification from 'quickemailverification';
 
-import { UserDocument } from '../../../../database/models/User';
+import { UserDocument, User } from '../../../../database/models/User';
 import { createUser } from '../../../../database/controllers/UserController';
 import { forwardIfNotAuthenticated } from '../../../auth/expressPassport';
 
 import { validateEmail, validatePassword } from '../../../lib/validate';
 
 const signUpRoute = Router();
+const emailVerifier = quickemailverification
+				.client(process.env.QUICK_EMAIL_VERIFICATION_KEY)
+				.quickemailverification();
+const asyncEmailVerify = promisify(emailVerifier.verify);
 
 signUpRoute.post(
 	'/',
 	forwardIfNotAuthenticated,
 	async (req: Request, res: Response) => {
+		
 		try {
 			const {
 				firstName,
@@ -19,7 +26,7 @@ signUpRoute.post(
 				email,
 				password,
 			} = req.body;
-	
+
 			// validation
 			let errors = [];
 			if (!lastName) {
@@ -28,6 +35,10 @@ signUpRoute.post(
 			
 			errors = [ ...errors, ...validateEmail(email), ...validatePassword(password) ];
 			
+			const { success } = await asyncEmailVerify(email);
+			if(!success) {
+				errors.push('A valid email address is required.');
+			}
 			const userWithSameEmail:UserDocument = await User.findOne({ email }) as UserDocument;
 			if(userWithSameEmail) {
 				errors.push('Email is already registered!');
