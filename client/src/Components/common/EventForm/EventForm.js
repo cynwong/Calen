@@ -14,7 +14,7 @@ import Alert from '@material-ui/lab/Alert';
 import AppContext from '../../../utils/AppContext';
 
 export default function EventForm({event}) {
-	const { saveEvent, classes } = useContext(AppContext);
+	const { saveEvent, deleteEvent, classes } = useContext(AppContext);
 	const [errors, setErrors] = useState({});
 	const [updatingEvent, setUpdatingEvent] = useState({...event});
 
@@ -23,8 +23,28 @@ export default function EventForm({event}) {
 
 	const handleSaveBtnClick = async (e) => {
 		e.preventDefault();
-		await saveEvent(updatingEvent);
-		fnClose();
+		try {
+			await saveEvent(updatingEvent);
+			fnClose();
+		} catch (err) {
+			setErrors({
+				...errors,
+				server:true
+			})
+		}
+	}
+
+	const handleDeleteBtnClick = async (e) => {
+		e.preventDefault();
+		try {
+			await deleteEvent(event.id);
+			fnClose();
+		} catch (err) {
+			setErrors({
+				...errors,
+				server:true
+			})
+		}
 	}
 
 	const handleFocusOut = (e) => {
@@ -69,6 +89,7 @@ export default function EventForm({event}) {
 	return (
 		<Container>
 			<div className="errorContainer">
+				{ errors.server && <Alert severity="error">Something went wrong with the connection. Try again later.</Alert> }
 				{ errors.title && <Alert severity="error">Title is required.</Alert> }
 				{ errors.start && <Alert severity="error">Start date time is required.</Alert> }
 			</div>
@@ -162,6 +183,17 @@ export default function EventForm({event}) {
 				/>	
 				<br/>
 				<footer className={classes.formFooter}>
+					{
+						event.id && 
+							<Button
+								variant="outlined"
+								color="primary"
+								onClick={handleDeleteBtnClick}
+								className={classes.formButton}
+							>
+								Delete
+							</Button>
+					}
 					<Button
 						variant="outlined"
 						color="primary"
