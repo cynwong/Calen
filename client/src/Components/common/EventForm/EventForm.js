@@ -21,7 +21,7 @@ export default function EventForm({event}) {
 
 	const formatDateTime = (m) => m.format('YYYY-MM-DDTHH:mm');
 
-	const fnClose = () => history.push('/dashboard');
+	const fnClose = () => history.push('/calendar');
 
 	const allDay = 'true'.localeCompare(event.allDay) === 0 ;
 	const [updatingEvent, setUpdatingEvent] = useState({
