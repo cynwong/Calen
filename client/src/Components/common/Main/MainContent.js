@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from '../../NavBar/Header/Header';
 import SideBar from '../../NavBar/SideBar/SideBar';
+
+import Calendar from '../../Pages/Calendar/Calendar.page';
 import DashBoard from '../../Pages/DashBoard/DashBoard.page';
 import Event from '../../Pages/Event/Event.page';
 import Home from '../../Pages/Home/Home.page';
@@ -26,6 +28,7 @@ export default function MainContent() {
 						user.username ? (
 							[
 								<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
+								<Route exact path='/calendar' key='calendar' component={Calendar} />,
 								<Route exact path='/events/new' key='newEvent'  component={NewEvent} />,
 								<Route exact path='/events/:id' key='event' component={Event} />,
 							]
@@ -33,6 +36,9 @@ export default function MainContent() {
 							[
 								<Route exact path='/signup' key='signup' component={SignUp} />,
 								<Route exact path='/login' key='login' component={Login} />,
+								<Route path="*">
+									<Redirect to='/login' />
+								</Route>
 								
 							]
 						)
