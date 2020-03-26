@@ -36,7 +36,7 @@ export default function MainContent() {
 							[
 								<Route exact path='/signup' key='signup' component={SignUp} />,
 								<Route exact path='/login' key='login' component={Login} />,
-								<Route path="*">
+								<Route path="*" key="nomatch">
 									<Redirect to='/login' />
 								</Route>
 								
