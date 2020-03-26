@@ -20,6 +20,11 @@ export default {
 		);
 	},
 	// Event
+	deleteEvent: (id) => {
+		return axios.delete(
+			`/api/events/${id}`,
+		);
+	},
 	getEvent: (id) => {
 		return axios.get(
 			`/api/events/${id}`,
@@ -28,6 +33,12 @@ export default {
 	postNewEvent: (data) => {
 		return axios.post(
 			'/api/events',
+			data
+		);
+	},
+	putEvent: (data) => {
+		return axios.put(
+			`/api/events/${data.id}`,
 			data
 		);
 	},
