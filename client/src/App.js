@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import DashBoard from './Components/Pages/DashBoard/DashBoard.page';
-import Header from './Components/NavBar/Header/Header';
-import Home from './Components/Pages/Home/Home.page';
-import Login from './Components/Pages/Login/Login.page';
-import SideBar from './Components/NavBar/SideBar/SideBar';
-import SignUp from './Components/Pages/SignUp/SignUp.page';
+import MainContent from './Components/common/Main/MainContent'
 
 import AppContext from './utils/AppContext';
 import API from './utils/API';
@@ -26,6 +20,7 @@ function App() {
 	});
 	const [view, setView] = useState('default');
 	const [showSideBar, setShowSideBar] = useState(false);
+	
 	const classes = useStyles(theme);
 
 	const fnLogin = async (username, password) => {
@@ -82,6 +77,7 @@ function App() {
 	};
 
 	const toggleSideBar = () => setShowSideBar(!showSideBar);
+	
 	const changeView = (newView) => {
 		setView(newView);
 	}
@@ -89,6 +85,7 @@ function App() {
 	const appContextValues = {
 		user: userInfo,
 		saveEvent,
+		showSideBar,
 		view,
 		classes,
 		fnLogin,
@@ -103,28 +100,7 @@ function App() {
 		<AppContext.Provider value={appContextValues} >
 			<CssBaseline />
 			<div className="wrapper">
-				<Router>
-					<Header />
-					<SideBar open={showSideBar}/>
-					<main>
-						<Switch>
-							<Route exact path='/' component={Home} />
-							{
-								userInfo.username ? (
-									[
-										<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
-									]
-								) : (
-									[
-										<Route exact path='/signup' component={SignUp} />,
-										<Route exact path='/login' component={Login} />
-									]
-								)
-							}
-							
-						</Switch>
-					</main>
-				</Router>
+				<MainContent />
 			</div>
 		</AppContext.Provider>
 		</ThemeProvider>
