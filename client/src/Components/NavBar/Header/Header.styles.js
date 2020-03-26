@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
 		color: theme.palette.secondary.pale
 	},
 	username: {
-		fontSize: '1rem'
+		fontSize: '1rem',
+		marginLeft: theme.spacing(1)
 	}
 }));
 
