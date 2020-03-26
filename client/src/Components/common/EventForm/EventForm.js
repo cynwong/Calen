@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react';
+
+import { useHistory } from 'react-router-dom';
+
 import { 
 	Button,
+	Container,
 	FormControlLabel,
-	MenuItem,
 	Switch,
 	TextField,
 } from '@material-ui/core';
@@ -10,18 +13,18 @@ import Alert from '@material-ui/lab/Alert';
 
 import AppContext from '../../../utils/AppContext';
 
-import useStyles from './EventForm.styles.js';
-
-export default function EventForm({event, closeModal}) {
-	const { saveEvent, calendars } = useContext(AppContext);
-	const classes = useStyles();
+export default function EventForm({event}) {
+	const { saveEvent, classes } = useContext(AppContext);
 	const [errors, setErrors] = useState({});
 	const [updatingEvent, setUpdatingEvent] = useState({...event});
+
+	const history = useHistory();
+	const fnClose = () => history.push('/dashboard');
 
 	const handleSaveBtnClick = async (e) => {
 		e.preventDefault();
 		await saveEvent(updatingEvent);
-		closeModal();
+		fnClose();
 	}
 
 	const handleFocusOut = (e) => {
@@ -64,7 +67,7 @@ export default function EventForm({event, closeModal}) {
 		})
 	};
 	return (
-		<div className={classes.container}>
+		<Container>
 			<div className="errorContainer">
 				{ errors.title && <Alert severity="error">Title is required.</Alert> }
 				{ errors.start && <Alert severity="error">Start date time is required.</Alert> }
@@ -77,26 +80,10 @@ export default function EventForm({event, closeModal}) {
 					error={errors.title}
 					helperText="Required"
 					fullWidth
-					className={classes.textField}
+					className={classes.inputTextField}
 					defaultValue={updatingEvent.title}
 					onBlur={handleFocusOut}
 				/>
-				{ calendars && 
-					<TextField
-						id="types"
-						select
-						label="Types"
-						value={updatingEvent.types}
-						default='calendar'
-						onBlur={handleFocusOut}
-					>
-						{calendars.map(option => (
-							<MenuItem key={option.value} value={option.value}>
-								{option.label}
-							</MenuItem>
-						))}
-					</TextField>
-				}
 				<br/>
 				<TextField
 					id="start"
@@ -105,11 +92,11 @@ export default function EventForm({event, closeModal}) {
 					helperText="Required"
 					error={errors.start}
 					defaultValue={updatingEvent.start}
-					className={classes.textField}
-					fullWidth
+					className={classes.inputTextField}
 					InputLabelProps={{
 						shrink: true,
 					}}
+					fullWidth
 					onBlur={handleFocusOut}
 				/>
 				<br/>
@@ -118,7 +105,6 @@ export default function EventForm({event, closeModal}) {
 					value={updatingEvent.allDay ? 'on': 'off'}
 					checked={updatingEvent.allDay}
 					control={<Switch color="primary" />}
-					// error={errors.allDay}
 					label="All Day Event"
 					labelPlacement="start"
 					onChange={handleAllDayChange}
@@ -131,10 +117,9 @@ export default function EventForm({event, closeModal}) {
 								id="end"
 								label="End time"
 								type="datetime-local"
-								// error={errors.end}
 								defaultValue={updatingEvent.end}
-								className={classes.textField}
 								fullWidth
+								className={classes.inputTextField}
 								InputLabelProps={{
 									shrink: true,
 								}}
@@ -144,16 +129,14 @@ export default function EventForm({event, closeModal}) {
 						</>
 					)
 				}
-				
 				<TextField 
 					id="desc"
 					label="Description"
 					variant="standard"
 					fullWidth
-					// error={errors.desc}
 					defaultValue={updatingEvent.desc}
 					multiline
-					className={classes.textField}
+					className={classes.inputTextField}
 					onBlur={handleFocusOut}
 				/>
 				<br/>
@@ -161,10 +144,9 @@ export default function EventForm({event, closeModal}) {
 					id="location"
 					label="Location"
 					variant="standard"
-					// error={errors.location}
 					defaultValue={updatingEvent.location}
 					fullWidth
-					className={classes.textField}
+					className={classes.inputTextField}
 					onBlur={handleFocusOut}
 				/>	
 				<br/>
@@ -172,31 +154,33 @@ export default function EventForm({event, closeModal}) {
 					id="notes"
 					label="Notes"
 					variant="standard"
-					// error={errors.notes}
 					defaultValue={updatingEvent.notes}
 					fullWidth
 					multiline
-					className={classes.textField}
+					className={classes.inputTextField}
 					onBlur={handleFocusOut}
 				/>	
 				<br/>
-				<Button
-					variant="contained"
-					color="primary"
-					className={classes.button}
-					onClick={handleSaveBtnClick}
-				>
-					Save
-				</Button>
-				<Button
-					variant="contained"
-					color="primary"
-					className={classes.button}
-					onClick={closeModal}
-				>
-					Cancel
-				</Button>
+				<footer className={classes.formFooter}>
+					<Button
+						variant="outlined"
+						color="primary"
+						onClick={handleSaveBtnClick}
+						className={classes.formButton}
+					>
+						Save
+					</Button>
+					<Button
+						variant="outlined"
+						color="primary"
+						onClick={fnClose}
+						className={classes.formButton}
+					>
+						Cancel
+					</Button>
+				</footer>
+				
 			</form>
-		</div>
+		</Container>
 	)
 }
