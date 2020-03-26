@@ -41,7 +41,7 @@ export default function FullCalendarComponent() {
 				header={{
 					left: 'today',
 					center: 'prev,title,next',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+					right: 'dayGridMonth,timeGridWeek,timeGridDay,listDay'
 				}}
 				plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin ]}
 				ref={ calendarComponentRef }
