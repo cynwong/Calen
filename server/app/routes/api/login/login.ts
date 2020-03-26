@@ -28,15 +28,9 @@ loginRoute.post(
 					return next(loginErr);
 				}
 				try {
-					// const token = jwt.sign(
-					// 	{ data: user }, 
-					// 	process.env.JWT_KEY as string,
-					// 	{ expiresIn: 604800 } // one week
-					// );
 					const events = await getAllEvents(user._id);
 					res.status(200).json({ 
 						success: true,
-						// token: `Bearer ${token}`,
 						user: {
 							username: user.email,
 							firstName: user.firstName,
