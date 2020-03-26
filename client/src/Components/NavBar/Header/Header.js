@@ -19,7 +19,7 @@ import useStyles from './Header.styles';
 export default function Header() {
 	const { user, fnLogOut, toggleSideBar } = useContext(AppContext);
 
-	const history= useHistory();
+	const history = useHistory();
 
 	const classes = useStyles();
 
