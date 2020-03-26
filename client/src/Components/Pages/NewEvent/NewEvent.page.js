@@ -24,7 +24,7 @@ export default function NewEvent() {
 	const uriQuery = useQuery();
 	const start = uriQuery.get('start');
 	const end = uriQuery.get('end');
-	const allDay = uriQuery.get('allday');
+	const allDay = uriQuery.get('allDay');
 
 	const event = { start, end, allDay };
 
