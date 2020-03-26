@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import { 
 	List,
@@ -14,8 +14,9 @@ import AppContext from '../../../../utils/AppContext';
 import { useStyles } from './MenuList.styles';
 
 export default function MenuList() {
-	const { user, toggleSideBar } = useContext(AppContext);
+	const { toggleSideBar } = useContext(AppContext);
 	const classes = useStyles();
+	const history = useHistory();
 
 	return (
 		<>
@@ -25,6 +26,14 @@ export default function MenuList() {
 				onClick={toggleSideBar}
 				onKeyDown={toggleSideBar}
 			>
+				<List>
+					<ListItem button>
+						<ListItemText primary='Home' onClick={()=>history.push('/dashboard')} />
+					</ListItem>
+					<ListItem button>
+						<ListItemText primary='Calendar' onClick={()=>history.push('/calendar')} />
+					</ListItem>
+				</List>
 				{/* <List>
 					
 					{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
