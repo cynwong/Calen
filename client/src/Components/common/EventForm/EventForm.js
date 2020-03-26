@@ -119,7 +119,9 @@ export default function EventForm({event}) {
 		}
 		setUpdatingEvent({
 			...updatingEvent,
-			allDay: !updatingEvent.allDay
+			allDay: !updatingEvent.allDay,
+			start,
+			end
 		})
 	};
 	return (
