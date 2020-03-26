@@ -3,9 +3,9 @@ import { Router, Request, Response } from 'express';
 import { getEventById } from '../../../../../database/controllers/EventController';
 import { UserDocument } from 'server/database/models/User';
 
-const allEventsRoute:Router = Router();
+const getEventRoute:Router = Router();
 
-allEventsRoute.get(
+getEventRoute.get(
 	'/:id',
 	async (req:Request, res: Response): Promise<void> => {
 		const { user } = req;
@@ -29,4 +29,4 @@ allEventsRoute.get(
 	}
 );
 
-export default allEventsRoute;
+export default getEventRoute;
