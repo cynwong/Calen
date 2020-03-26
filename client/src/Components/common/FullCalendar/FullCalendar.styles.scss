@@ -4,29 +4,41 @@
 @import '~@fullcalendar/timegrid/main.css';
 @import '~@fullcalendar/bootstrap/main.css';
 
-@import '../../../../styleLib/colours';
+@import '../../../styleLib/colours';
 
-.full-calendar-container {
-	height: 100vh;
+/* overwrite today colours */
+.fc-today {
+	background: $pink-A200 !important;
+	& a {
+		color: $pink-50;
+	}
+}
+
+/* change event colour */
+.fc-event {
+	background: $teal-400;
+	color: $yellow-50;
 }
 
 /* override day number color and size */
 .fc-day-number {
 	font-size: 1.5em;
-	color: #5c005c;
+	color: $pink-900;
 }
 
 /* override day title color and size */
 .fc-day-header {
 	font-size: 1.5em;
-	color: $whitesmoke-colour;
-	background-color: $dark-green-colour;
+	color: $pink-50;
+	background-color: $teal-700;
 }
 
 .fc-button {
-	color: $whitesmoke-colour;
-	background-color: $dark-green-colour;
+	color: $pink-50;
+	background-color: $teal-700;
 }
+
+.fc-today {}
 
 .fc-header-toolbar {
 	.fc-left div{
@@ -40,7 +52,7 @@
 		align-items: center;
 		justify-content: space-around;
 		h2 {
-			color: $dark-green-colour;
+			color: $teal-700;
 			display: inline;
 			margin-left: 0.5rem;
 			margin-right: 0.5rem;

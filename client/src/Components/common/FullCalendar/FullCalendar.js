@@ -3,7 +3,7 @@ import React, { createRef, useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
-import moment from 'moment';
+import { Container } from '@material-ui/core';
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -11,7 +11,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 
-import AppContext from '../../../../utils/AppContext';
+import AppContext from '../../../utils/AppContext';
 
 import './FullCalendar.styles.scss';
 
@@ -19,7 +19,6 @@ export default function FullCalendarComponent() {
 	const { user: { events }} = useContext(AppContext);
 	const calendarComponentRef = createRef();
 
-	const dateFormatString = "YYYY-MM-DDThh:mm";
 	const history = useHistory();
 
 	const calendarSettings = {
@@ -28,9 +27,7 @@ export default function FullCalendarComponent() {
 		editable: true,
 	}
 	const selectDates = ({ allDay, endStr, startStr}) => {
-		const start = moment(startStr).format(dateFormatString);
-		const end = moment(endStr).format(dateFormatString);
-		history.push(`/events/new?start=${start}&end=${end}&allDay=${allDay}`);
+		history.push(`/events/new?start=${startStr}&end=${endStr}&allDay=${allDay}`);
 	};
 
 	const eventClick = ({event}) => {
@@ -39,7 +36,7 @@ export default function FullCalendarComponent() {
 	}
 	
 	return (
-		<div className='full-calendar-container'>
+		<Container>
 			<FullCalendar 
 				header={{
 					left: 'today',
@@ -57,6 +54,6 @@ export default function FullCalendarComponent() {
 				select= {selectDates}
 				eventClick={eventClick}
 			/>
-		</div>
+		</Container>
 	);
 }
