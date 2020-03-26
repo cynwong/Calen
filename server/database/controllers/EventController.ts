@@ -6,7 +6,7 @@ export const createEvent = async (data: any):Promise<any> => {
 }
 
 export const getAllEvents = async (userId:string):Promise<any> => {
-	return Event.find({ creator : userId });
+	return Event.find({ creatorId : userId });
 }
 
 export const getEventById = async (id:string):Promise<any> => {
