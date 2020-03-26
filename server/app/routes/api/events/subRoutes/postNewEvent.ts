@@ -1,12 +1,11 @@
 import { Router, Request, Response } from 'express';
 
 import { createEvent } from '../../../../../database/controllers/EventController';
-import { EventDocument } from '../../../../../database/models/Event';
 import { UserDocument } from '../../../../../database/models/User';
 
-const postNewEvent:Router = Router();
+const postNewEventRoute:Router = Router();
 
-postNewEvent.post(
+postNewEventRoute.post(
 	'/',
 	async (req:Request, res: Response): Promise<void> => {
 		const { user, body } = req;
@@ -39,4 +38,4 @@ postNewEvent.post(
 	}
 );
 
-export default postNewEvent;
+export default postNewEventRoute;
