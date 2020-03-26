@@ -1,10 +1,15 @@
 // primary colours
 
-$dark-green-colour: #36595a;
-$brown-colour: #771d37;
-$mistyrose-colour: #f2d4ee;
-$whitesmoke-colour: #f3ebf9;
-$black-colour: #444444;
+$teal-400: #26a69a;
+$teal-700: #00796b;
+$teal-900: #004d40;
+
+$pink-900: #880e4f;
+$pink-50: #fce4ec;
+$pink-A200: #ff4081;
+
+$yellow-50: #fffde7;
+
 
 // alert colours
 $danger-colour : #d83636;
@@ -14,9 +19,9 @@ $success-bg-colour : #b2dfab;
 $warning-colour : #f5e321;
 $warning-bg-colour : #e6e1ad;
 
-$overlay-colour: $whitesmoke-colour;
-$button-bg-colour: $dark-green-colour;
-$button-colour: $mistyrose-colour;
+$overlay-colour: $pink-50;
+$button-bg-colour: $teal-700;
+$button-colour: $pink-50;
 
 
 $border-color: #9f9f9f;
