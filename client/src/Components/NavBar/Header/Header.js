@@ -91,10 +91,10 @@ export default function Header() {
 						</div>
 					) : (
 						[
-							<Button className={classes.button} onClick={()=> history.push('/signup')}>
+							<Button className={classes.button} key='signup' onClick={()=> history.push('/signup')}>
 								Sign up
 							</Button>,
-							<Button className={classes.button} onClick={()=> history.push('/login')}>
+							<Button className={classes.button} key='login' onClick={()=> history.push('/login')}>
 								Login
 							</Button>
 						]
