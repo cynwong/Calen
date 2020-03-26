@@ -8,6 +8,6 @@ const eventsRoutes = Router();
 
 eventsRoutes.post('/', postNewEvent);
 eventsRoutes.use('/all', allEventsRoute);
-eventsRoutes.use('/:id', getEvent);
+eventsRoutes.get('/:id', getEvent);
 
 export default eventsRoutes;
