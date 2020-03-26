@@ -7,9 +7,9 @@
 .wrapper {
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 
-	background: $whitesmoke-colour;
+	background: $pink-50;
 	background: 
 		linear-gradient(
 			to right, 
@@ -19,7 +19,7 @@
 		url('./images/background/background.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
-	color: $dark-green-colour;
+	color: $teal-700;
 }
 
 /* Change the white to any color ;) */
@@ -27,6 +27,6 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
-	-webkit-box-shadow: 0 0 0 30px #fce4ec inset !important;
-	-webkit-text-fill-color: #004d40 !important;
+	-webkit-box-shadow: 0 0 0 30px $pink-50 inset !important;
+	-webkit-text-fill-color: $teal-700 !important;
 }
