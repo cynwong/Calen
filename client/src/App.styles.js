@@ -14,17 +14,26 @@ const useStyles = makeStyles(theme => ({
 		backgroundColor: pink[50],
 		maxWidth: '65%'
 	},
+	form: {
+		width: '100%'
+	},
 	formTitle: {
 		fontSize: '1.5rem',
 		fontWeight: 700,
 		color: teal[700],
 		marginBottom: theme.spacing(3)
 	},
-	formButton: {
+	formFooter: {
 		marginTop: theme.spacing(3),
 		marginLeft: 'auto',
 		marginRight: 0,
-		display: 'block',
+		display: 'flex',
+		justifyContent: 'flex-end',
+		alignContent: 'center'
+	},
+	formButton: {
+		display:'block',
+		margin: theme.spacing(1),
 	},
 	inputTextField: {
 		color:  teal[900],
