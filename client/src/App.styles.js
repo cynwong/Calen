@@ -6,6 +6,14 @@ const useStyles = makeStyles(theme => ({
 		flexGrow: 1,
 		marginTop: theme.spacing(5),
 	},
+	bigPaper: {
+		marginLeft: 'auto',
+		marginRight:'auto',
+		padding: theme.spacing(5),
+		color:  teal[700],
+		backgroundColor: pink[50],
+		maxWidth: '90%'
+	},
 	paper: {
 		marginLeft: 'auto',
 		marginRight:'auto',
@@ -38,6 +46,9 @@ const useStyles = makeStyles(theme => ({
 	inputTextField: {
 		color:  teal[900],
 		backgroundColor: pink[50],
+	},
+	input: {
+		color:  teal[900],
 	},
 	divider: {
 		marginTop: theme.spacing(3),
