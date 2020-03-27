@@ -44,9 +44,13 @@ const UserSchema: Schema<UserDocument> = new Schema<UserDocument>({
 });
 
 UserSchema.pre<UserDocument>('save', function () {
-	if(!this.isModified('password')) { return; }
-	const saltRounds = Math.random() * (30 - 10) + 10; 
-	this.password = hashSync(this.password, saltRounds);
+	if (this.isModified('password')) { 
+		const saltRounds = Math.random() * (30 - 10) + 10; 
+		this.password = hashSync(this.password, saltRounds);
+	}
+	if (this.isModified('email')) {
+		this.email = this.email.toLowerCase();
+	}
 });
 
 UserSchema.methods.validatePassword = function (
