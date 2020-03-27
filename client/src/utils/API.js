@@ -2,10 +2,10 @@ import axios from 'axios';
 
 export default {
 	//User
-	postSignUp: (postData) => {
-		return axios.post(
-			'/api/signup',
-			postData
+	forgotPassword: (email) => {
+		return axios.patch(
+			`/api/forgotpassword`,
+			{email}
 		);
 	},
 	login: (username, password) => {
@@ -23,6 +23,12 @@ export default {
 	deleteEvent: (id) => {
 		return axios.delete(
 			`/api/events/${id}`,
+		);
+	},
+	postSignUp: (postData) => {
+		return axios.post(
+			'/api/signup',
+			postData
 		);
 	},
 	getEvent: (id) => {
