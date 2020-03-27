@@ -10,6 +10,7 @@ import {
 	FormControlLabel,
 	Switch,
 	TextField,
+	Typography
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
@@ -137,6 +138,17 @@ export default function EventForm({event}) {
 				{ errors.title && <Alert severity="error">Title is required.</Alert> }
 				{ errors.start && <Alert severity="error">Start date time is required.</Alert> }
 			</div>
+			{
+				event.id ? (
+					<Typography variant="h2" className={classes.formTitle} gutterBottom>
+						Edit event
+					</Typography>
+				) :(
+					<Typography variant="h2" className={classes.formTitle} gutterBottom>
+						Add new event
+					</Typography>
+				)
+			}
 			<form className={classes.form}>
 				<TextField 
 					id="title"
@@ -153,29 +165,14 @@ export default function EventForm({event}) {
 					onBlur={handleFocusOut}
 				/>
 				<br/>
-				{
-					updatingEvent.allDay ? (
-						<FormControlLabel
+				<FormControlLabel
 						id='allDay'
 						value={updatingEvent.allDay ? 'on': 'off'}
-						checked
-						control={<Switch color="primary" />}
+						control={<Switch checked={updatingEvent.allDay} color="primary" />}
 						label="All Day Event"
 						labelPlacement="start"
 						onChange={handleAllDayChange}
-					/>
-					) : (
-						<FormControlLabel
-							id='allDay'
-							value={updatingEvent.allDay ? 'on': 'off'}
-							control={<Switch color="primary" />}
-							label="All Day Event"
-							labelPlacement="start"
-							onChange={handleAllDayChange}
-						/>
-					)
-				}
-				
+				/>
 				<br />
 				<TextField
 					id="start"
@@ -219,7 +216,7 @@ export default function EventForm({event}) {
 					label="Description"
 					variant="standard"
 					fullWidth
-					defaultValue={updatingEvent.desc}
+					defaultValue={updatingEvent.desc.join("\n")}
 					multiline
 					className={classes.inputTextField}
 					onBlur={handleFocusOut}
@@ -239,7 +236,7 @@ export default function EventForm({event}) {
 					id="notes"
 					label="Notes"
 					variant="standard"
-					defaultValue={updatingEvent.notes}
+					defaultValue={updatingEvent.notes.join("\n")}
 					fullWidth
 					multiline
 					className={classes.inputTextField}
