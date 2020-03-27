@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { checkIfAuthenticated } from '../../auth/expressPassport';
+import { checkIfAuthenticated, forwardIfNotAuthenticated } from '../../auth/expressPassport';
 
 import signUpRoute from './signup/signup';
 import loginRoute from './login/login';
@@ -9,9 +9,9 @@ import eventsRoutes from './events/events';
 
 const router = Router();
 
-router.use('/signup', signUpRoute);
-router.use('/login', loginRoute);
-router.use('/logout', logOutRoute);
+router.use('/signup',forwardIfNotAuthenticated, signUpRoute);
+router.use('/login', forwardIfNotAuthenticated, loginRoute);
+router.use('/logout', checkIfAuthenticated, logOutRoute);
 
 // router.use('/events', passport.authenticate('jwt'), eventsRoutes);
 router.use('/events', checkIfAuthenticated, eventsRoutes);
