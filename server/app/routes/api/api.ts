@@ -10,7 +10,7 @@ import eventsRoutes from './events/events';
 const router = Router();
 
 router.use('/signup',forwardIfNotAuthenticated, signUpRoute);
-router.use('/login', forwardIfNotAuthenticated, loginRoute);
+router.use('/login', loginRoute);
 router.use('/logout', checkIfAuthenticated, logOutRoute);
 
 // router.use('/events', passport.authenticate('jwt'), eventsRoutes);
