@@ -1,49 +1,30 @@
 
-import React, { createRef, useContext } from 'react';
-
-import { useHistory } from 'react-router-dom';
+import React, { createRef } from 'react';
 
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
+import momentPlugin from '@fullcalendar/moment';
 
-import AppContext from '../../../utils/AppContext';
+// import AppContext from '../../../utils/AppContext';
 
 import './FullCalendar.styles.scss';
 
-export default function FullCalendarComponent() {
-	const { user: { events }} = useContext(AppContext);
+export default function FullCalendarComponent({eventClick, selectDates, leftHeader, rightHeader, events}) {
 	const calendarComponentRef = createRef();
-
-	const history = useHistory();
-
-	const calendarSettings = {
-		calendarWeekends: true,
-		droppable: true,
-		editable: true,
-	}
-	const selectDates = ({ allDay, endStr, startStr}) => {
-		history.push(`/events/new?start=${startStr}&end=${endStr}&allDay=${allDay}`);
-	};
-
-	const eventClick = ({event}) => {
-		const {id} = event;
-		history.push(`events/${id}`);
-	}
-	
 	return (
 		<>
 			<FullCalendar 
 				header={{
-					left: 'today',
+					left: leftHeader,
 					center: 'prev,title,next',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay,listDay'
+					right: rightHeader
 				}}
-				plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin ]}
+				// titleFormat='D MMM YYYY'
+				plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin, momentPlugin ]}
 				ref={ calendarComponentRef }
-				weekends={ calendarSettings.calendarWeekends }
 				events={ events }
 				navLinks={true}
 				eventLimit={true}
