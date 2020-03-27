@@ -4,21 +4,16 @@ import quickemailverification from 'quickemailverification';
 
 import { UserDocument, User } from '../../../../database/models/User';
 import { createUser } from '../../../../database/controllers/UserController';
-import { forwardIfNotAuthenticated } from '../../../auth/expressPassport';
 
 import { validateEmail, validatePassword } from '../../../lib/validate';
 
 const signUpRoute = Router();
-const emailVerifier = quickemailverification
-				.client(process.env.QUICK_EMAIL_VERIFICATION_KEY)
-				.quickemailverification();
-const asyncEmailVerify = promisify(emailVerifier.verify);
+
+import verifyEmail from '../../../auth/verifyEmail';
 
 signUpRoute.post(
 	'/',
-	forwardIfNotAuthenticated,
 	async (req: Request, res: Response) => {
-		
 		try {
 			const {
 				firstName,
@@ -35,8 +30,8 @@ signUpRoute.post(
 			
 			errors = [ ...errors, ...validateEmail(email), ...validatePassword(password) ];
 			
-			const { success } = await asyncEmailVerify(email);
-			if(!success) {
+			const isEmailValid = await verifyEmail(email);
+			if (!isEmailValid) {
 				errors.push('A valid email address is required.');
 			}
 			const userWithSameEmail:UserDocument = await User.findOne({ email }) as UserDocument;
@@ -44,7 +39,7 @@ signUpRoute.post(
 				errors.push('Email is already registered!');
 			}
 			if( errors.length !== 0 ) {
-				res.status(400).json({ errors });
+				return res.status(400).json({ errors });
 			}
 			await createUser({
 				firstName,
@@ -54,6 +49,7 @@ signUpRoute.post(
 			} as UserDocument);
 			res.status(200).json({ success: true });
 		} catch (err) {
+			console.error(err)
 			res.status(500).json({
 				error: ['Something went wrong. Try again later.']
 			});
