@@ -4,16 +4,21 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Header from '../../NavBar/Header/Header';
 import SideBar from '../../NavBar/SideBar/SideBar';
 
-import Calendar from '../../Pages/Calendar/Calendar.page';
-import DashBoard from '../../Pages/DashBoard/DashBoard.page';
-import Diary from '../../Pages/Diary/Diary.page';
-import NewDiaryEntry from '../../Pages/NewDiaryEntry/NewDiaryEntry.page';
-import Event from '../../Pages/Event/Event.page';
-// import ForgotPassword from '../../Pages/ForgotPassword/ForgotPassword.page';
 import Home from '../../Pages/Home/Home.page';
 import Login from '../../Pages/Login/Login.page';
-import NewEvent from '../../Pages/NewEvent/NewEvent.page';
 import SignUp from '../../Pages/SignUp/SignUp.page';
+
+import DashBoard from '../../Pages/DashBoard/DashBoard.page';
+
+import Diary from '../../Pages/Diary/Diary.page';
+import DiaryEntry from '../../Pages/DiaryEntry/DiaryEntry.page';
+import NewDiaryEntry from '../../Pages/NewDiaryEntry/NewDiaryEntry.page';
+
+import Calendar from '../../Pages/Calendar/Calendar.page';
+import Event from '../../Pages/Event/Event.page';
+import NewEvent from '../../Pages/NewEvent/NewEvent.page';
+// import ForgotPassword from '../../Pages/ForgotPassword/ForgotPassword.page';
+
 
 import AppContext from '../../../utils/AppContext';
 
@@ -34,6 +39,7 @@ export default function MainContent() {
 								<Route exact path='/calendar' key='calendar' component={Calendar} />,
 								<Route exact path='/diary' key='diary' component={Diary} />,
 								<Route exact path='/dairyentries/new' key='newDiaryEntry' component={NewDiaryEntry} />,
+								<Route exact path='/dairyentries/:id' key='diaryEntry' component={DiaryEntry} />,
 								<Route exact path='/events/new' key='newEvent'  component={NewEvent} />,
 								<Route exact path='/events/:id' key='event' component={Event} />,
 							]
