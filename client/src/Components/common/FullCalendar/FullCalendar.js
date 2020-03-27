@@ -36,7 +36,7 @@ export default function FullCalendarComponent() {
 	}
 	
 	return (
-		<Container>
+		<>
 			<FullCalendar 
 				header={{
 					left: 'today',
@@ -50,10 +50,10 @@ export default function FullCalendarComponent() {
 				navLinks={true}
 				eventLimit={true}
 				selectable={true}
-				// editable={true}
+				height='auto'
 				select= {selectDates}
 				eventClick={eventClick}
 			/>
-		</Container>
+		</>
 	);
 }
