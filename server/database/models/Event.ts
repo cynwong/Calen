@@ -1,11 +1,13 @@
-import { Document, model, Model, Schema } from 'mongoose';
+import {
+	Document, model, Model, Schema,
+} from 'mongoose';
 
 export interface EventDocument extends Document {
 	_id: string,
 	id: string,
 	creatorId: string,
-	title: string, 
-	start: Date, 
+	title: string,
+	start: Date,
 	end: Date,
 	allDay: boolean,
 	type: number,
@@ -20,56 +22,56 @@ export interface EventDocument extends Document {
 const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 	creatorId: {
 		type: Schema.Types.ObjectId,
-		ref: 'user'
-	}, 
+		ref: 'user',
+	},
 	calendarId: {
 		type: Schema.Types.ObjectId,
-		ref: 'user'
-	}, 
+		ref: 'user',
+	},
 	title: {
 		type: String,
 		trim: true,
-		required: 'Title is required.', 
-	}, 
+		required: 'Title is required.',
+	},
 	start: {
 		type: Date,
 		trim: true,
-		required: 'Start Date is required.', 
-	}, 
+		required: 'Start Date is required.',
+	},
 	end: {
 		type: Date,
-		trim: true
+		trim: true,
 	},
 	allDay: Boolean,
-	type: { 	// 0=event, 1=diaryEntry, 2=mealPlan, 3=Todo/Tasks
-		type: Number, 
+	type: { // 0=event, 1=diaryEntry, 2=mealPlan, 3=Todo/Tasks
+		type: Number,
 		min: 0,
 		max: 3,
-		index: true
+		index: true,
 	},
 	desc: {
 		type: [String],
-		trim: true
+		trim: true,
 	},
 	entry: {
 		type: String,
-		trim: true
+		trim: true,
 	},
 	location: {
 		type: String,
-		trim: true
+		trim: true,
 	},
 	notes: {
 		type: [String],
-		trim: true
+		trim: true,
 	},
 }, {
 	timestamps: true,
 	toObject: { virtuals: true },
-	toJSON: { virtuals: true }
+	toJSON: { virtuals: true },
 });
 
-EventSchema.virtual('id').get(function(this:EventDocument) {
+EventSchema.virtual('id').get(function (this:EventDocument) {
 	return this?._id;
 });
 

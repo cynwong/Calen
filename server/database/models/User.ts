@@ -1,11 +1,13 @@
-import { Document, model, Model, Schema } from 'mongoose';
+import {
+	Document, model, Model, Schema,
+} from 'mongoose';
 import { hashSync, compareSync } from 'bcrypt';
 
 export interface UserDocument extends Document {
 	_id: string,
-	firstName: string, 
-	lastName: string, 
-	email: string, 
+	firstName: string,
+	lastName: string,
+	email: string,
 	password: string,
 	passwordResetToken: string,
 	passwordResetExpires: Date,
@@ -18,17 +20,17 @@ export interface UserDocument extends Document {
 const UserSchema: Schema<UserDocument> = new Schema<UserDocument>({
 	firstName: {
 		type: String,
-		trim: true
+		trim: true,
 	},
 	lastName: {
 		type: String,
 		trim: true,
-		required: 'Last name is required.', 
-	}, 
+		required: 'Last name is required.',
+	},
 	email: {
 		type: String,
 		trim: true,
-		unique: true, 
+		unique: true,
 		required: true,
 		match: [/.+@.+\..+/, 'Please enter a valid e-mail address'],
 	},
@@ -38,14 +40,14 @@ const UserSchema: Schema<UserDocument> = new Schema<UserDocument>({
 		required: true,
 	},
 	passwordResetToken: String,
-	passwordResetExpires: Date
+	passwordResetExpires: Date,
 }, {
-	timestamps: true
+	timestamps: true,
 });
 
 UserSchema.pre<UserDocument>('save', function () {
-	if (this.isModified('password')) { 
-		const saltRounds = Math.random() * (30 - 10) + 10; 
+	if (this.isModified('password')) {
+		const saltRounds = Math.random() * (30 - 10) + 10;
 		this.password = hashSync(this.password, saltRounds);
 	}
 	if (this.isModified('email')) {
@@ -54,9 +56,8 @@ UserSchema.pre<UserDocument>('save', function () {
 });
 
 UserSchema.methods.validatePassword = function (
-	password: string
+	password: string,
 ): boolean {
-	// TODO test this
 	// ref: https://mongoosejs.com/docs/guide.html#methods
 	return compareSync(password, this.password);
 };

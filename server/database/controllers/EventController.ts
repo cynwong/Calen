@@ -1,14 +1,9 @@
-import { Event, EventDocument } from '../../database/models/Event';
-
+import { Event } from '../models/Event';
 
 export const createEvent = (data: any):Promise<any> => Event.create(data);
 
-export const deleteEventById = (id: string): Promise<any> => Event.findByIdAndDelete(id)!;
+export const deleteEventById = (id: string): any => Event.findByIdAndDelete(id)!;
 
-export const getAllEvents = (userId:string):Promise<any> => Event.find({ creatorId : userId })
+export const getAllEvents = (userId:string):any => Event.find({ creatorId: userId });
 
-export const getEventById = (id:string):Promise<any> => Event.findById(id)
-
-// export const getEvent = async (id:Schema.Types.ObjectId):Promise<any> => {
-// 	return Event.findById(id);
-// }
+export const getEventById = (id:string):any => Event.findById(id);

@@ -4,7 +4,7 @@ export interface CalendarDocument extends Document {
 	_id: string,
 	id: string,
 	creatorId: Schema.Types.ObjectId,
-	name: string, 
+	name: string,
 	events: Schema.Types.ObjectId[],
 	createdAt: Date,
 	updatedAt: Date
@@ -13,25 +13,25 @@ export interface CalendarDocument extends Document {
 const CalendarScheme: Schema<CalendarDocument> = new Schema<CalendarDocument>({
 	creatorId: {
 		type: Schema.Types.ObjectId,
-		ref: 'user'
+		ref: 'user',
 	},
 	name: {
 		type: String,
 		trim: true,
-		required: 'Name is required.', 
-	}, 
+		required: 'Name is required.',
+	},
 	events: {
 		type: [Schema.Types.ObjectId],
 		ref: 'event',
-		trim: true
+		trim: true,
 	},
 }, {
 	timestamps: true,
 	toObject: { virtuals: true },
-	toJSON: { virtuals: true }
+	toJSON: { virtuals: true },
 });
 
-CalendarScheme.virtual('id').get(function(this:CalendarDocument) {
+CalendarScheme.virtual('id').get(function (this:CalendarDocument) {
 	return this?._id;
 });
 

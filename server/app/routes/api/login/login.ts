@@ -1,6 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import passport from 'passport';
-import jwt from 'jsonwebtoken';
 
 import { UserDocument } from '../../../../database/models/User';
 import { getAllEvents } from '../../../../database/controllers/EventController';
@@ -13,7 +12,8 @@ loginRoute.post(
 		passport.authenticate('local', (err:Error, user:UserDocument): void => {
 			if (err) {
 				console.error(err);
-				return next(err);
+				next(err);
+				return;
 			}
 			if (!user) {
 				res
@@ -25,24 +25,25 @@ loginRoute.post(
 			req.logIn(user, async (loginErr:Error): Promise<void> => {
 				if (loginErr) {
 					console.error(loginErr);
-					return next(loginErr);
+					next(loginErr);
+					return;
 				}
 				try {
 					const events = await getAllEvents(user._id);
-					res.status(200).json({ 
+					res.status(200).json({
 						success: true,
 						user: {
 							username: user.email,
 							firstName: user.firstName,
 							lastName: user.lastName,
-							events
-						}
+							events,
+						},
 					});
-				} catch (err) {
-					next(err);
+				} catch (error) {
+					next(error);
 				}
 			});
-		})(req,res,next);
+		})(req, res, next);
 	}
 );
 

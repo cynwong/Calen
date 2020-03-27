@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 // load environmental variables
 import dotenv from 'dotenv';
 import path from 'path';
@@ -20,4 +21,4 @@ const PORT = process.env.PORT || 8080;
 	} catch (err) {
 		console.error(err);
 	}
-})(); 
+})();

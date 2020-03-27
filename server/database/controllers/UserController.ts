@@ -1,5 +1,5 @@
-import { UserDocument, User } from '../../database/models/User';
+import { UserDocument, User } from '../models/User';
 
-export const createUser = async (data: UserDocument):Promise<any> => {
-	return User.create(data);
-}
+const createUser = async (data: UserDocument):Promise<any> => User.create(data);
+
+export default createUser;

@@ -19,13 +19,39 @@
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint"
+		"@typescript-eslint",
+		"import"
     ],
     "rules": {
 		"@typescript-eslint/indent": [2, "tab"],
 		"@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+		"func-names": ["error", "never"],
+		"import/no-unresolved": "error",
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"js": "never",
+				"mjs": "never",
+				"jsx": "never",
+				"ts": "never"
+			}
+		],
 		"indent": ["error", "tab"],
-		"no-tabs": ["error", { "allowIndentationTabs": true }]
+		"no-console": ["error", { "allow": ["warn", "error", "info"] }],
+		"no-tabs": ["error", { "allowIndentationTabs": true }],
+		"no-underscore-dangle": "warn"
+	},
+	"settings": {
+		"import/parsers": {
+			"@typescript-eslint/parser": [".ts", ".tsx"]
+		},
+		"import/resolver": {
+		  // use <root>/tsconfig.json
+			"typescript": {
+				"alwaysTryTypes": true // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+			}
+		}
 	},
 	"overrides": [
 		{
