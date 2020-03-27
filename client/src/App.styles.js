@@ -20,10 +20,10 @@ const useStyles = makeStyles(theme => ({
 		padding: theme.spacing(5),
 		color:  teal[700],
 		backgroundColor: pink[50],
-		maxWidth: '65%'
 	},
 	form: {
-		width: '100%'
+		width: '100%',
+		padding: theme.spacing(2)
 	},
 	formTitle: {
 		fontSize: '1.5rem',
@@ -53,6 +53,12 @@ const useStyles = makeStyles(theme => ({
 	divider: {
 		marginTop: theme.spacing(3),
 		marginBottom: theme.spacing(3)
+	},
+	margin: {
+		margin: theme.spacing(1),
+	},
+	fullWidth: {
+		width: '100%'
 	}
 }));
 
