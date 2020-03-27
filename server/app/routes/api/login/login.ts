@@ -1,4 +1,6 @@
-import { Router, Request, Response, NextFunction } from 'express';
+import {
+	Router, Request, Response, NextFunction,
+} from 'express';
 import passport from 'passport';
 
 import { UserDocument } from '../../../../database/models/User';
@@ -18,7 +20,7 @@ loginRoute.post(
 			if (!user) {
 				res
 					.status(401)
-					.json({ errors: ['Incorrect username or password']});
+					.json({ errors: ['Incorrect username or password'] });
 				return;
 			}
 			// log in user
@@ -44,7 +46,7 @@ loginRoute.post(
 				}
 			});
 		})(req, res, next);
-	}
+	},
 );
 
 export default loginRoute;
