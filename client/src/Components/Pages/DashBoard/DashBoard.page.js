@@ -10,7 +10,7 @@ import './DashBoard.styles.scss';
 export default function DashBoard() {
 
 	return (
-		<Container fluid>
+		<Container>
 			Hello
 		</Container>
 	)
