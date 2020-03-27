@@ -30,6 +30,7 @@ putEventRoute.put(
 			event.desc = body.desc;
 			event.location = body.location;
 			event.notes = body.notes;
+			event.entry = body.entry;
 			await event.save();
 			res.status(200).json(event);
 		} catch (err) {
