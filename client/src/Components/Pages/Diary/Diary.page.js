@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
+
 import moment from 'moment';
 
 import { Container, Paper } from '@material-ui/core';
@@ -22,17 +23,30 @@ export default function Diary() {
 			return eventClick({event})
 		}
 		// if not, create a new one. 
-		history.push(`/dairyentries/new?start=${startStr}&allDay=true`);
+		history.push(`/diary/new?start=${startStr}&allDay=true`);
 	};
 
 	const eventClick = ({event}) => {
 		const {id} = event;
-		history.push(`dairyentries/${id}`);
+		history.push(`diary/${id}`);
 	};
+
+	const header =  {
+		left: 'today',
+		center: 'prev,title,next',
+		right: ''
+	};
+
 	return (
 		<Container className={classes.container}>
 			<Paper className={classes.bigPaper}>
-				<FullCalendarComponent events={events.filter((event) => (event.type === 1))} selectDates={selectDates} eventClick={eventClick} />
+				<FullCalendarComponent 
+					events={events.filter((event) => (event.type === 1))} 
+					header={header}
+					view='dayGridMonth'
+					selectDates={selectDates} 
+					eventClick={eventClick} 
+				/>
 			</Paper>
 		</Container>
 	)
