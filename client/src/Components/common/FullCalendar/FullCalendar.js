@@ -3,8 +3,6 @@ import React, { createRef, useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
-import { Container } from '@material-ui/core';
-
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
