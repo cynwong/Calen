@@ -32,14 +32,14 @@ postNewEventRoute.post(
 				location,
 				notes,
 				entry,
-				type: type ? type: 0
+				type: type || 0,
 			});
 			res.status(200).json(newEvent);
 		} catch (err) {
 			console.error(err);
-			res.status(500).json({error: true});
+			res.status(500).json({ error: true });
 		}
-	}
+	},
 );
 
 export default postNewEventRoute;
