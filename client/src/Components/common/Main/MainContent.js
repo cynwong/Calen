@@ -10,7 +10,7 @@ import SignUp from '../../Pages/SignUp/SignUp.page';
 
 import DashBoard from '../../Pages/DashBoard/DashBoard.page';
 
-import CalendarContainer from '../../Pages/CalendarView/CalendarView.page';
+import CalendarPage from '../../Pages/Calendar/Calendar.page';
 import Form from '../../Pages/FormView/FormView.page';
 
 
@@ -30,8 +30,8 @@ export default function MainContent() {
 						user.username ? (
 							[
 								<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
-								<Route exact path='/:key' key='calendar' component={CalendarContainer} />,
-								<Route exact path='/:key/:id' key='form' component={Form} />,
+								<Route exact path='/calendar' key='calendar' component={CalendarPage} />,
+								<Route exact path='/calendar/:id' key='calendarForm' component={Form} />,
 							]
 						) : (
 							[
