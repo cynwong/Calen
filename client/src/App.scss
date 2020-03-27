@@ -1,0 +1,35 @@
+@import './styleLib/colours';
+
+:root {
+	font-size: 16px;
+}
+
+#root {
+	width: 100%;
+	min-height: 100vh;
+	background: $pink-50;
+	background: 
+		linear-gradient(
+			to right, 
+			rgba($overlay-colour, 0.3),
+			rgba($overlay-colour, 0.3)
+		),
+		url('./images/background/background.jpg');
+	background-repeat: no-repeat;
+	background-size: auto;
+	padding-bottom: 2.5rem;
+}
+
+.wrapper {
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	color: $teal-700;
+}
+
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+	-webkit-box-shadow: 0 0 0 30px $pink-50 inset !important;
+	-webkit-text-fill-color: $teal-700 !important;
+}

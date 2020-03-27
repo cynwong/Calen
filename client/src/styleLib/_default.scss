@@ -1,0 +1,22 @@
+@import './colours';
+
+
+$borderStyle: 
+		0 0 2px $border-color,
+		0 2px 2px $border-color,
+		2px 2px 2px $border-color,
+		2px 0 2px $border-color;
+
+// border radius
+$rounded-corner: 0.5rem;
+$pill-corner: 50px;
+
+// screen breakpoints
+$xs: 599px;
+$sm: 959px;
+$md: 1279px;
+$lg: 1919px;
+
+// spacing
+$defaultPadding: 1px;
+$margin: 1px;
