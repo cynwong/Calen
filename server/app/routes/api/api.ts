@@ -10,7 +10,7 @@ import signUpRoute from './signup/signup';
 
 const router = Router();
 
-router.use('/signup',forwardIfNotAuthenticated, signUpRoute);
+router.use('/signup', forwardIfNotAuthenticated, signUpRoute);
 router.use('/login', loginRoute);
 router.use('/logout', checkIfAuthenticated, logOutRoute);
 // router.use('/forgotpassword', forgotPasswordRoute);
