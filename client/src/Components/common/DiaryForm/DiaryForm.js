@@ -48,6 +48,7 @@ export default function DiaryForm({event}) {
 			const updatingEvent = {
 				...event,
 				type:1,
+				title: 'entry',
 				entry,
 				allDay: true,
 				start: formatDateTime(startTime.startOf('day')),
