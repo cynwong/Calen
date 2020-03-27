@@ -55,21 +55,21 @@ function App() {
 		}
 	}
 
-	const saveEvent = async (updatingEvent, group='events') => {
+	const saveEvent = async (updatingEvent) => {
 		try {
 			if(!updatingEvent._id) {
 				const { data } = await API.postNewEvent(updatingEvent);
 				await setUserInfo({
 					...userInfo,
-					[group]: [...userInfo[group], data]
+					events: [...userInfo.events, data]
 				});
 				return;
 			} else {
 				const { data } = await API.putEvent(updatingEvent);
-				const localEvents = [...userInfo[group]].filter((event) => event.id !== data.id);
+				const localEvents = [...userInfo.events].filter((event) => event.id !== data.id);
 				await setUserInfo({
 					...userInfo,
-					[group]: [...localEvents, data]
+					events: [...localEvents, data]
 				});
 			}
 		} catch (err) {
