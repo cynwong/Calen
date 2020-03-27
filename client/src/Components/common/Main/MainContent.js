@@ -11,7 +11,7 @@ import SignUp from '../../Pages/SignUp/SignUp.page';
 import DashBoard from '../../Pages/DashBoard/DashBoard.page';
 
 import CalendarPage from '../../Pages/Calendar/Calendar.page';
-import Form from '../../Pages/FormView/FormView.page';
+import CalendarForm from '../../Pages/CalendarForm/CalendarForm.page';
 
 
 import AppContext from '../../../utils/AppContext';
@@ -31,7 +31,7 @@ export default function MainContent() {
 							[
 								<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
 								<Route exact path='/calendar' key='calendar' component={CalendarPage} />,
-								<Route exact path='/calendar/:id' key='calendarForm' component={Form} />,
+								<Route exact path='/calendar/:id' key='calendarForm' component={CalendarForm} />,
 							]
 						) : (
 							[
