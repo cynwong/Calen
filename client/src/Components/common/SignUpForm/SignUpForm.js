@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 
 import clsx from 'clsx';
 
@@ -18,7 +18,6 @@ import {
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 import AlertSection from '../../common/AlertSection/AlertSection';
-import AlertComponent from '../../common/AlertSection/AlertComponent/AlertComponent';
 import AppContext from '../../../utils/AppContext';
 
 
