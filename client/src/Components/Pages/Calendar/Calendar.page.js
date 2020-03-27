@@ -26,7 +26,7 @@ export default function CalendarPage() {
 		left: 'today',
 		center: 'prev,title,next',
 		right: 'dayGridMonth,timeGridWeek,timeGridDay,listDay'
-	},
+	};
 
 	return (
 		<Container className={classes.container}>
@@ -40,5 +40,5 @@ export default function CalendarPage() {
 				/>
 			</Paper>
 		</Container>
-	)
+	);
 }
