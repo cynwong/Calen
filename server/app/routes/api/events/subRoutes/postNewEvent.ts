@@ -16,7 +16,9 @@ postNewEventRoute.post(
 			end,
 			desc,
 			location,
-			notes
+			notes,
+			entry,
+			type,
 		} = body;
 		const userId = user && (user as UserDocument)._id as String;
 		try {
@@ -28,7 +30,9 @@ postNewEventRoute.post(
 				end,
 				desc,
 				location,
-				notes
+				notes,
+				entry,
+				type: type ? type: 0
 			});
 			res.status(200).json(newEvent);
 		} catch (err) {
