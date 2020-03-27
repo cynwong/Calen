@@ -23,7 +23,6 @@
 		"googleapis": "^48.0.0",
 		"moment": "^2.24.0",
 		"react": "^16.13.0",
-		"react-big-calendar": "^0.24.1",
 		"react-dom": "^16.13.0",
 		"react-draft-wysiwyg": "^1.14.4",
 		"react-material-ui-form-validator": "^2.0.10",
