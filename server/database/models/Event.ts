@@ -36,12 +36,16 @@ const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 		trim: true,
 		required: 'Start Date is required.', 
 	}, 
-	end: Date,
+	end: {
+		type: Date,
+		trim: true
+	},
 	allDay: Boolean,
-	type: { 	// 0=event, 1=diaryEntry, 2=mealPlan
+	type: { 	// 0=event, 1=diaryEntry, 2=mealPlan, 3=Todo/Tasks
 		type: Number, 
 		min: 0,
-		max: 2
+		max: 3,
+		index: true
 	},
 	desc: {
 		type: [String],
