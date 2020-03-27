@@ -14,21 +14,18 @@
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
+        
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "plugins": [
-        "react",
         "@typescript-eslint"
     ],
     "rules": {
 		"@typescript-eslint/indent": [2, "tab"],
 		"@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
 		"indent": ["error", "tab"],
-		"no-tabs": ["error", { "allowIndentationTabs": true }],
+		"no-tabs": ["error", { "allowIndentationTabs": true }]
 	},
 	"overrides": [
 		{

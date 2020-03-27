@@ -7,7 +7,7 @@
 		"lint": "eslint \"**/*.ts\" --quiet",
 		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
 		"start": "ts-node ./server",
-		"test": "npm run link",
+		"test": "npm run lint",
 		"watch:server": "ts-node-dev ./server",
 		"watch": "concurrently \"npm run watch:server\" \"npm start --prefix=client\""
 	},
@@ -16,7 +16,7 @@
 		"url": "git+https://github.com/cynwong/CombineOrganiser.git"
 	},
 	"keywords": [],
-	"author": "",
+	"author": "CW",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/cynwong/CombineOrganiser/issues"
@@ -40,10 +40,11 @@
 		"eslint": "^6.8.0",
 		"eslint-config-airbnb": "^18.0.1",
 		"eslint-config-google": "^0.14.0",
+		"eslint-plugin-flowtype": "^4.7.0",
 		"eslint-plugin-import": "^2.20.1",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.19.0",
-		"eslint-plugin-react-hooks": "^1.7.0",
+		"eslint-plugin-react-hooks": "^3.0.0",
 		"node-dev": "^4.0.0",
 		"node-sass": "^4.13.1",
 		"react-router-dom": "^5.1.2",
