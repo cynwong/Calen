@@ -6,6 +6,7 @@
 @import '~@fullcalendar/bootstrap/main.css';
 
 @import '../../../styleLib/colours';
+@import '../../../styleLib/default';
 
 .fc-header-toolbar {
 	.fc-left div{
@@ -48,6 +49,10 @@
 	background: #f8bbd0 !important;
 }
 
+.fc-toolbar h2 {
+	text-align: center;
+	font-size: 1.75em;
+}
 // fc-day header styles 
 .fc-day-header a{
 	font-size: 1rem;
@@ -80,5 +85,77 @@
 	background-color: $teal-700;
 }
 
+.fc-event {
+	cursor: pointer;
+}
 
+.fc-row td {
+    cursor: pointer;
+}
+
+@media screen and (max-width: $xs) {
+
+	.fc * {
+		font-size: 0.5rem;
+	}
+	.fc-button, .fc-button .fc-icon {
+		font-size: 0.4rem;
+	}
+	.fc-toolbar h2 {
+		font-size: 0.6rem;
+	}
+
+	.fc-day-header, .fc-day-header a {
+		font-size: 0.6rem;
+	}
+
+	.fc-day-number {
+		font-size: 0.7rem;
+	}
+
+	.fc-event {
+		font-size: 0.5rem;
+	}
+	.fc-dayGrid-view .fc-body .fc-row {
+		min-height: 3em;
+	}
+
+	
+}
+
+@media screen and (max-width: $sm) {
+	.fc-button, .fc-button .fc-icon {
+		font-size: 0.7rem;
+	}
+	.fc-toolbar h2 {
+		font-size: 0.8em;
+	}
+
+	.fc-day-header {
+		font-size: 0.8rem;
+	}
+	.fc-day-header a {
+		font-size: 0.65rem;
+	}
+
+	.fc-ltr .fc-axis {
+		font-size: 0.7rem;
+	}
+
+	.fc-time-grid-event .fc-time {
+		font-size: 0.5em;
+		
+	}
+	.fc-time-grid-event .fc-time, .fc-time-grid-event .fc-title {
+		font-size: 0.5rem;
+	}
+
+	.fc-event {
+		font-size: 0.5rem;
+	}
+
+	.fc-day-number {
+		font-size: 0.9rem;
+	}
+}
 
