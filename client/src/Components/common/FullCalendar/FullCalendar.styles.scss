@@ -1,0 +1,161 @@
+
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/timegrid/main.css';
+@import '~@fullcalendar/list/main.css';
+@import '~@fullcalendar/bootstrap/main.css';
+
+@import '../../../styleLib/colours';
+@import '../../../styleLib/default';
+
+.fc-header-toolbar {
+	.fc-left div{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+	
+	.fc-center div{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		h2 {
+			color: $teal-700;
+			display: inline;
+			margin-left: 0.5rem;
+			margin-right: 0.5rem;
+		}
+	}
+
+	.fc-right div{
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.fc-button-primary:not(:disabled).fc-button-active{
+		background: $teal-900;
+		color: $pink-50;
+	}
+	
+	.fc-button {
+		color: $pink-50;
+		background-color: $teal-700;
+	}
+}
+
+/* overwrite today colours */
+.fc-today {
+	background: #f8bbd0 !important;
+}
+
+.fc-toolbar h2 {
+	text-align: center;
+	font-size: 1.75em;
+}
+// fc-day header styles 
+.fc-day-header a{
+	font-size: 1rem;
+}
+.fc-day-header.fc-today{
+	color: $teal-900;
+}
+
+// list view dot
+.fc-event-dot {
+	background-color: $pink-A200;
+}
+
+/* change event colour */
+.fc-event {
+	background: $teal-400;
+	color: $yellow-50;
+}
+
+/* override day number color and size */
+.fc-day-number {
+	font-size: 1.5em;
+	color: $pink-900;
+}
+
+/* override day title color and size */
+.fc-day-header {
+	font-size: 1.5em;
+	color: $pink-50;
+	background-color: $teal-700;
+}
+
+.fc-event {
+	cursor: pointer;
+}
+
+.fc-row td {
+    cursor: pointer;
+}
+
+@media screen and (max-width: $xs) {
+
+	.fc * {
+		font-size: 0.5rem;
+	}
+	.fc-button, .fc-button .fc-icon {
+		font-size: 0.4rem;
+	}
+	.fc-toolbar h2 {
+		font-size: 0.6rem;
+	}
+
+	.fc-day-header, .fc-day-header a {
+		font-size: 0.6rem;
+	}
+
+	.fc-day-number {
+		font-size: 0.7rem;
+	}
+
+	.fc-event {
+		font-size: 0.5rem;
+	}
+	.fc-dayGrid-view .fc-body .fc-row {
+		min-height: 3em;
+	}
+
+	
+}
+
+@media screen and (max-width: $sm) {
+	.fc-button, .fc-button .fc-icon {
+		font-size: 0.7rem;
+	}
+	.fc-toolbar h2 {
+		font-size: 0.8em;
+	}
+
+	.fc-day-header {
+		font-size: 0.8rem;
+	}
+	.fc-day-header a {
+		font-size: 0.65rem;
+	}
+
+	.fc-ltr .fc-axis {
+		font-size: 0.7rem;
+	}
+
+	.fc-time-grid-event .fc-time {
+		font-size: 0.5em;
+		
+	}
+	.fc-time-grid-event .fc-time, .fc-time-grid-event .fc-title {
+		font-size: 0.5rem;
+	}
+
+	.fc-event {
+		font-size: 0.5rem;
+	}
+
+	.fc-day-number {
+		font-size: 0.9rem;
+	}
+}
+

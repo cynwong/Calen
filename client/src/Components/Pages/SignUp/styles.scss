@@ -1,0 +1,55 @@
+@import '../../../styleLib/colours';
+@import '../../../styleLib/default';
+
+.signUp {
+	margin: 4rem auto 0;
+    width: 100%;
+	padding: 1rem;
+	box-sizing: border-box;
+	box-shadow: none;
+	background-color: $whitesmoke-colour;
+	
+
+	@media screen and (min-width: $sm) {
+		width: 70%;
+		box-shadow: $borderStyle;
+	}
+
+	@media screen and (min-width: $lg) {
+		width: 50%;
+	}
+	
+
+	h1 {
+		font-size: 2rem;
+		font-weight: bold;
+		font-family: 'Arial', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		margin: 1rem 0 1.5rem;
+	}
+	
+	& .contentContainer {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+
+		& .inputWrapper {
+			flex-basis: 50%;
+		}
+	}
+
+	.inputWrapper {
+		margin: 0.6rem;
+		height: 1.5rem;
+	}
+	
+	.footer {
+		width: 95%;
+		margin-top: 1rem;
+		display:flex;
+		justify-content: flex-end;
+		align-items: center;
+		.btnSignUp {
+			@include btn;
+		}
+	}
+}

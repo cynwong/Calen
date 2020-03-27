@@ -1,0 +1,39 @@
+@import '../../../styleLib/colours';
+@import '../../../styleLib/default';
+
+
+
+.editor-wrapper {
+	background-color: $pink-50;
+	border-color: $teal-900;
+	box-shadow: 1px 1px 4px $teal-900, 
+		0px 0px 4px $teal-900, 
+		0px 1px 4px $teal-900, 
+		1px 0px 4px $teal-900;
+	border-radius: $rounded-corner;
+	padding: 0.7rem;
+	margin-top: 1.5rem;	
+	
+
+
+	& .editor-toolbar {
+		background-color: $pink-50;
+		border: 0;
+		border-bottom: 1px $teal-900;
+		padding: 0.7rem, 0.5rem;
+
+		border-radius: $rounded-corner;
+
+		& .rdw-option-wrapper, & .rdw-dropdown-wrapper {
+			background-color: $pink-50;
+			border-color: $teal-900;
+		}
+	}
+
+	& .editor {
+		border-color: $teal-900;
+		padding: 8px;
+		min-height: 400px;
+	}
+
+}
