@@ -22,8 +22,6 @@ export default function CalendarPage() {
 		history.push(`calendar/${id}`);
 	};
 
-	const goBack = () => history.push('/calendar');
-
 	const header =  {
 		left: 'today',
 		center: 'prev,title,next',
@@ -39,7 +37,6 @@ export default function CalendarPage() {
 					view='dayGridMonth'
 					selectDates={selectDates}
 					eventClick={eventClick} 
-					goBack={goBack}
 				/>
 			</Paper>
 		</Container>
