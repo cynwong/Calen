@@ -16,10 +16,16 @@ import Alert from '@material-ui/lab/Alert';
 import AppContext from '../../../utils/AppContext';
 
 export default function EventForm({event}) {
-	const { saveEvent, deleteEvent, classes } = useContext(AppContext);
+	const { 
+		saveEvent,
+		deleteEvent,
+		classes,
+		formatDateString,
+		parseDateString 
+	} = useContext(AppContext);
 	const [errors, setErrors] = useState({});
 
-	const formatDateTime = (m) => m.format('YYYY-MM-DDTHH:mm');
+	const formatDateTime = (m) => m.format(formatDateString);
 
 	const fnClose = () => history.push('/calendar');
 
@@ -27,8 +33,8 @@ export default function EventForm({event}) {
 	const [updatingEvent, setUpdatingEvent] = useState({
 		...event,
 		allDay: allDay,
-		start: allDay ? formatDateTime(moment(event.start,'YYYY-MM-DDTHH:mm Z').startOf('day')) : formatDateTime(moment(event.start,'YYYY-MM-DDTHH:mm Z')),
-		end: allDay ? formatDateTime(moment(event.start,'YYYY-MM-DDTHH:mm Z').endOf('day')) : formatDateTime(moment(event.end,'YYYY-MM-DDTHH:mm Z')),
+		start: allDay ? formatDateTime(moment(event.start, parseDateString).startOf('day')) : formatDateTime(moment(event.start, parseDateString)),
+		end: allDay ? formatDateTime(moment(event.start, parseDateString).endOf('day')) : formatDateTime(moment(event.end, parseDateString)),
 	});
 	const history = useHistory();
 	
