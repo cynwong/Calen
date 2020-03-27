@@ -57,7 +57,7 @@ export default function LoginForm() {
 	});
 
 	return (
-		<Container className={classes.container}>
+		<Container className={classes.container} maxWidth='sm'>
 			<Paper className={classes.paper}>
 				<Typography variant="h2" className={classes.formTitle} gutterBottom>
 					Log in
@@ -105,11 +105,11 @@ export default function LoginForm() {
 				</form>
 				<br />
 				<Divider  className={classes.divider}/>
-				<p>
+				{/* <p>
 					<Link href="#" onClick={(e)=>goToPage(e,'/forgotpassword')}>
 						Forgot password
 					</Link>
-				</p>
+				</p> */}
 				<p>
 					Don't have an account?&nbsp;
 					<Link href="#" onClick={(e)=>goToPage(e,'/signup')}>
