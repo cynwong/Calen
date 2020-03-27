@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { 
 	List,
-	Divider,
 	ListItem,
-	ListItemIcon,
 	ListItemText,
 } from '@material-ui/core';
 
@@ -34,22 +32,6 @@ export default function MenuList() {
 						<ListItemText primary='Calendar' onClick={()=>history.push('/calendar')} />
 					</ListItem>
 				</List>
-				{/* <List>
-					
-					{['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-						<ListItem button key={text}>
-						<ListItemText primary={text} />
-					</ListItem>
-					))}
-				</List>
-				<Divider />
-				<List>
-					{['All mail', 'Trash', 'Spam'].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemText primary={text} />
-					</ListItem>
-					))}
-				</List> */}
 			</div>
 		</>
 	);
