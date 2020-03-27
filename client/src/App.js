@@ -17,7 +17,6 @@ function App() {
 		firstName: null,
 		lastName: null,
 		events: [],
-		diaryEntries: []
 	});
 	const [view, setView] = useState('default');
 	const [showSideBar, setShowSideBar] = useState(false);
@@ -56,21 +55,21 @@ function App() {
 		}
 	}
 
-	const saveEvent = async (updatingEvent) => {
+	const saveEvent = async (updatingEvent, group='events') => {
 		try {
 			if(!updatingEvent._id) {
 				const { data } = await API.postNewEvent(updatingEvent);
 				await setUserInfo({
 					...userInfo,
-					events: [...userInfo.events, data]
+					[group]: [...userInfo[group], data]
 				});
 				return;
 			} else {
 				const { data } = await API.putEvent(updatingEvent);
-				const localEvents = [...userInfo.events].filter((event) => event.id !== data.id);
+				const localEvents = [...userInfo[group]].filter((event) => event.id !== data.id);
 				await setUserInfo({
 					...userInfo,
-					events: [...localEvents, data]
+					[group]: [...localEvents, data]
 				});
 			}
 		} catch (err) {
@@ -92,42 +91,6 @@ function App() {
 		}
 	};
 
-	const saveDiaryEntry = async (updatingEntry) => {
-		try {
-			if(!updatingEntry._id) {
-				const { data } = await API.postNewDiaryEntry(updatingEntry);
-				await setUserInfo({
-					...userInfo,
-					diaryEntries: [...userInfo.events, data]
-				});
-				return;
-			} else {
-				const { data } = await API.putEvent(updatingEntry);
-				const localDiaryEntry = [...userInfo.diaryEntries].filter((event) => event.id !== data.id);
-				await setUserInfo({
-					...userInfo,
-					diaryEntries: [...localDiaryEntry, data]
-				});
-			}
-		} catch (err) {
-			console.error(err);
-			throw err;
-		}
-	};
-	
-	const deleteDiaryEntry = async (id) => {
-		try{
-			await API.deleteEvent(id);
-			await setUserInfo({
-				...userInfo,
-				events: [...userInfo.events].filter((event) => event.id !== id)
-			});
-		} catch (err) {
-			console.error(err);
-			throw err;
-		}
-	}
-
 
 	const toggleSideBar = () => setShowSideBar(!showSideBar);
 	
@@ -136,6 +99,8 @@ function App() {
 	}
 
 	const appContextValues = {
+		formatDateString:'YYYY-MM-DDTHH:mm', 
+		parseDateString:'YYYY-MM-DDTHH:mm Z',
 		user: userInfo,
 		showSideBar,
 		view,
@@ -146,8 +111,7 @@ function App() {
 		changeView,
 		saveEvent,
 		deleteEvent,
-		saveDiaryEntry,
-		deleteDiaryEntry
+		
 	};
 
 	
