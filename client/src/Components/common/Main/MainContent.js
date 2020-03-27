@@ -7,6 +7,7 @@ import SideBar from '../../NavBar/SideBar/SideBar';
 import Calendar from '../../Pages/Calendar/Calendar.page';
 import DashBoard from '../../Pages/DashBoard/DashBoard.page';
 import Event from '../../Pages/Event/Event.page';
+// import ForgotPassword from '../../Pages/ForgotPassword/ForgotPassword.page';
 import Home from '../../Pages/Home/Home.page';
 import Login from '../../Pages/Login/Login.page';
 import NewEvent from '../../Pages/NewEvent/NewEvent.page';
@@ -36,6 +37,7 @@ export default function MainContent() {
 							[
 								<Route exact path='/signup' key='signup' component={SignUp} />,
 								<Route exact path='/login' key='login' component={Login} />,
+								// <Route exact path='/forgotpassword' key='forgotPassword' component={ForgotPassword} />,
 								<Route path="*" key="nomatch">
 									<Redirect to='/login' />
 								</Route>
