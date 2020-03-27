@@ -10,14 +10,8 @@ import SignUp from '../../Pages/SignUp/SignUp.page';
 
 import DashBoard from '../../Pages/DashBoard/DashBoard.page';
 
-import Diary from '../../Pages/Diary/Diary.page';
-import DiaryEntry from '../../Pages/DiaryEntry/DiaryEntry.page';
-import NewDiaryEntry from '../../Pages/NewDiaryEntry/NewDiaryEntry.page';
-
-import Calendar from '../../Pages/Calendar/Calendar.page';
-import Event from '../../Pages/Event/Event.page';
-import NewEvent from '../../Pages/NewEvent/NewEvent.page';
-// import ForgotPassword from '../../Pages/ForgotPassword/ForgotPassword.page';
+import CalendarContainer from '../../Pages/CalendarView/CalendarView.page';
+import Form from '../../Pages/FormView/FormView.page';
 
 
 import AppContext from '../../../utils/AppContext';
@@ -36,18 +30,13 @@ export default function MainContent() {
 						user.username ? (
 							[
 								<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
-								<Route exact path='/calendar' key='calendar' component={Calendar} />,
-								<Route exact path='/diary' key='diary' component={Diary} />,
-								<Route exact path='/dairyentries/new' key='newDiaryEntry' component={NewDiaryEntry} />,
-								<Route exact path='/dairyentries/:id' key='diaryEntry' component={DiaryEntry} />,
-								<Route exact path='/events/new' key='newEvent'  component={NewEvent} />,
-								<Route exact path='/events/:id' key='event' component={Event} />,
+								<Route exact path='/:key' key='calendar' component={CalendarContainer} />,
+								<Route exact path='/:key/:id' key='form' component={Form} />,
 							]
 						) : (
 							[
 								<Route exact path='/signup' key='signup' component={SignUp} />,
 								<Route exact path='/login' key='login' component={Login} />,
-								// <Route exact path='/forgotpassword' key='forgotPassword' component={ForgotPassword} />,
 								<Route path="*" key="nomatch">
 									<Redirect to='/login' />
 								</Route>
