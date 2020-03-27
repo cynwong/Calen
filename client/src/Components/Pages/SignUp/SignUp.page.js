@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 
 import SignUpForm from '../../common/SignUpForm/SignUpForm';
-import AlertComponent from '../../common/AlertSection/AlertComponent/AlertComponent';
+import AlertComponent from '../../common/AlertComponent/AlertComponent';
 import AlertSection from '../../common/AlertSection/AlertSection';
 
 import AppContext from '../../../utils/AppContext';
