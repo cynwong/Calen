@@ -13,34 +13,52 @@ export default function CalendarContainer() {
 	const { classes, user: { events }} = useContext(AppContext);
 	const { key } = useParams();
 	const history = useHistory();
-	let defaultView = 'dayGridMonth'
-	const header = {
-		left: '',
-		center: 'prev,title,next',
-		right: ''
-	};
-	let displayEvents = [...events];
+
+	const [renderOptions, setRenderOptions] = useState({
+		header: {
+			left: '',
+			center: 'prev,title,next',
+			right: ''
+		},
+		events: [...events],
+		view: 'dayGridMonth'
+	});
 
 	switch (key) {
 		case 'calendar': 
-			displayEvents = displayEvents.filter((e) => e.type === 0);
-			header.left = 'today';
-			header.right = 'dayGridMonth,timeGridWeek,timeGridDay,listDay';
+			setRenderOptions({
+				...renderOptions,
+				events: [...events].filter((e) => e.type === 0),
+				header: {
+					left: 'today',
+					center: 'prev,title,next',
+					right:'dayGridMonth,timeGridWeek,timeGridDay,listDay'
+				}
+			});
 			break;
 		case 'diary': 
-			displayEvents = displayEvents.filter((e) => e.type === 1);
+			setRenderOptions({
+				...renderOptions,
+				events: [...events].filter((e) => e.type === 1),
+			});
 			break;
 		case 'mealplans': 
-			displayEvents = displayEvents.filter((e) => e.type === 2);
+			setRenderOptions({
+				...renderOptions,
+				events: [...events].filter((e) => e.type === 2),
+			});
 			break;
 		case 'tasks':
-			defaultView = 'listDay';
-			displayEvents = displayEvents.filter((e) => e.type === 3);
+			setRenderOptions({
+				...renderOptions,
+				events: [...events].filter((e) => e.type === 3),
+				view: 'listDay'
+			});
 			break;
 		default: 
 	}
 
-	const [view,setView] = useState(defaultView);
+	
 	// This function will invoke when user select time or click on a date
 	const selectDates = ({startStr, endStr, allDay}) => {
 		if(key === 'diary') {
@@ -72,6 +90,7 @@ export default function CalendarContainer() {
 				case 3:
 					route = 'tasks';
 					break;
+				default:
 			}
 		}
 		history.push(`/${route}/${id}`);
@@ -80,7 +99,7 @@ export default function CalendarContainer() {
 	return (
 		<Container className={classes.container}>
 			<Paper className={classes.bigPaper}>
-				<FullCalendarComponent events={displayEvents} selectDates={selectDates} eventClick={eventClick} header={header} view={view}/>
+				<FullCalendarComponent events={renderOptions.events} selectDates={selectDates} eventClick={eventClick} header={renderOptions.header} view={renderOptions.view}/>
 			</Paper>
 		</Container>
 	)
