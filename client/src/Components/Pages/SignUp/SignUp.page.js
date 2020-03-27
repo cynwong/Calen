@@ -1,268 +1,86 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
-import Alert from '../../common/Alert';
-import FormInput from '../../common/FormInput/FormInput';
+import { useHistory } from 'react-router-dom';
+import { 
+	Container,
+	Paper,
+	Typography,
+	Button,
+} from '@material-ui/core';
 
+import SignUpForm from '../../common/SignUpForm/SignUpForm';
+import AlertComponent from '../../common/AlertSection/AlertComponent/AlertComponent';
+import AlertSection from '../../common/AlertSection/AlertSection';
+
+import AppContext from '../../../utils/AppContext';
 import API from '../../../utils/API';
 
-import './styles.scss';
 
+export default function SignUp() {
+	const { classes } = useContext(AppContext);
+	const [success, setSuccess] = useState(false);
+	const [errors, setErrors] = useState([]);
+	const history = useHistory();
 
-export default function SignUp(props) {
-	const [errors, setErrors] = useState({});
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [confirmPassword, setConfirmPassword] = useState('');
-
-	/**
-	 * Check if lastName exists
-	 * @param {string} value 
-	 */
-	const validateLastName = (value) => {
-		if (value && value.trim()) {
-			return true;
-		}
-		setErrors({
-			...errors,
-			lastName: "Last name is required."
-		});
-		return false;
-	};
-
-	/**
-	 * Check if email value is valid email
-	 * @param {string} value 
-	 */
-	const validateEmail = (value) => {
-		if( value && value.trim()) {
-			return true;
-		}
-		const emailErrors = [];
-		emailErrors.push('Email is required');
-		const emailRegEx = new RegExp(/.+@.+\..+/gi);
-		if(! emailRegEx.test(value)) {
-			emailErrors.push('Valid email is needed.')
-		}
-		setErrors({
-			...errors,
-			email: emailErrors
-		});
-		return false;
-	}
-
-	/**
-	 * Check password is not empty and within range
-	 * @param {string} value 
-	 */
-	const validatePassword = (value) => {
-		const length = value.length;
-		const passwordErrors = [];
-		if(length < 8 || length > 20){
-			passwordErrors.push('Password must be 8-20 characters long.');
-		}
-		if (passwordErrors.length > 0) {
-			setErrors({
-				...errors,
-				password: passwordErrors
-			});
-			return false;
-		}
-		return true;
-	}
-
-	const validateConfirmPassword = (value) => {
-		if (value === password) {
-			return true;
-			
-		}
-		setErrors({
-			...errors,
-			confirmPassword: 'Passwords must be identical.'
-		});
-		return false
-	}
-
-	const handleFocusOut = (e) => {
-		e.preventDefault();
-		const { name, value } = e.target;
-
-		switch(name) {
-			case 'firstName': 
-				setFirstName(value);
-				break
-			case 'lastName': 
-				if (validateLastName(value)) {
-					setLastName(value);
-				}
-				break;
-			case 'email':
-				if(validateEmail(value)) {
-					setEmail(value);
-				}
-				break;
-			case 'password': 
-				if(validatePassword(value)) {
-					setPassword(value);
-				}
-				break;
-			case 'confirmPassword': 
-				if (validateConfirmPassword(value)) {
-					return setConfirmPassword(value);
-				}
-				break;
-			default: 
-				break;
-		}
-
-	}
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (
-			!validateLastName(lastName) ||
-			!validateEmail(email) || 
-			!validatePassword(password) ||
-			!validateConfirmPassword(confirmPassword)
-		) {
-			return;
-		}
+	const submitData = async (data) => {
 		try {
-			const result = await API.postSignUp({
-				firstName,
-				lastName,
-				email,
-				password
-			});
+			const result = await API.postSignUp(data);
 			if(result.status === 200) {
-				return props.history.push('/');
+				return setSuccess(true)
 			}
 		} catch (err) {
-			console.error(err.response)
-			if(err.response && err.response.data && err.response.data.errors){
-				setErrors({
-					...errors,
-					server: [...err.response.data.errors]
-				})
-			}else {
-				setErrors({
-					...errors,
-					server: ['Something went wrong. Try again later.']
-				})
+			if(err.response && err.response.data && err.response.data.errors) {
+				setErrors([...err.response.data.errors]);
+			} else {
+				setErrors(['Something went wrong. Try again later.']);
 			}
 		}
-		
-	}
-
-	/**
-	 * 
-	 * @param {any} e - event object
-	 * @param {string} target - target for deleting data. 
-	 */
-	const handleBtnCloseClick = (e, target) => {
-		e.preventDefault();
-		setErrors({
-			...errors,
-			[target]: null
-		})
 	};
 
+	const goToLogin = () => history.push('/login');
+
+	const ErrorSection = () => {
+		if(errors.length !== 0) {
+			return (
+				<>
+					{
+						errors.map((error, index) => 
+							<AlertComponent key={index} type='error' identifier='server' text={error} />
+						)
+					}
+				</>
+			);
+		}
+		return (<></>);
+	}
+
 	return (
-		<div className='signUp'>
-			<form>
-				<h1>Create your Account</h1>
-				<div className='formContentWrapper'>
-					<div className="errors">
-						{errors.server &&
-							errors.server.map((err) => 
-								<Alert 
-									message={err}
-									type='danger' 
-									handleCloseBtn = {(e)=> handleBtnCloseClick(e,'server')}
-								/>
-							)
-						}
-						{errors.lastName &&
-							<Alert 
-								message={errors.lastName}
-								type='danger' 
-								handleCloseBtn = {(e)=> handleBtnCloseClick(e,'lastName')}
-							/>
-						}
-					</div>
-					<div className='contentContainer'>
-						<FormInput 
-							name="firstName" 
-							autoCapitalize='word' 
-							placeholder='First name'
-							value={firstName}
-							onBlur= {handleFocusOut}
-						/>
-						<FormInput 
-							name="lastName" 
-							autoCapitalize='word' 
-							placeholder='Last name'
-							value={lastName}
-							onBlur = {handleFocusOut}
-						/>
-					</div>
-					<div className="errors">
-						{errors.email &&
-							errors.email.map((err) => 
-								<Alert 
-									message={err}
-									type='danger' 
-									handleCloseBtn = {(e)=> handleBtnCloseClick(e,'email')}
-								/>
-							)
-						}
-					</div>
-					<FormInput 
-							name="email" 
-							placeholder='Email'
-							value={email}
-							onBlur= {handleFocusOut}
-					/>
-					<div className="errors">
-						{errors.password &&
-							errors.password.map((err) => 
-								<Alert 
-									message={err}
-									type='danger' 
-									handleCloseBtn = {(e)=> handleBtnCloseClick(e,'password')}
-								/>
-							)
-						}
-						{errors.confirmPassword &&
-							<Alert 
-								message={errors.confirmPassword}
-								type='danger' 
-								handleCloseBtn = {(e)=> handleBtnCloseClick(e,'confirmPassword')}
-							/>
-						}
-					</div>
-					<div className="contentContainer">
-						<FormInput 
-								type="password" 
-								name="password" 
-								placeholder='Password'
-								value={password}
-								onBlur= {handleFocusOut}
-						/>
-						<FormInput 
-								type="password" 
-								name="confirmPassword" 
-								placeholder='Confirm password'
-								value={confirmPassword}
-								onBlur= {handleFocusOut}
-						/>
-					</div>
-					<div className="footer">
-						<button className='btnSignUp' onClick={handleSubmit}>Sign Up</button>
-					</div>
-				</div>
-			</form>
-		</div>
-	)
+		<Container className={classes.container} maxWidth="sm">
+			<Paper className={classes.paper}>
+				<Typography variant="h2" className={classes.formTitle} gutterBottom>
+					Sign up
+				</Typography>
+				{
+					success ? (
+						<>
+							<AlertSection type='success' alerts={{success: 'Successfully signed up.'}} />
+							<Button 
+								variant="outlined"
+								color='primary'
+								className={classes.formButton}
+								onClick={goToLogin}
+							>
+								Log in
+							</Button>
+						</>
+					) : (
+						<>
+							<ErrorSection />
+							<SignUpForm submitData={submitData} goToLogin={goToLogin}/>
+						</>
+					)
+				}
+			</Paper>
+		</Container>
+	);
 }
