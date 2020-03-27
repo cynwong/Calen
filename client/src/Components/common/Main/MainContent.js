@@ -33,7 +33,7 @@ export default function MainContent() {
 								<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
 								<Route exact path='/calendar' key='calendar' component={Calendar} />,
 								<Route exact path='/diary' key='diary' component={Diary} />,
-								<Route exact path='/diary/new' key='newDiaryEntry' component={NewDiaryEntry} />,
+								<Route exact path='/dairyentries/new' key='newDiaryEntry' component={NewDiaryEntry} />,
 								<Route exact path='/events/new' key='newEvent'  component={NewEvent} />,
 								<Route exact path='/events/:id' key='event' component={Event} />,
 							]
