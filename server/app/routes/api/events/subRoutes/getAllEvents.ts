@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 
+import { UserDocument } from '../../../../../database/models/User';
 import { getAllEvents } from '../../../../../database/controllers/EventController';
-import { UserDocument } from 'server/database/models/User';
 
 const allEventsRoute:Router = Router();
 
@@ -15,9 +15,9 @@ allEventsRoute.get(
 			res.status(200).json(events);
 		} catch (err) {
 			console.error(err);
-			res.status(500).json({error: true});
+			res.status(500).json({ error: true });
 		}
-	}
+	},
 );
 
 export default allEventsRoute;
