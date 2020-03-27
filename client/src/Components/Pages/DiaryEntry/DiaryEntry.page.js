@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import { 
 	Container,
 	Paper,
-	Typography
 } from '@material-ui/core';
 
 import DiaryForm from '../../common/DiaryForm/DiaryForm';
