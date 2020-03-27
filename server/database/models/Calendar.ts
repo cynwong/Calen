@@ -1,4 +1,6 @@
-import { Document, model, Model, Schema } from 'mongoose';
+import {
+	Document, model, Model, Schema,
+} from 'mongoose';
 
 export interface CalendarDocument extends Document {
 	_id: string,
