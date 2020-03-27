@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import { 
 	Container,
 	Paper,
-	Typography
 } from '@material-ui/core';
 
 import DiaryForm from '../../common/DiaryForm/DiaryForm';
@@ -33,9 +32,6 @@ export default function NewEvent() {
 	return (
 		<Container className={classes.container}>
 			<Paper className={classes.paper}>
-				<Typography variant="h2" className={classes.formTitle} gutterBottom>
-					Add new diary entry
-				</Typography>
 				<DiaryForm event={event}/>
 			</Paper>
 		</Container>
