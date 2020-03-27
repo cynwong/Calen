@@ -1,6 +1,4 @@
 import { Router, Request, Response } from 'express';
-import { promisify } from 'util';
-import quickemailverification from 'quickemailverification';
 
 import { UserDocument, User } from '../../../../database/models/User';
 import { createUser } from '../../../../database/controllers/UserController';
