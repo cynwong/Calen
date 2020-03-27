@@ -6,6 +6,8 @@ import SideBar from '../../NavBar/SideBar/SideBar';
 
 import Calendar from '../../Pages/Calendar/Calendar.page';
 import DashBoard from '../../Pages/DashBoard/DashBoard.page';
+import Diary from '../../Pages/Diary/Diary.page';
+import NewDiaryEntry from '../../Pages/NewDiaryEntry/NewDiaryEntry.page';
 import Event from '../../Pages/Event/Event.page';
 // import ForgotPassword from '../../Pages/ForgotPassword/ForgotPassword.page';
 import Home from '../../Pages/Home/Home.page';
@@ -30,6 +32,8 @@ export default function MainContent() {
 							[
 								<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
 								<Route exact path='/calendar' key='calendar' component={Calendar} />,
+								<Route exact path='/diary' key='diary' component={Diary} />,
+								<Route exact path='/diary/new' key='newDiaryEntry' component={NewDiaryEntry} />,
 								<Route exact path='/events/new' key='newEvent'  component={NewEvent} />,
 								<Route exact path='/events/:id' key='event' component={Event} />,
 							]
