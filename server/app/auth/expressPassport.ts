@@ -14,5 +14,5 @@ export const forwardIfNotAuthenticated = (req: Request, res: Response, next: Nex
 	if (!req.isAuthenticated()) {
 		return next();
 	}
-	return res.redirect('/login'); //TODO go to dashboard
+	return res.end(); 
 }
