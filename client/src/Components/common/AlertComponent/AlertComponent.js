@@ -5,9 +5,12 @@ import Alert from '@material-ui/lab/Alert';
 export default function AlertComponent({type='error', identifier, text=''}) {
 	let label = text;
 
-	if( text === '') {
+	if( text === '' || typeof(text) !== 'string') {
 		// if no label, then look for the default labels.
 		switch (identifier) {
+			case 'entry': 
+			label = 'Email is required.';
+			break;
 			case 'email': 
 				label = 'Email is required.';
 				break;
@@ -33,9 +36,7 @@ export default function AlertComponent({type='error', identifier, text=''}) {
 				label = 'Something went wrong. Try again later';
 				break;
 			default:
-				if(label === 'true' || label === 'false') {
-					label = 'Something went wrong. Try again later';
-				}
+				label = 'Something went wrong. Try again later';
 				break;
 		}
 	}
