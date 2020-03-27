@@ -109,3 +109,4 @@ dist
 
 # misc
 .DS_Store
+server/config/googleCredentials.ts
