@@ -17,6 +17,7 @@ function App() {
 		firstName: null,
 		lastName: null,
 		events: [],
+		settings:{}
 	});
 	const [showSideBar, setShowSideBar] = useState(false);
 	
@@ -103,8 +104,26 @@ function App() {
 
 	const toggleSideBar = () => setShowSideBar(!showSideBar);
 	
-	const updateSettings = (settings) => {
-
+	const updateSettings = async (settings) => {
+		try {
+			if(!settings._id) {
+				const { data } = await API.postSettings(settings);
+				await setUserInfo({
+					...userInfo,
+					settings: { ...data }
+				});
+				return;
+			} else {
+				const { data } = await API.putSettings(settings);
+				await setUserInfo({
+					...userInfo,
+					settings: { ...data }
+				});
+			}
+		} catch (err) {
+			console.error(err);
+			throw err;
+		}
 	}
 
 	const appContextValues = {
@@ -119,7 +138,6 @@ function App() {
 		updateSettings
 	};
 
-	
 	return (
 		<ThemeProvider theme={theme}>
 		<AppContext.Provider value={appContextValues} >

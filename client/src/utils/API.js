@@ -53,4 +53,17 @@ export default {
 			data
 		);
 	},
+	// settings
+	postSettings: (data) => {
+		return axios.post(
+			'/api/settings',
+			data
+		);
+	},
+	putSettings: (data) => {
+		return axios.put(
+			'/api/settings',
+			data
+		);
+	},
 }
