@@ -20,6 +20,9 @@ import DiaryFormPage from '../../Pages/DiaryForm/DiaryForm.page';
 import TasksPage from '../../Pages/Tasks/Tasks.page';
 import TasksFormPage from '../../Pages/TasksForm/TasksForm.page';
 
+import MealPlannerPage from '../../Pages/MealPlanner/MealPlanner.page';
+// import TasksFormPage from '../../Pages/TasksForm/TasksForm.page';
+
 import AppContext from '../../../utils/AppContext';
 
 export default function MainContent() {
@@ -42,10 +45,11 @@ export default function MainContent() {
 								<Route exact path='/diary/:id' key='diaryForm' component={DiaryFormPage} />,
 								<Route exact path='/tasks' key='tasks' component={TasksPage} />,
 								<Route exact path='/tasks/:id' key='tasksForm' component={TasksFormPage} />,
+								<Route exact path='/mealplanner' key='mealplanner' component={MealPlannerPage} />,
+								// <Route exact path='/mealplanner/:id' key='tasksForm' component={TasksFormPage} />,
 								<Route exact path='/settings' key='settings' component={SettingsPage} />,
 								<Route path="*" key="nomatch">
-									{/* <Redirect to='/dashboard' /> */}
-									<Redirect to='/settings' />
+									<Redirect to='/dashboard' />
 								</Route>
 							]
 						) : (
