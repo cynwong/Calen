@@ -37,6 +37,9 @@ export default function MenuList() {
 					<ListItem button>
 						<ListItemText primary='Tasks' onClick={()=>history.push('/tasks')} />
 					</ListItem>
+					<ListItem button>
+						<ListItemText primary='Meal Planner' onClick={()=>history.push('/mealplanner')} />
+					</ListItem>
 				</List>
 			</div>
 		</>
