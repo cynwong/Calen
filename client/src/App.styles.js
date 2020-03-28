@@ -5,6 +5,7 @@ const useStyles = makeStyles(theme => ({
 	container: {
 		flexGrow: 1,
 		marginTop: theme.spacing(5),
+		
 	},
 	bigPaper: {
 		marginLeft: 'auto',
@@ -12,7 +13,8 @@ const useStyles = makeStyles(theme => ({
 		padding: theme.spacing(5),
 		color:  teal[700],
 		backgroundColor: pink[50],
-		maxWidth: '90%'
+		maxWidth: '90%',
+		minHeight:350
 	},
 	paper: {
 		marginLeft: 'auto',
