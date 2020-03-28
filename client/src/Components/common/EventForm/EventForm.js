@@ -216,7 +216,7 @@ export default function EventForm({event}) {
 					label="Description"
 					variant="standard"
 					fullWidth
-					defaultValue={updatingEvent.desc.join("\n")}
+					defaultValue={(updatingEvent.desc && updatingEvent.desc.length > 0) ? updatingEvent.desc.join("\n") : ''}
 					multiline
 					className={classes.inputTextField}
 					onBlur={handleFocusOut}
@@ -236,7 +236,7 @@ export default function EventForm({event}) {
 					id="notes"
 					label="Notes"
 					variant="standard"
-					defaultValue={updatingEvent.notes.join("\n")}
+					defaultValue={(updatingEvent.notes && updatingEvent.notes.length > 0) ? updatingEvent.notes.join("\n") : ''}
 					fullWidth
 					multiline
 					className={classes.inputTextField}
