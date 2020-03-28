@@ -10,7 +10,7 @@ import FullCalendarComponent from '../../common/FullCalendar/FullCalendar';
 
 import AppContext from '../../../utils/AppContext';
 
-export default function Diary() {
+export default function DiaryPage() {
 	const { classes, user: { events }} = useContext(AppContext);
 
 	const history = useHistory();
