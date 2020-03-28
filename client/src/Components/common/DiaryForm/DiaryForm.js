@@ -16,12 +16,15 @@ import AlertComponent from '../AlertComponent/AlertComponent';
 
 import AppContext from '../../../utils/AppContext';
 
+import { formatDateString, parseDateString } from '../../../constants';
+
 // styles
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './diaryForm.styles.scss'
 
+
 export default function DiaryForm({event}) {
-	const { classes, saveEvent, deleteEvent, formatDateString, parseDateString } = useContext(AppContext);
+	const { classes, saveEvent, deleteEvent } = useContext(AppContext);
 
 	// convert to event so that we can pass it to database and full calendar
 	const formatDateTime = (m) => m.format(formatDateString);

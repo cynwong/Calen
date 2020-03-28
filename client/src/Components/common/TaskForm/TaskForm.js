@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
+import { formatDateString, parseDateString } from '../../../constants';
 import AppContext from '../../../utils/AppContext';
 
 export default function TaskForm({event}) {
@@ -18,8 +19,6 @@ export default function TaskForm({event}) {
 		saveEvent,
 		deleteEvent,
 		classes,
-		formatDateString,
-		parseDateString 
 	} = useContext(AppContext);
 	const [errors, setErrors] = useState({});
 

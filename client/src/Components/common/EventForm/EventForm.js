@@ -16,13 +16,13 @@ import Alert from '@material-ui/lab/Alert';
 
 import AppContext from '../../../utils/AppContext';
 
+import { formatDateString, parseDateString } from '../../../constants';
+
 export default function EventForm({event}) {
 	const { 
 		saveEvent,
 		deleteEvent,
 		classes,
-		formatDateString,
-		parseDateString 
 	} = useContext(AppContext);
 	const [errors, setErrors] = useState({});
 
