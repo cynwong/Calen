@@ -1,13 +1,11 @@
-import React, { useContext, lazy, Suspense } from 'react';
+import React, { useContext } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
 import { Container, Paper } from '@material-ui/core';
 import AppContext from '../../../utils/AppContext'
 
-// import FullCalendarComponent from '../../common/FullCalendar/FullCalendar';
-const FullCalendarComponent = lazy(() => import('../../common/FullCalendar/FullCalendar'));
-
+import FullCalendarComponent from '../../common/FullCalendar/FullCalendar';
 
 export default function MealPlannerPage() {
 	const { classes, user: { events } } = useContext(AppContext);
@@ -33,7 +31,7 @@ export default function MealPlannerPage() {
 	};
 
 	return (
-		<Suspense fallback={<h1>Still Loading…</h1>}>
+		// <Suspense fallback={<h1>Still Loading…</h1>}>
 			<Container className={classes.container}>
 				<Paper className={classes.bigPaper}>
 					<FullCalendarComponent 
@@ -46,6 +44,6 @@ export default function MealPlannerPage() {
 					/>
 				</Paper>
 			</Container>
-		</Suspense>
+		// </Suspense>
 	);
 }
