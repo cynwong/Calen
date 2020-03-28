@@ -8,7 +8,7 @@ import FullCalendarComponent from '../../common/FullCalendar/FullCalendar';
 
 import AppContext from '../../../utils/AppContext'
 
-export default function CalendarPage() {
+export default function TasksPage() {
 	const { classes, user: { events } } = useContext(AppContext);
 
 	const history = useHistory();
