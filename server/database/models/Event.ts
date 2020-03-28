@@ -13,11 +13,12 @@ export interface EventDocument extends Document {
 	type: number,
 	desc: string[],
 	entry: string,
+	category: number,
 	location: string,
 	notes: string[],
-	calendarId: string,
-	recipes:[],
-	totalNutritionalValue: string,
+	// calendarId: string,
+	// recipes:[],
+	// totalNutritionalValue: string,
 	createdAt: Date,
 	updatedAt: Date
 }
@@ -49,6 +50,7 @@ const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 		type: Number,
 		min: 0,
 		max: 3,
+		default: 0,
 		index: true,
 	},
 	desc: {
@@ -58,6 +60,14 @@ const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 	entry: {
 		type: String,
 		trim: true,
+	},
+	// category => 0=<undefined>, 1=Todo, 2=Bucket list, 3=Goal, 4=Schedule
+	category: {
+		type: Number,
+		min: 0,
+		max: 4,
+		default: 0,
+		index: true,
 	},
 	location: {
 		type: String,

@@ -8,13 +8,14 @@ export default async function postNewEventAPI(req:Request, res: Response): Promi
 	const {
 		title,
 		start,
-		allDay,
 		end,
+		allDay,
+		type,
 		desc,
+		entry,
+		category,
 		location,
 		notes,
-		entry,
-		type,
 	} = body;
 	const userId = user && (user as UserDocument)._id as String;
 	try {
@@ -22,13 +23,14 @@ export default async function postNewEventAPI(req:Request, res: Response): Promi
 			creatorId: userId as string,
 			title,
 			start,
-			allDay,
 			end,
+			allDay,
+			type,
 			desc,
+			entry,
+			category,
 			location,
 			notes,
-			entry,
-			type: type || 0,
 		});
 		res.status(200).json(newEvent);
 	} catch (err) {

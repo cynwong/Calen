@@ -23,10 +23,12 @@ export default async function putEventAPI(req:Request, res: Response): Promise<v
 		event.start = body.start;
 		event.end = body.end;
 		event.allDay = body.allDay;
-		event.desc = body.desc;
-		event.location = body.location;
+		event.type = body.type || 0;
+		event.desc = body.desc || '';
+		event.entry = body.entry || '';
+		event.category = body.category || 0;
+		event.location = body.location || '';
 		event.notes = body.notes;
-		event.entry = body.entry;
 		await event.save();
 		res.status(200).json(event);
 	} catch (err) {
