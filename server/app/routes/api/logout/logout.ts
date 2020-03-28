@@ -1,10 +1,8 @@
 import {
-	Router, Request, Response, NextFunction,
+	Request, Response, NextFunction,
 } from 'express';
 
-const logOutRoute = Router();
-
-logOutRoute.get('/', (req: Request, res: Response, next: NextFunction): void => {
+export default function logOutAPI(req: Request, res: Response, next: NextFunction): void {
 	try {
 		req.logout();
 		res.status(200).json({
@@ -13,6 +11,4 @@ logOutRoute.get('/', (req: Request, res: Response, next: NextFunction): void => 
 	} catch (err) {
 		next(err);
 	}
-});
-
-export default logOutRoute;
+}

@@ -4,15 +4,17 @@ import { checkIfAuthenticated, forwardIfNotAuthenticated } from '../../auth/expr
 
 import eventsRoutes from './events/events';
 // import forgotPasswordRoute from './forgotPassword/forgotPassword';
-import loginRoute from './login/login';
-import logOutRoute from './logout/logout';
-import signUpRoute from './signup/signup';
+import LoginAPI from './login/login';
+import logOutAPI from './logout/logout';
+import signUpAPI from './signup/signup';
+import isUserLoginAPI from './isLogIn/isLogIn';
 
 const router = Router();
 
-router.use('/signup', forwardIfNotAuthenticated, signUpRoute);
-router.use('/login', loginRoute);
-router.use('/logout', checkIfAuthenticated, logOutRoute);
+router.use('/signup', forwardIfNotAuthenticated, signUpAPI);
+router.use('/getlogin', isUserLoginAPI);
+router.use('/login', LoginAPI);
+router.use('/logout', checkIfAuthenticated, logOutAPI);
 // router.use('/forgotpassword', forgotPasswordRoute);
 
 // router.use('/events', passport.authenticate('jwt'), eventsRoutes);

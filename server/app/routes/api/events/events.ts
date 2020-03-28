@@ -1,17 +1,17 @@
 import { Router } from 'express';
 
-import allEventsRoute from './subRoutes/getAllEvents';
-import deleteEventRoute from './subRoutes/deleteEvent';
-import getEventRoute from './subRoutes/getEvent';
-import postNewEventRoute from './subRoutes/postNewEvent';
-import putEventRoute from './subRoutes/putEvent';
+import getAllEventAPI from './subRoutes/getAllEvents';
+import deleteEventAPI from './subRoutes/deleteEvent';
+import getEventAPI from './subRoutes/getEvent';
+import postNewEventAPI from './subRoutes/postNewEvent';
+import putEventAPI from './subRoutes/putEvent';
 
 const eventsRoutes = Router();
 
-eventsRoutes.post('/', postNewEventRoute);
-eventsRoutes.use('/all', allEventsRoute);
-eventsRoutes.get('/:id', getEventRoute);
-eventsRoutes.put('/:id', putEventRoute);
-eventsRoutes.delete('/:id', deleteEventRoute);
+eventsRoutes.post('/', postNewEventAPI);
+eventsRoutes.use('/all', getAllEventAPI);
+eventsRoutes.get('/:id', getEventAPI);
+eventsRoutes.put('/:id', putEventAPI);
+eventsRoutes.delete('/:id', deleteEventAPI);
 
 export default eventsRoutes;
