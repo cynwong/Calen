@@ -11,15 +11,19 @@ import SignUp from '../../Pages/SignUp/SignUp.page';
 import DashBoard from '../../Pages/DashBoard/DashBoard.page';
 
 import CalendarPage from '../../Pages/Calendar/Calendar.page';
-import CalendarForm from '../../Pages/CalendarForm/CalendarForm.page';
+import CalendarFormPage from '../../Pages/CalendarForm/CalendarForm.page';
 
 import DiaryPage from '../../Pages/Diary/Diary.page';
-import DiaryForm from '../../Pages/DiaryForm/DiaryForm.page';
+import DiaryFormPage from '../../Pages/DiaryForm/DiaryForm.page';
+
+import TasksPage from '../../Pages/Tasks/Tasks.page';
+import TasksFormPage from '../../Pages/TasksForm/TasksForm.page';
 
 import AppContext from '../../../utils/AppContext';
 
 export default function MainContent() {
 	const { user, showSideBar } = useContext(AppContext);
+	console.log(user);
 	
 	return (
 		<Router>
@@ -33,9 +37,14 @@ export default function MainContent() {
 							[
 								<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
 								<Route exact path='/calendar' key='calendar' component={CalendarPage} />,
-								<Route exact path='/calendar/:id' key='calendarForm' component={CalendarForm} />,
+								<Route exact path='/calendar/:id' key='calendarForm' component={CalendarFormPage} />,
 								<Route exact path='/diary' key='diary' component={DiaryPage} />,
-								<Route exact path='/diary/:id' key='diaryForm' component={DiaryForm} />,
+								<Route exact path='/diary/:id' key='diaryForm' component={DiaryFormPage} />,
+								<Route exact path='/tasks' key='tasks' component={TasksPage} />,
+								<Route exact path='/tasks/:id' key='tasksForm' component={TasksFormPage} />,
+								<Route path="*" key="nomatch">
+									<Redirect to='/dashboard' />
+								</Route>
 							]
 						) : (
 							[
