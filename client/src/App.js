@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -22,6 +22,16 @@ function App() {
 	const [showSideBar, setShowSideBar] = useState(false);
 	
 	const classes = useStyles(theme);
+
+	useEffect(() => {
+		// check if user still have valid session.
+		API.isLogin()
+			.then(({ data: { login, user } }) => {
+				if (user !== undefined) {
+					setUserInfo({...user});
+				}
+			});
+	}, []);
 
 	const fnLogin = async (username, password) => {
 		try {
