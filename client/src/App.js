@@ -18,7 +18,6 @@ function App() {
 		lastName: null,
 		events: [],
 	});
-	const [view, setView] = useState('default');
 	const [showSideBar, setShowSideBar] = useState(false);
 	
 	const classes = useStyles(theme);
@@ -104,24 +103,20 @@ function App() {
 
 	const toggleSideBar = () => setShowSideBar(!showSideBar);
 	
-	const changeView = (newView) => {
-		setView(newView);
+	const updateSettings = (settings) => {
+
 	}
 
 	const appContextValues = {
-		formatDateString:'YYYY-MM-DDTHH:mm', 
-		parseDateString:'YYYY-MM-DDTHH:mm Z',
 		user: userInfo,
 		showSideBar,
-		view,
 		classes,
 		fnLogin,
 		fnLogOut,
 		toggleSideBar,
-		changeView,
 		saveEvent,
 		deleteEvent,
-		
+		updateSettings
 	};
 
 	
