@@ -5,6 +5,7 @@ import { hashSync, compareSync } from 'bcrypt';
 
 export interface UserDocument extends Document {
 	_id: string,
+	id: string,
 	firstName: string,
 	lastName: string,
 	email: string,
@@ -43,6 +44,10 @@ const UserSchema: Schema<UserDocument> = new Schema<UserDocument>({
 	passwordResetExpires: Date,
 }, {
 	timestamps: true,
+});
+
+UserSchema.virtual('id').get(function (this:UserDocument) {
+	return this?._id;
 });
 
 UserSchema.pre<UserDocument>('save', function () {
