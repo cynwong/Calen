@@ -13,7 +13,7 @@ import AppContext from '../../../utils/AppContext';
 
 const useQuery = () => new URLSearchParams(useLocation().search);
 
-export default function CalendarForm() {
+export default function DiaryFormPage() {
 	const { classes, user: { events } } = useContext(AppContext);
 	const { id } = useParams();
 	const uriQuery = useQuery();
