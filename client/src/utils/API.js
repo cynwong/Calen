@@ -8,6 +8,11 @@ export default {
 			{email}
 		);
 	},
+	isLogin: () => {
+		return axios.get(
+			'/api/getlogin',
+		);
+	},
 	login: (username, password) => {
 		return axios.post(
 			'/api/login',
