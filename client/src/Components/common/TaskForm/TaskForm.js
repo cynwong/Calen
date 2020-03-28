@@ -7,8 +7,6 @@ import moment from 'moment';
 import { 
 	Button,
 	Container,
-	FormControlLabel,
-	Switch,
 	TextField,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
@@ -34,7 +32,7 @@ export default function TaskForm({event}) {
 	const [updatingEvent, setUpdatingEvent] = useState({
 		...event,
 		allDay: allDay,
-		start: formatDateTime(parseDateFormat(event.start)),
+		start: formatDateTime(parseDateFormat(new Date())),
 		end: event.end ? formatDateTime(parseDateFormat(event.end)) : '',
 	});
 	const history = useHistory();
@@ -45,13 +43,7 @@ export default function TaskForm({event}) {
 		if(!updatingEvent.title || (updatingEvent.title && !updatingEvent.title.trim())) {
 			return setErrors({
 				...errors,
-				title:true
-			});
-		}
-		if(!updatingEvent.start || (updatingEvent.start && !updatingEvent.start.trim())) {
-			return setErrors({
-				...errors,
-				start:true
+				title: true
 			});
 		}
 		try {
@@ -60,7 +52,7 @@ export default function TaskForm({event}) {
 		} catch (err) {
 			setErrors({
 				...errors,
-				server:true
+				server: true
 			})
 		}
 	}
@@ -81,7 +73,7 @@ export default function TaskForm({event}) {
 	const handleFocusOut = (e) => {
 		e.preventDefault();
 		const { id, value } = e.currentTarget;
-		if(id === 'title' || id === 'start') {
+		if(id === 'title') {
 			// check if required data are there
 			if(!value.trim()){
 				return setErrors({
@@ -90,16 +82,16 @@ export default function TaskForm({event}) {
 				});
 			}
 		}
-		if(id === 'start' || id === 'end') {
+		if(id === 'end') {
 			setUpdatingEvent({
 				...updatingEvent,
-				[id]: formatDateTime(value)
+				[id]: formatDateTime(parseDateFormat(value))
 			})
 			return;
 		}
 
 		// save data
-		if(id === 'desc' || id === 'notes'){
+		if(id === 'notes'){
 			setUpdatingEvent({
 				...updatingEvent,
 				[id]: value.split(/\r?\n/)
@@ -109,28 +101,9 @@ export default function TaskForm({event}) {
 		setUpdatingEvent({
 			...updatingEvent,
 			[id]: value.trim()
-		})
+		});
 	};
 
-	const handleAllDayChange = (e) => {
-		e.preventDefault();
-		const { value } = e.currentTarget;
-		let start = updatingEvent.start;
-		let end = updatingEvent.end;
-		if(value === 'on') {
-			e.currentTarget.value= 'off';
-		} else {
-			e.currentTarget.value= 'on';
-			start = formatDateTime(moment(start).startOf('day'));
-			end = formatDateTime(moment(start).endOf('day'));
-		}
-		setUpdatingEvent({
-			...updatingEvent,
-			allDay: !updatingEvent.allDay,
-			start,
-			end
-		})
-	};
 	return (
 		<Container>
 			<div className="errorContainer">
@@ -153,7 +126,7 @@ export default function TaskForm({event}) {
 					onBlur={handleFocusOut}
 				/>
 				<br/>
-				
+				<br/>
 				<TextField
 					id="end"
 					label="Due"
@@ -180,7 +153,7 @@ export default function TaskForm({event}) {
 				<br/>
 				<footer className={classes.formFooter}>
 					{
-						event.id && 
+						updatingEvent.id && 
 							<Button
 								variant="outlined"
 								color="primary"
