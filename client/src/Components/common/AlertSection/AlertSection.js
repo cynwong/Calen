@@ -3,7 +3,6 @@ import React from 'react';
 import AlertComponent from '../AlertComponent/AlertComponent';
 
 export default function AlertSection({alerts, type}) {
-	console.log(alerts)
 	return (
 		<div>
 			{

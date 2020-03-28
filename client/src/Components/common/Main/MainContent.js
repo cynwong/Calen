@@ -24,7 +24,6 @@ import AppContext from '../../../utils/AppContext';
 
 export default function MainContent() {
 	const { user, showSideBar } = useContext(AppContext);
-	console.log(user);
 	
 	return (
 		<Router>
