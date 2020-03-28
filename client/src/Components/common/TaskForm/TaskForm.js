@@ -3,16 +3,23 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import moment from 'moment';
+import clsx from 'clsx';
 
 import { 
 	Button,
 	Container,
 	TextField,
+	FormControl,
+	InputLabel,
+	Select,
+	MenuItem
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
 import { formatDateString, parseDateString } from '../../../constants';
 import AppContext from '../../../utils/AppContext';
+
+import { useStyles } from './TaskForm.styles';
 
 export default function TaskForm({event}) {
 	const { 
@@ -20,6 +27,7 @@ export default function TaskForm({event}) {
 		deleteEvent,
 		classes,
 	} = useContext(AppContext);
+	const localClasses = useStyles();
 	const [errors, setErrors] = useState({});
 
 	const formatDateTime = (m) => m.format(formatDateString);
@@ -99,7 +107,7 @@ export default function TaskForm({event}) {
 		}
 		setUpdatingEvent({
 			...updatingEvent,
-			[id]: value.trim()
+			[id]: typeof value === 'string' ?  value.trim() : value
 		});
 	};
 
@@ -121,11 +129,60 @@ export default function TaskForm({event}) {
 					InputProps = {{
 						className:classes.input
 					}}
+					InputLabelProps = {{
+						className: classes.input
+					}}
+					FormHelperTextProps= {{
+						className: classes.input
+					}}
 					defaultValue={updatingEvent.title}
 					onBlur={handleFocusOut}
 				/>
 				<br/>
+				<FormControl className={clsx(localClasses.formControl, classes.inputTextField)} >
+					<InputLabel id="category-label" className={classes.input}>Category</InputLabel>
+					<Select
+						labelId="category-label"
+						id="category"
+						value={updatingEvent.category}
+						defaultValue={0}
+						onChange={handleFocusOut}
+						className={clsx(localClasses.selectEmpty, classes.inputTextField)} 
+						InputLabelProps = {{
+							className: classes.input
+						}}
+					>
+						<MenuItem value={0} className={classes.input}>Uncategorized</MenuItem>
+						<MenuItem value={1} className={classes.input}>ToDo</MenuItem>
+						<MenuItem value={2} className={classes.input}>Bucket list</MenuItem>
+						<MenuItem value={3} className={classes.input}>Goal</MenuItem>
+						<MenuItem value={4} className={classes.input}>Schedule</MenuItem>
+					</Select>
+				</FormControl>
 				<br/>
+				{
+					updatingEvent.category === 4 && (
+						<>
+							<TextField
+								id="Start"
+								label="Start"
+								type="datetime-local"
+								defaultValue={updatingEvent.start}
+								fullWidth
+								className={classes.inputTextField}
+								InputLabelProps={{
+									shrink: true,
+									className: classes.input
+								}}
+								InputProps = {{
+									className:classes.input
+								}}
+								onBlur={handleFocusOut}
+							/>
+							<br />
+						</>
+					)
+				}
 				<TextField
 					id="end"
 					label="Due"
@@ -135,6 +192,10 @@ export default function TaskForm({event}) {
 					className={classes.inputTextField}
 					InputLabelProps={{
 						shrink: true,
+						className: classes.input
+					}}
+					InputProps = {{
+						className:classes.input
 					}}
 					onBlur={handleFocusOut}
 				/>
@@ -146,6 +207,12 @@ export default function TaskForm({event}) {
 					defaultValue={updatingEvent.notes}
 					fullWidth
 					multiline
+					InputLabelProps = {{
+						className: classes.input
+					}}
+					InputProps = {{
+						className:classes.input
+					}}
 					className={classes.inputTextField}
 					onBlur={handleFocusOut}
 				/>	
