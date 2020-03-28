@@ -25,21 +25,21 @@ export default function MenuList() {
 				onKeyDown={toggleSideBar}
 			>
 				<List>
-					<ListItem button>
-						<ListItemText primary='Home' onClick={()=>history.push('/dashboard')} />
+					<ListItem button onClick={()=>history.push('/dashboard')}>
+						<ListItemText primary='Home' />
 					</ListItem>
-					<ListItem button>
-						<ListItemText primary='Calendar' onClick={()=>history.push('/calendar')} />
+					<ListItem button onClick={()=>history.push('/calendar')}>
+						<ListItemText primary='Schedule' />
 					</ListItem>
-					<ListItem button>
-						<ListItemText primary='Diary' onClick={()=>history.push('/diary')} />
+					<ListItem button onClick={()=>history.push('/diary')}>
+						<ListItemText primary='Diary' />
 					</ListItem>
-					<ListItem button>
-						<ListItemText primary='Tasks' onClick={()=>history.push('/tasks')} />
+					<ListItem button onClick={()=>history.push('/tasks')}>
+						<ListItemText primary='Tasks' />
 					</ListItem>
-					<ListItem button>
-						<ListItemText primary='Meal Planner' onClick={()=>history.push('/mealplanner')} />
-					</ListItem>
+					{/* <ListItem button onClick={()=>history.push('/mealplanner')}> 
+						<ListItemText primary='Meal Planner' />
+					</ListItem> */}
 				</List>
 			</div>
 		</>
