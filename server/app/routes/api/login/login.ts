@@ -5,6 +5,7 @@ import passport from 'passport';
 
 import { UserDocument } from '../../../../database/models/User';
 import { getAllEvents } from '../../../../database/controllers/EventController';
+import { getSetting } from '../../../../database/controllers/SettingController';
 
 export default function LoginAPI(req:Request, res: Response, next: NextFunction): void {
 	passport.authenticate('local', (err:Error, user:UserDocument): void => {
@@ -27,7 +28,10 @@ export default function LoginAPI(req:Request, res: Response, next: NextFunction)
 				return;
 			}
 			try {
-				const events = await getAllEvents(user._id);
+				const [events, settings] = await Promise.all([
+					getAllEvents(user._id),
+					getSetting(user._id),
+				]);
 				res.status(200).json({
 					success: true,
 					user: {
@@ -36,6 +40,7 @@ export default function LoginAPI(req:Request, res: Response, next: NextFunction)
 						firstName: user.firstName,
 						lastName: user.lastName,
 						events,
+						settings,
 					},
 				});
 			} catch (error) {

@@ -13,6 +13,7 @@ export interface UserDocument extends Document {
 	passwordResetToken: string,
 	passwordResetExpires: Date,
 	photo: string,
+	settings: string,
 	createdAt: Date,
 	updatedAt: Date,
 	validatePassword: (password: string) => boolean;
@@ -39,6 +40,10 @@ const UserSchema: Schema<UserDocument> = new Schema<UserDocument>({
 		type: String,
 		trim: true,
 		required: true,
+	},
+	settings: {
+		type: Schema.Types.ObjectId,
+		ref: 'Setting',
 	},
 	passwordResetToken: String,
 	passwordResetExpires: Date,

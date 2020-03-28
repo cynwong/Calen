@@ -49,4 +49,4 @@ settingSchema.virtual('id').get(function (this:SettingDocument) {
 	return this?._id;
 });
 
-export const Event: Model<SettingDocument> = model<SettingDocument>('event', settingSchema);
+export const Setting: Model<SettingDocument> = model<SettingDocument>('setting', settingSchema);
