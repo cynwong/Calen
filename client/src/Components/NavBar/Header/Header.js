@@ -38,6 +38,10 @@ export default function Header() {
 		handleClose();
 		fnLogOut();
 	}
+	const openSettings = () => {
+		handleClose();
+		history.push('/settings');
+	}
 
 	return (
 		<div className={classes.root}>
@@ -85,8 +89,8 @@ export default function Header() {
 								open={open}
 								onClose={handleClose}
 							>
+								<MenuItem onClick={openSettings}>settings</MenuItem>
 								<MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
-								{/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
 							</Menu>
 						</div>
 					) : (
