@@ -32,4 +32,4 @@ export default async function isUserLoginAPI(req: Request, res: Response): Promi
 			},
 		},
 	});
-};
+}

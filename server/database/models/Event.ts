@@ -72,7 +72,8 @@ const EventSchema: Schema<EventDocument> = new Schema<EventDocument>({
 		ref: 'recipe',
 	},
 	totalNutritionalValue: String,
-// mealType => 0=Breakfast(6-9am), 1=brunch(9-11am), 2=morningTea(11am-12am), 3=Lunch(12-1pm), 4=TeaTime(1pm-6pm), 5=supper(6-7pm), 6=dinner(7-9pm)
+	// mealType => 0=Breakfast(6-9am), 1=brunch(9-11am), 2=morningTea(11am-12am),
+	// 3=Lunch(12-1pm), 4=TeaTime(1pm-6pm), 5=supper(6-7pm), 6=dinner(7-9pm)
 	mealType: Number,
 }, {
 	timestamps: true,

@@ -49,4 +49,4 @@ export default async function signUpAPI(req: Request, res: Response) {
 			error: ['Something went wrong. Try again later.'],
 		});
 	}
-};
+}
