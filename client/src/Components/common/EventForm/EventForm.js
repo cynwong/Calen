@@ -16,7 +16,7 @@ import Alert from '@material-ui/lab/Alert';
 
 import AppContext from '../../../utils/AppContext';
 
-import { formatDateString, parseDateString } from '../../../constants';
+import { formatDateString, parseDateString } from '../../../config/constants';
 
 export default function EventForm({event, from='/calendar'}) {
 	const { 

@@ -17,7 +17,7 @@ import AlertComponent from '../AlertComponent/AlertComponent';
 
 import AppContext from '../../../utils/AppContext';
 
-import { formatDateString, parseDateString } from '../../../constants';
+import { formatDateString, parseDateString } from '../../../config/constants';
 
 // styles
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';

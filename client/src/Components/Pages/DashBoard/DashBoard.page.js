@@ -21,7 +21,7 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import FullCalendarComponent from '../../common/FullCalendar/FullCalendar';
 
 import AppContext from '../../../utils/AppContext';
-import { defaultSettings } from '../../../constants';
+import { defaultSettings } from '../../../config/constants';
 
 export default function DashBoard() {
 	const { classes, user: { events }, deleteEvent, saveEvent } = useContext(AppContext);

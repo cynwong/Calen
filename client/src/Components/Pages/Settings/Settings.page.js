@@ -20,7 +20,7 @@ import InputColor from 'react-input-color';
 
 import AppContext from '../../../utils/AppContext';
 
-import { defaultSettings } from '../../../constants';
+import { defaultSettings } from '../../../config/constants';
 
 import useStyle from './Settings.page.styles';
 

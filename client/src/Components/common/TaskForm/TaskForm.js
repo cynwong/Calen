@@ -16,7 +16,7 @@ import {
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 
-import { formatDateString, parseDateString } from '../../../constants';
+import { formatDateString, parseDateString } from '../../../config/constants';
 import AppContext from '../../../utils/AppContext';
 
 import { useStyles } from './TaskForm.styles';
