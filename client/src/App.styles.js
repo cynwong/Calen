@@ -94,6 +94,12 @@ const useStyles = makeStyles(theme => ({
 	textAlignRight: {
 		width: '100%',
 		textAlign:'right'
+	},
+	h6: {
+		color: teal[700],
+		fontSize: '1.3em',
+		fontWeight:700,
+		margin: theme.spacing(1)
 	}
 }));
 
