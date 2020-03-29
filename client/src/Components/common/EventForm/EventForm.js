@@ -93,7 +93,7 @@ export default function EventForm({event, from='/calendar'}) {
 		if(id === 'start' || id === 'end') {
 			setUpdatingEvent({
 				...updatingEvent,
-				[id]: formatDateTime(value)
+				[id]: formatDateTime(moment(value))
 			})
 			return;
 		}
