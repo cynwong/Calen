@@ -24,22 +24,25 @@ export default {
 			'/api/logout',
 		);
 	},
-	// Event
-	deleteEvent: (id) => {
-		return axios.delete(
-			`/api/events/${id}`,
-		);
-	},
 	postSignUp: (postData) => {
 		return axios.post(
 			'/api/signup',
 			postData
 		);
 	},
+	// Event
+	deleteEvent: (id) => {
+		return axios.delete(
+			`/api/events/${id}`,
+		);
+	},
 	getEvent: (id) => {
 		return axios.get(
 			`/api/events/${id}`,
 		);
+	},
+	getAllEvents: () => {
+		return axios.get('api/events/all');
 	},
 	postNewEvent: (data) => {
 		return axios.post(
