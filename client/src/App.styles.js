@@ -53,12 +53,12 @@ const useStyles = makeStyles(theme => ({
 		margin: theme.spacing(1),
 	},
 	inputTextField: {
-		color:  teal[900],
+		color:  teal[800],
 		backgroundColor: pink[50],
 		marginTop: theme.spacing(1.5)
 	},
 	input: {
-		color:  teal[900],
+		color:  teal[800],
 	},
 	divider: {
 		marginTop: theme.spacing(3),
