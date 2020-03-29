@@ -49,11 +49,11 @@ export default function DashBoard() {
 	}
 	const addNewTask = (e) => {
 		e.preventDefault();
-		history.push(`/tasks/new?start=${new Date()}&end=&allDay=true`)
+		history.push(`/tasks/new?start=${new Date()}&end=&allDay=true`);
 	}
 	const addNew = (e) => {
 		e.preventDefault();
-		history.push(`/new`)
+		history.push(`/new`);
 	}
 	return (
 		<Container className={classes.container}>
@@ -82,13 +82,10 @@ export default function DashBoard() {
 						<List dense={true}>
 						{
 							[...events]
-								//.filter((e) => e.type === 3)
+								.filter((e) => e.type === 3)
 								.map((e, index) => {
-									if(e.type !== 3) {
-										return;
-									}
 									return (
-										<ListItem>
+										<ListItem key={index}>
 											<Link href="#" onClick={goToPage(e.id)} color="inherit">
 												<ListItemText primary={e.title} />
 											</Link>
