@@ -1,5 +1,6 @@
 import React, { useRef, useContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import clsx from 'clsx';
 import { 
 	Button,
 	TextField, 
@@ -7,8 +8,14 @@ import {
 	Paper,
 	Divider,
 	Link,
-	Typography
+	Typography,
+	FormControl,
+	InputLabel,
+	Input,
+	InputAdornment,
+	IconButton,
 } from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import Alert from '@material-ui/lab/Alert';
 
 import AppContext from '../../../utils/AppContext';
@@ -16,6 +23,7 @@ import AppContext from '../../../utils/AppContext';
 export default function LoginForm() {
 	const { classes, fnLogin } = useContext(AppContext);
 	const [hasError, setHasError] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
 
 	const usernameEl = useRef();
 	const passwordEl = useRef();
@@ -79,18 +87,26 @@ export default function LoginForm() {
 						onKeyDown={handleUsernameKeyDown}
 					/>
 					<br />
-					<TextField 
-						id="password" 
-						label="Password" 
-						type="password"
-						InputProps={{
-							className: classes.inputTextField
-						}}
-						className={classes.inputTextField}
-						fullWidth
-						inputRef={passwordEl}
-						onKeyDown={handlePasswordKeyDown}
-					/>
+					<FormControl className={clsx(classes.margin, classes.inputTextField, classes.fullWidth)}>
+						<InputLabel htmlFor="password" >Password</InputLabel>
+						<Input
+							id="password"
+							inputRef={passwordEl}
+							type={showPassword ? 'text' : 'password'}
+							className={ classes.input }
+							onKeyDown={handlePasswordKeyDown}
+							endAdornment={
+								<InputAdornment position="end">
+									<IconButton
+										onClick={()=> setShowPassword(!showPassword)}
+										onMouseDown={(e) => e.preventDefault()}
+									>
+									{showPassword ? <Visibility /> : <VisibilityOff />}
+									</IconButton>
+								</InputAdornment>
+							}
+						/>
+					</FormControl>
 					<br />
 					<footer className={classes.formFooter}>
 						<Button 
