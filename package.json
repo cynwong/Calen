@@ -1,12 +1,13 @@
 {
-	"name": "CombineOrganiser",
+	"name": "calen",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Calen is an online organizer application where user can store their schedules and events.",
 	"main": "index.js",
 	"scripts": {
 		"lint": "eslint \"**/*.ts\" --quiet",
+		"build": "tsc",
 		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-		"start": "ts-node ./server",
+		"start": "node ./build/server",
 		"test": "npm run lint",
 		"watch:server": "ts-node-dev ./server",
 		"watch": "concurrently \"npm run watch:server\" \"npm start --prefix=client\""
@@ -15,7 +16,7 @@
 		"type": "git",
 		"url": "git+https://github.com/cynwong/CombineOrganiser.git"
 	},
-	"keywords": [],
+	"keywords": ["calen", "organizer", "diary", "calendar"],
 	"author": "CW",
 	"license": "ISC",
 	"bugs": {
