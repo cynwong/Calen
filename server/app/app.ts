@@ -45,8 +45,8 @@ app.use('/api', apiRoutes);
 // for production
 if (process.env.NODE_ENV === 'production') {
 	// set static folder
-	app.use(express.static(path.resolve(__dirname, '..', '..', 'client', 'build')));
-	app.get('*', (_, res) => res.sendFile(path.resolve(__dirname, '..', '..', 'client', 'build', 'index.html')));
+	app.use(express.static(path.resolve(__dirname, '..', '..', '..', 'client', 'build')));
+	app.get('*', (_, res) => res.sendFile(path.resolve(__dirname, '..', '..', '..', 'client', 'build', 'index.html')));
 }
 
 export default app;
