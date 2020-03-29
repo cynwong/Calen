@@ -79,35 +79,35 @@ export default function TaskForm({event}) {
 
 	const handleFocusOut = (e) => {
 		e.preventDefault();
-		const { id, value } = e.currentTarget;
-		if(id === 'title') {
+		const { name, value } = e.target;
+		if(name === 'title') {
 			// check if required data are there
 			if(!value.trim()){
 				return setErrors({
 					...errors,
-					[id]: true
+					[name]: true
 				});
 			}
 		}
-		if(id === 'end') {
+		if(name === 'end') {
 			setUpdatingEvent({
 				...updatingEvent,
-				[id]: formatDateTime(parseDateFormat(value))
+				[name]: formatDateTime(parseDateFormat(value))
 			})
 			return;
 		}
 
 		// save data
-		if(id === 'notes'){
+		if(name === 'notes'){
 			setUpdatingEvent({
 				...updatingEvent,
-				[id]: value.split(/\r?\n/)
+				[name]: value.split(/\r?\n/)
 			})
 			return;
 		}
 		setUpdatingEvent({
 			...updatingEvent,
-			[id]: typeof value === 'string' ?  value.trim() : value
+			[name]: typeof value === 'string' ?  value.trim() : value
 		});
 	};
 
@@ -121,6 +121,7 @@ export default function TaskForm({event}) {
 			<form className={classes.form}>
 				<TextField 
 					id="title"
+					name='title'
 					label="Task"
 					error={errors.title}
 					helperText="Required"
@@ -139,32 +140,55 @@ export default function TaskForm({event}) {
 					onBlur={handleFocusOut}
 				/>
 				<br/>
-				<FormControl className={clsx(localClasses.formControl, classes.inputTextField)} >
+				<FormControl  className={clsx(localClasses.formControl, classes.inputTextField)} >
 					<InputLabel id="category-label" className={classes.input}>Category</InputLabel>
 					<Select
 						labelId="category-label"
 						id="category"
-						value={updatingEvent.category}
-						defaultValue={0}
-						onChange={handleFocusOut}
+						name='category'
+						value={updatingEvent.category ? updatingEvent.category : 0}
 						className={clsx(localClasses.selectEmpty, classes.inputTextField)} 
-						InputLabelProps = {{
-							className: classes.input
-						}}
+						onChange={handleFocusOut}
 					>
-						<MenuItem value={0} className={classes.input}>Uncategorized</MenuItem>
-						<MenuItem value={1} className={classes.input}>ToDo</MenuItem>
-						<MenuItem value={2} className={classes.input}>Bucket list</MenuItem>
-						<MenuItem value={3} className={classes.input}>Goal</MenuItem>
-						<MenuItem value={4} className={classes.input}>Schedule</MenuItem>
+						<MenuItem 
+							value={0}
+							className={clsx(classes.input, localClasses.menuItem)}
+						>
+							Uncategorized
+						</MenuItem>
+						<MenuItem 
+							value={1}
+							className={clsx(classes.input, localClasses.menuItem)}
+						>
+							Todo
+						</MenuItem>
+						<MenuItem 
+							value={2}
+							className={clsx(classes.input, localClasses.menuItem)}
+						>
+							Bucket list
+						</MenuItem>
+						<MenuItem 
+							value={3}
+							className={clsx(classes.input, localClasses.menuItem)}
+						>
+							Goal
+						</MenuItem>
+						<MenuItem 
+							value={4}
+							className={clsx(classes.input, localClasses.menuItem)}
+						>
+							Schedule
+						</MenuItem>
 					</Select>
 				</FormControl>
 				<br/>
 				{
-					updatingEvent.category === 4 && (
+					(updatingEvent.category === 4) && (
 						<>
 							<TextField
-								id="Start"
+								id="5tart"
+								name="start"
 								label="Start"
 								type="datetime-local"
 								defaultValue={updatingEvent.start}
@@ -185,6 +209,7 @@ export default function TaskForm({event}) {
 				}
 				<TextField
 					id="end"
+					name="end"
 					label="Due"
 					type="datetime-local"
 					defaultValue={updatingEvent.end}
@@ -202,6 +227,7 @@ export default function TaskForm({event}) {
 				<br />
 				<TextField 
 					id="notes"
+					name="notes"
 					label="Notes"
 					variant="standard"
 					defaultValue={updatingEvent.notes}
@@ -219,15 +245,16 @@ export default function TaskForm({event}) {
 				<br/>
 				<footer className={classes.formFooter}>
 					{
+
 						updatingEvent.id && 
-							<Button
-								variant="outlined"
-								color="primary"
-								onClick={handleDeleteBtnClick}
-								className={classes.formButton}
-							>
-								Delete
-							</Button>
+						<Button
+							variant="outlined"
+							color="primary"
+							onClick={handleDeleteBtnClick}
+							className={classes.formButton}
+						>
+							Delete
+						</Button>
 					}
 					<Button
 						variant="outlined"
