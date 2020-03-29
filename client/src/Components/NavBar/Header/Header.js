@@ -59,10 +59,11 @@ export default function Header() {
 							<MenuIcon />
 						</IconButton>
 					}
-					
-					<Typography variant="h6" className={classes.title}>
-						Calen
-					</Typography>
+					<Link onClick={() => history.push('/')}>
+						<Typography variant="h6" className={classes.title}>
+							Calen
+						</Typography>
+					</Link>
 					{user.username ? (
 						<div>
 							<IconButton
