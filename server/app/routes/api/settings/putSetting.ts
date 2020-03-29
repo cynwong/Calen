@@ -7,7 +7,7 @@ export default async function putSettingAPI(req:Request, res: Response): Promise
 	const { user, body } = req;
 	const userId = user && (user as UserDocument)._id;
 	try {
-		const setting = await putSetting(userId, body);
+		const setting = await putSetting(userId as string, body);
 		res.status(200).json(setting);
 	} catch (err) {
 		console.error(err);
