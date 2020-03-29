@@ -160,31 +160,31 @@ export default function TaskForm({event, from='/tasks'}) {
 					>
 						<MenuItem 
 							value={0}
-							className={clsx(classes.input, localClasses.menuItem)}
+							className={clsx(classes.input)}
 						>
 							Uncategorized
 						</MenuItem>
 						<MenuItem 
 							value={1}
-							className={clsx(classes.input, localClasses.menuItem)}
+							className={clsx(classes.input)}
 						>
 							Todo
 						</MenuItem>
 						<MenuItem 
 							value={2}
-							className={clsx(classes.input, localClasses.menuItem)}
+							className={clsx(classes.input)}
 						>
 							Bucket list
 						</MenuItem>
 						<MenuItem 
 							value={3}
-							className={clsx(classes.input, localClasses.menuItem)}
+							className={clsx(classes.input)}
 						>
 							Goal
 						</MenuItem>
 						<MenuItem 
 							value={4}
-							className={clsx(classes.input, localClasses.menuItem)}
+							className={clsx(classes.input)}
 						>
 							Schedule
 						</MenuItem>
