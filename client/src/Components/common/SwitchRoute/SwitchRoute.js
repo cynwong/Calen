@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Redirect, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import AppContext from '../../../utils/AppContext';
 
@@ -25,5 +25,5 @@ export default function SwitchRoute() {
 			break;
 		
 	};
-	return (<></>)
+	return (<></>);
 }
