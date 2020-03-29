@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import clsx from 'clsx';
 
 import moment from 'moment';
 
-import { Button, TextField, Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 
 // text editor
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
@@ -51,7 +52,7 @@ export default function DiaryForm({event}) {
 			const updatingEvent = {
 				...event,
 				type:1,
-				title: 'entry',
+				title: 'Diary entry',
 				entry,
 				allDay: true,
 				start: formatDateTime(startTime.startOf('day')),
@@ -76,67 +77,55 @@ export default function DiaryForm({event}) {
 
 	return (
 		<>
-			<Typography variant="h2" className={classes.formTitle} gutterBottom>
+			<Typography 
+				variant="h2" 
+				className={clsx(classes.formTitle, classes.textAlignRight)} 
+				gutterBottom
+			>
 				{moment(event.start).format('DD MMMM, YYYY')}
 			</Typography>
-			<form className={classes.form} noValidate>
+			{
+				serverError && 
+					<AlertComponent type='error' identifier='server' text='' />
+			}
+			<Editor
+				toolbar={{options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji',]	}}
+				editorState={editorState}
+				initialContentState={{}}
+				toolbarClassName="editor-toolbar"
+				wrapperClassName="editor-wrapper"
+				editorClassName="editor"
+				onEditorStateChange={(newState) => setEditorState(newState)}
+			/>
+			<footer className={classes.formFooter}>
 				{
-					serverError && 
-						<AlertComponent type='error' identifier='server' text='' />
+					event.id && 
+						<Button
+							variant="outlined"
+							color="primary"
+							className={classes.formButton}
+							onClick={handleDeleteBtnClick}
+						>
+							Delete
+						</Button>
 				}
-				<TextField
-					label="Date"
-					type="date"
-					defaultValue={moment(event.start).format('YYYY-MM-DD')}
-					className={classes.inputTextField}
-					InputProps={{
-						readOnly: true,
-						className: classes.input
-					}}
-					InputLabelProps={{
-						shrink: true,
-					}}
-				/>
-				
-				<Editor
-					toolbar={{options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji',]	}}
-					editorState={editorState}
-					initialContentState={{}}
-					toolbarClassName="editor-toolbar"
-					wrapperClassName="editor-wrapper"
-					editorClassName="editor"
-					onEditorStateChange={(newState) => setEditorState(newState)}
-				/>
-				<footer className={classes.formFooter}>
-					{
-						event.id && 
-							<Button
-								variant="outlined"
-								color="primary"
-								className={classes.formButton}
-								onClick={handleDeleteBtnClick}
-							>
-								Delete
-							</Button>
-					}
-					<Button 
-						variant="outlined"
-						color='primary'
-						className={classes.formButton}
-						onClick={handleSaveBtnClick}
-					>
-						Save
-					</Button>
-					<Button
-						variant="outlined"
-						color="primary"
-						onClick={fnClose}
-						className={classes.formButton}
-					>
-						Cancel
-					</Button>
-				</footer>
-			</form>
+				<Button 
+					variant="outlined"
+					color='primary'
+					className={classes.formButton}
+					onClick={handleSaveBtnClick}
+				>
+					Save
+				</Button>
+				<Button
+					variant="outlined"
+					color="primary"
+					onClick={fnClose}
+					className={classes.formButton}
+				>
+					Cancel
+				</Button>
+			</footer>
 		</>
 	)
 }
