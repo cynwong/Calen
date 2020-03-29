@@ -1,9 +1,9 @@
 
 export const defaultSettings = {
-	calendarColour: '#b7a92f',
-	diaryColour: '#c91975',
-	taskColour: '#e45912',
-	mealPlanColour: '#20dea1', 
+	calendarColour: 'purple',
+	diaryColour: '#ff88cc',
+	taskColour: 'orange',
+	mealPlanColour: '#3f3f3f', 
 	googleCalendarIds: []
 }
 
