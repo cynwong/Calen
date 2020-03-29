@@ -25,7 +25,6 @@ export default function CreateNewPage() {
 			end: now, 
 			allDay: true
 		};
-		console.log(type)
 		switch(type) {
 			case 0: 
 			return <EventForm event={event} from='/dashboard'/>;
