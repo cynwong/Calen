@@ -35,7 +35,7 @@ export default function TasksPage() {
 		<Container className={classes.container}>
 			<Paper className={classes.bigPaper}>
 				<FullCalendarComponent 
-					events={[...events].filter((e) => e.type === 0)}
+					events={[...events].filter((e) => e.type === 3)}
 					header={header}
 					view='listDay'
 					eventOrder='end,title'
