@@ -21,7 +21,7 @@ import TasksPage from '../../Pages/Tasks/Tasks.page';
 import TasksFormPage from '../../Pages/TasksForm/TasksForm.page';
 
 import SwitchRoute from '../../common/SwitchRoute/SwitchRoute';
-
+import CreateNewPage from '../../Pages/CreateNew/CreateNew.page'
 // import MealPlannerPage from '../../Pages/MealPlanner/MealPlanner.page';
 // import TasksFormPage from '../../Pages/TasksForm/TasksForm.page';
 
@@ -50,6 +50,7 @@ export default function MainContent() {
 								// <Route exact path='/mealplanner' key='mealplanner' component={MealPlannerPage} />,
 								// <Route exact path='/mealplanner/:id' key='tasksForm' component={TasksFormPage} />,
 								<Route exact path='/settings' key='settings' component={SettingsPage} />,
+								<Route exact path='/new' key='createNew' component={CreateNewPage} />,
 								<Route exact path='/view/:id' key='view' component={SwitchRoute} />,
 								<Route path="*" key="nomatch">
 									<Redirect to='/dashboard' />
