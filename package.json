@@ -16,7 +16,12 @@
 		"type": "git",
 		"url": "git+https://github.com/cynwong/CombineOrganiser.git"
 	},
-	"keywords": ["calen", "organizer", "diary", "calendar"],
+	"keywords": [
+		"calen",
+		"organizer",
+		"diary",
+		"calendar"
+	],
 	"author": "CW",
 	"license": "ISC",
 	"bugs": {
