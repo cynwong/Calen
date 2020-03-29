@@ -38,6 +38,7 @@ export default function TaskForm({event}) {
 	const allDay = 'true'.localeCompare(event.allDay) === 0 ;
 	const [updatingEvent, setUpdatingEvent] = useState({
 		...event,
+		type: 3,
 		allDay: allDay,
 		start: formatDateTime(parseDateFormat(new Date())),
 		end: event.end ? formatDateTime(parseDateFormat(event.end)) : '',
@@ -104,6 +105,13 @@ export default function TaskForm({event}) {
 				[name]: value.split(/\r?\n/)
 			})
 			return;
+		}
+		if(name==='category' && value===4) {
+			return setUpdatingEvent({
+				...updatingEvent,
+				type: 0,
+				[name]: typeof value === 'string' ?  value.trim() : value
+			});
 		}
 		setUpdatingEvent({
 			...updatingEvent,
