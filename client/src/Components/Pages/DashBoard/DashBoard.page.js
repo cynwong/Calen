@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
 import {
 	Container,
 	Grid,
@@ -10,9 +11,12 @@ import {
 	ListItemSecondaryAction, 
 	IconButton,
 	Link,
+	Typography,
+	TextField
 } from '@material-ui/core';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 
 import FullCalendarComponent from '../../common/FullCalendar/FullCalendar';
 
@@ -20,41 +24,55 @@ import AppContext from '../../../utils/AppContext';
 import { defaultSettings } from '../../../constants';
 
 export default function DashBoard() {
-	const { classes, user: { events } } = useContext(AppContext);
+	const { classes, user: { events }, deleteEvent, saveEvent } = useContext(AppContext);
 	const history = useHistory();
+	const [showInput, setShowInput] = useState(false);
 
-	let calendarEvents = events.map((e) => {
-		let newEvent = {...e};
-		switch(newEvent.type) {
-			case 1: 
-				newEvent.color = defaultSettings.diaryColour;
-				break;
-			// case 2: 
-			// 	newEvent.color = settings.calendarColour || defaultSettings.calendarColour;
-			// 	// newEvent.color='#3f3f3f';
-			// 	break;
-			case 3: 
-				newEvent.color = defaultSettings.taskColour;
-				break;
-			default: 
-				newEvent.color = defaultSettings.calendarColour;
-		}
-		return newEvent;
-	});
+	let calendarEvents = events
+		.filter((e) => e.type !== 3)
+		.map((e) => {
+			let newEvent = {...e};
+			switch(newEvent.type) {
+				case 1: 
+					newEvent.color = defaultSettings.diaryColour;
+					break;
+				case 3: 
+					newEvent.color = defaultSettings.taskColour;
+					break;
+				default: 
+					newEvent.color = defaultSettings.calendarColour;
+			}
+			return newEvent;
+		});
 	const calendarEventsClick = ({event}) => history.push(`/view/${event.id}`);
 
 	const goToPage = (id) => (e) => {
 		e.preventDefault();
 		history.push(`/tasks/${id}`);
+	};
+
+	const keyDownHandler = (e) => {
+		const hideInputBox = (e) => {
+			e.target.value = ''
+			setShowInput(false);
+		}
+		if(e.keyCode ===  13) {
+			saveEvent({
+				type: 3,
+				allDay: true,
+				start: new Date(),
+				title: e.target.value
+			});
+			hideInputBox(e);
+			return;
+		}
+		if (e.key === "Escape") {
+			hideInputBox(e)
+			return;
+		}
+		
 	}
-	const addNewTask = (e) => {
-		e.preventDefault();
-		history.push(`/tasks/new?start=${new Date()}&end=&allDay=true`);
-	}
-	const addNew = (e) => {
-		e.preventDefault();
-		history.push(`/new`);
-	}
+
 	return (
 		<Container className={classes.container}>
 			<Grid container spacing={3}>
@@ -72,13 +90,23 @@ export default function DashBoard() {
 							eventClick={calendarEventsClick}
 							selectDates={calendarEventsClick}
 						/>
-						<Link onClick={addNew} className={classes.addNewButton}>
-								<AddCircleOutlineOutlinedIcon fontSize='small'/>
+						<Link 
+							onClick={e =>{e.preventDefault(); history.push('/new');}}
+							className={classes.addNewButton}
+						>
+							<AddCircleOutlineOutlinedIcon fontSize='small'/>
 						</Link>
 					</Paper>
 				</Grid>
 				<Grid item xs={12} sm={4}>
 					<Paper className={classes.memo}>
+						<Typography 
+							variant="h6" 
+							className={classes.h6} 
+							gutterBottom
+						>
+							Tasks
+						</Typography>
 						<List dense={true}>
 						{
 							[...events]
@@ -90,8 +118,8 @@ export default function DashBoard() {
 												<ListItemText primary={e.title} />
 											</Link>
 											<ListItemSecondaryAction>
-												<IconButton edge="end" aria-label="delete">
-													<DeleteIcon />
+												<IconButton edge="end" onClick={()=>deleteEvent(e.id)}>
+													<CheckBoxOutlineBlankIcon />
 												</IconButton>
 											</ListItemSecondaryAction>
 											
@@ -99,23 +127,30 @@ export default function DashBoard() {
 									)
 								})
 						}
-							<ListItem>
-								<Link onClick={addNewTask} className={classes.addNewButton}>
-										<AddCircleOutlineOutlinedIcon fontSize='small'/>
-								</Link>
-							</ListItem>
+							{
+								showInput ? (
+									<ListItem>
+										<TextField 
+											id="task"
+											name='task'
+											variant="outlined"
+											fullWidth
+											className={classes.inputTextField}
+											InputProps = {{
+												className:classes.input
+											}}
+											onKeyDown={keyDownHandler}
+										/>
+									</ListItem>
+								) : (
+									<ListItem>
+										<Link onClick={()=>setShowInput(true)} className={classes.addNewButton}>
+												<AddCircleOutlineOutlinedIcon fontSize='small'/>
+										</Link>
+									</ListItem>
+								)
+							}
 						</List>
-						{/* <FullCalendarComponent
-							events={}
-							header={{
-								left: '',
-								center: 'title',
-								right: ''
-							}}
-							view='listDay'
-							eventClick={todayEventClick}
-							selectDates={todayEventClick}
-						/> */}
 					</Paper>
 				</Grid>
 			</Grid>
