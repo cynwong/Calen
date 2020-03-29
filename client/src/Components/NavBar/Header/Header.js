@@ -89,7 +89,7 @@ export default function Header() {
 								open={open}
 								onClose={handleClose}
 							>
-								<MenuItem onClick={openSettings}>settings</MenuItem>
+								{/* <MenuItem onClick={openSettings}>settings</MenuItem> */}
 								<MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
 							</Menu>
 						</div>
