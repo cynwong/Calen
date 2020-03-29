@@ -17,6 +17,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FullCalendarComponent from '../../common/FullCalendar/FullCalendar';
 
 import AppContext from '../../../utils/AppContext';
+import { defaultSettings } from '../../../constants';
 
 export default function DashBoard() {
 	const { classes, user: { events } } = useContext(AppContext);
@@ -26,16 +27,17 @@ export default function DashBoard() {
 		let newEvent = {...e};
 		switch(newEvent.type) {
 			case 1: 
-				newEvent.color= 'purple';
+				newEvent.color = defaultSettings.diaryColour;
 				break;
-			case 2: 
-				newEvent.color='#3f3f3f';
-				break;
+			// case 2: 
+			// 	newEvent.color = settings.calendarColour || defaultSettings.calendarColour;
+			// 	// newEvent.color='#3f3f3f';
+			// 	break;
 			case 3: 
-				newEvent.color='orange';
+				newEvent.color = defaultSettings.taskColour;
 				break;
 			default: 
-				newEvent.color='#ff88cc';
+				newEvent.color = defaultSettings.calendarColour;
 		}
 		return newEvent;
 	});
@@ -49,6 +51,10 @@ export default function DashBoard() {
 		e.preventDefault();
 		history.push(`/tasks/new?start=${new Date()}&end=&allDay=true`)
 	}
+	const addNew = (e) => {
+		e.preventDefault();
+		history.push(`/new`)
+	}
 	return (
 		<Container className={classes.container}>
 			<Grid container spacing={3}>
@@ -59,13 +65,16 @@ export default function DashBoard() {
 							header={{
 								left: 'today',
 								center: 'prev,title,next',
-								right: 'listDay,dayGridMonth,dayGridWeek,dayGridDay'
+								right: ''// 'listDay,dayGridMonth,dayGridWeek,dayGridDay'
 							}}
 							view='listDay'
 							eventLimit={false}
 							eventClick={calendarEventsClick}
 							selectDates={calendarEventsClick}
 						/>
+						<Link onClick={addNew} className={classes.addNewButton}>
+								<AddCircleOutlineOutlinedIcon fontSize='small'/>
+						</Link>
 					</Paper>
 				</Grid>
 				<Grid item xs={12} sm={4}>
