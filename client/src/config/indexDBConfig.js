@@ -1,4 +1,4 @@
-export const DBConfig = {
+export const indexDBConfig = {
 	name: 'calen',
 	version: 1,
 	objectStoresMeta: [
