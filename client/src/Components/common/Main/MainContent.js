@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
+import { Container, Paper, Button } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+
 import Header from '../../NavBar/Header/Header';
 import SideBar from '../../NavBar/SideBar/SideBar';
 
@@ -28,48 +31,69 @@ import CreateNewPage from '../../Pages/CreateNew/CreateNew.page'
 import AppContext from '../../../utils/AppContext';
 
 export default function MainContent() {
-	const { user, showSideBar } = useContext(AppContext);
+	const { user, showSideBar, offlineNoData, continueOffline, classes } = useContext(AppContext);
 	
 	return (
 		<Router>
 			<Header />
 			<SideBar open={showSideBar}/>
-			<main>
-				<Switch>
-					<Route exact path='/' component={Home} />
-					{
-						user.username ? (
-							[
-								<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
-								<Route exact path='/calendar' key='calendar' component={CalendarPage} />,
-								<Route exact path='/calendar/:id' key='calendarForm' component={CalendarFormPage} />,
-								<Route exact path='/diary' key='diary' component={DiaryPage} />,
-								<Route exact path='/diary/:id' key='diaryForm' component={DiaryFormPage} />,
-								<Route exact path='/tasks' key='tasks' component={TasksPage} />,
-								<Route exact path='/tasks/:id' key='tasksForm' component={TasksFormPage} />,
-								// <Route exact path='/mealplanner' key='mealplanner' component={MealPlannerPage} />,
-								// <Route exact path='/mealplanner/:id' key='tasksForm' component={TasksFormPage} />,
-								<Route exact path='/settings' key='settings' component={SettingsPage} />,
-								<Route exact path='/new' key='createNew' component={CreateNewPage} />,
-								<Route exact path='/view/:id' key='view' component={SwitchRoute} />,
-								<Route path="*" key="nomatch">
-									<Redirect to='/dashboard' />
-								</Route>
-							]
-						) : (
-							[
-								<Route exact path='/signup' key='signup' component={SignUp} />,
-								<Route exact path='/login' key='login' component={Login} />,
-								<Route path="*" key="nomatch">
-									<Redirect to='/login' />
-								</Route>
-								
-							]
-						)
-					}
-					
-				</Switch>
-			</main>
+			{
+				offlineNoData ? (
+					<Container className={classes.container} maxWidth='md'>
+						<Paper className={classes.paper}>
+							<Alert severity='error'>
+								<strong>There is no internet connection.  Do you still wish to continue to use offline?</strong>
+								<br />
+								<Button 
+									variant="outlined"
+									color='primary'
+									className={classes.formButton}
+									onClick={continueOffline}
+								>
+									Continue
+								</Button>
+							</Alert>
+						</Paper>
+					</Container>
+				) : (
+					<main>
+						<Switch>
+							<Route exact path='/' component={Home} />
+							{
+								user.username ? (
+									[
+										<Route exact path='/dashboard' key='dashboard' component={DashBoard} />,
+										<Route exact path='/calendar' key='calendar' component={CalendarPage} />,
+										<Route exact path='/calendar/:id' key='calendarForm' component={CalendarFormPage} />,
+										<Route exact path='/diary' key='diary' component={DiaryPage} />,
+										<Route exact path='/diary/:id' key='diaryForm' component={DiaryFormPage} />,
+										<Route exact path='/tasks' key='tasks' component={TasksPage} />,
+										<Route exact path='/tasks/:id' key='tasksForm' component={TasksFormPage} />,
+										// <Route exact path='/mealplanner' key='mealplanner' component={MealPlannerPage} />,
+										// <Route exact path='/mealplanner/:id' key='tasksForm' component={TasksFormPage} />,
+										<Route exact path='/settings' key='settings' component={SettingsPage} />,
+										<Route exact path='/new' key='createNew' component={CreateNewPage} />,
+										<Route exact path='/view/:id' key='view' component={SwitchRoute} />,
+										<Route path="*" key="nomatch">
+											<Redirect to='/dashboard' />
+										</Route>
+									]
+								) : (
+									[
+										<Route exact path='/signup' key='signup' component={SignUp} />,
+										<Route exact path='/login' key='login' component={Login} />,
+										<Route path="*" key="nomatch">
+											<Redirect to='/login' />
+										</Route>
+										
+									]
+								)
+							}
+							
+						</Switch>
+					</main>
+				)
+			}
 		</Router>
 	);
 }
