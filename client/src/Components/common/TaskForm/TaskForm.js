@@ -21,7 +21,7 @@ import AppContext from '../../../utils/AppContext';
 
 import { useStyles } from './TaskForm.styles';
 
-export default function TaskForm({event}) {
+export default function TaskForm({event, from='/tasks'}) {
 	const { 
 		saveEvent,
 		deleteEvent,
@@ -33,7 +33,7 @@ export default function TaskForm({event}) {
 	const formatDateTime = (m) => m.format(formatDateString);
 	const parseDateFormat = (dateTime) => moment(dateTime, parseDateString);
 
-	const fnClose = () => history.push('/tasks');
+	const fnClose = () => history.push(from);
 
 	const allDay = 'true'.localeCompare(event.allDay) === 0 ;
 	const [updatingEvent, setUpdatingEvent] = useState({

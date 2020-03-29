@@ -24,7 +24,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './diaryForm.styles.scss'
 
 
-export default function DiaryForm({event}) {
+export default function DiaryForm({event, from='/diary'}) {
 	const { classes, saveEvent, deleteEvent } = useContext(AppContext);
 
 	// convert to event so that we can pass it to database and full calendar
@@ -35,7 +35,7 @@ export default function DiaryForm({event}) {
 	const [serverError, setServerError] = useState(false);
 	
 	const history = useHistory();
-	const fnClose = () => history.push('/diary');
+	const fnClose = () => history.push(from);
 	
 	// set up editorState
 	const html = event.entry ? event.entry: '';

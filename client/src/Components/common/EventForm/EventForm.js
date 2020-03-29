@@ -18,7 +18,7 @@ import AppContext from '../../../utils/AppContext';
 
 import { formatDateString, parseDateString } from '../../../constants';
 
-export default function EventForm({event}) {
+export default function EventForm({event, from='/calendar'}) {
 	const { 
 		saveEvent,
 		deleteEvent,
@@ -28,7 +28,7 @@ export default function EventForm({event}) {
 
 	const formatDateTime = (m) => m.format(formatDateString);
 
-	const fnClose = () => history.push('/calendar');
+	const fnClose = () => history.push(from);
 
 	const allDay = 'true'.localeCompare(event.allDay) === 0 ;
 	const [updatingEvent, setUpdatingEvent] = useState({
