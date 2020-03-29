@@ -90,6 +90,10 @@ const useStyles = makeStyles(theme => ({
 		'&:hover': {
 			background: "rgba(0, 0, 0, 0.04)",
 		},
+	}, 
+	textAlignRight: {
+		width: '100%',
+		textAlign:'right'
 	}
 }));
 
