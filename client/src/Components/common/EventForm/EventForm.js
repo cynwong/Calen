@@ -203,6 +203,7 @@ export default function EventForm({event, from='/calendar'}) {
 								fullWidth
 								className={classes.inputTextField}
 								InputLabelProps={{
+									className: classes.input,
 									shrink: true,
 								}}
 								onBlur={handleFocusOut}
@@ -219,6 +220,9 @@ export default function EventForm({event, from='/calendar'}) {
 					defaultValue={(updatingEvent.desc && updatingEvent.desc.length > 0) ? updatingEvent.desc.join("\n") : ''}
 					multiline
 					className={classes.inputTextField}
+					InputProps = {{
+						className: classes.input
+					}}
 					onBlur={handleFocusOut}
 				/>
 				<br/>
@@ -229,6 +233,9 @@ export default function EventForm({event, from='/calendar'}) {
 					defaultValue={updatingEvent.location}
 					fullWidth
 					className={classes.inputTextField}
+					InputProps = {{
+						className: classes.input
+					}}
 					onBlur={handleFocusOut}
 				/>	
 				<br/>
@@ -240,6 +247,9 @@ export default function EventForm({event, from='/calendar'}) {
 					fullWidth
 					multiline
 					className={classes.inputTextField}
+					InputProps = {{
+						className: classes.input
+					}}
 					onBlur={handleFocusOut}
 				/>	
 				<br/>
