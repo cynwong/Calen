@@ -23,6 +23,13 @@ const useStyles = makeStyles(theme => ({
 		color:  teal[700],
 		backgroundColor: pink[50],
 	},
+	memo: {
+		padding: theme.spacing(1),
+		paddingLeft: theme.spacing(2),
+		paddingRight: theme.spacing(2),
+		color:  teal[700],
+		backgroundColor: pink[50],
+	},
 	form: {
 		width: '100%',
 		padding: theme.spacing(2)
@@ -48,6 +55,7 @@ const useStyles = makeStyles(theme => ({
 	inputTextField: {
 		color:  teal[900],
 		backgroundColor: pink[50],
+		marginTop: theme.spacing(1.5)
 	},
 	input: {
 		color:  teal[900],
@@ -61,6 +69,27 @@ const useStyles = makeStyles(theme => ({
 	},
 	fullWidth: {
 		width: '100%'
+	},
+	taskListItem : {
+		color: teal[700],
+		textDecoration:'none',
+		cursor: 'pointer'
+	},
+	addNewButton: {
+		border: '1px dashed rgba(0, 0, 0, 0.12)',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: theme.spacing(3),
+		width: '100%',
+		cursor: 'pointer',
+		marginTop: theme.spacing(2),
+		padding: theme.spacing(2),
+		borderRadius: 5,
+
+		'&:hover': {
+			background: "rgba(0, 0, 0, 0.04)",
+		},
 	}
 }));
 
