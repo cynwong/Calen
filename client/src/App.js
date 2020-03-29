@@ -26,9 +26,12 @@ function App() {
 	useEffect(() => {
 		// check if user still have valid session.
 		API.isLogin()
-			.then(({ data: { data: { user } } }) => {
-				if (user !== undefined) {
-					setUserInfo({...user});
+			.then(({data}) => {
+				if("data" in data) {
+					const { user } = data.data;
+					if (user !== undefined) {
+						setUserInfo({...user});
+					}
 				}
 			});
 	}, []);
