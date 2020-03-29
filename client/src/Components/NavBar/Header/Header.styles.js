@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => ({
 	title: {
 		flexGrow: 1,
 		fontFamily: 'Playball, Lobster, Fredoka One, cursive',
-		fontSize: '1.5rem'
+		fontSize: '2rem',
+		cursor: 'pointer'
 	},
 	button: {
 		color: theme.palette.secondary.pale
