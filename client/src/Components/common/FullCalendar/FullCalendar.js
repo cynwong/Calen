@@ -12,7 +12,19 @@ import momentPlugin from '@fullcalendar/moment';
 
 import './FullCalendar.styles.scss';
 
-export default function FullCalendarComponent({events, header, view, customButtons, eventOrder,selectDates, eventClick}) {
+export default function FullCalendarComponent(props) {
+	const {
+		events,
+		header,
+		view,
+		navLink,
+		eventLimit,
+		customButtons,
+		eventOrder,
+		selectDates,
+		eventClick,
+		dateClick
+	} = props;
 	const calendarComponentRef = createRef();
 	return (
 		<>
@@ -22,19 +34,19 @@ export default function FullCalendarComponent({events, header, view, customButto
 				buttonText={{
 					listDay: "Agenda",
 				}}
-				aspectRatio={2}
 				// titleFormat='D MMM YYYY'
 				plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin, momentPlugin ]}
 				ref={ calendarComponentRef }
 				eventOrder={eventOrder ? eventOrder : "start,-duration,allDay,title"}
 				events={ events }
 				customButtons={customButtons}
-				navLinks={true}
-				eventLimit={true}
+				navLinks={navLink !== undefined ? navLink : true}
+				eventLimit={eventLimit !== undefined ? eventLimit : true}
 				selectable={true}
 				height='auto'
 				select= {selectDates}
 				eventClick={eventClick}
+				dateClick={dateClick}
 			/>
 		</>
 	);
