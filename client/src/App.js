@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import { Cookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 
 import { initDB, useIndexedDB } from 'react-indexed-db';
 import { indexDBConfig } from './config/indexDBConfig';
@@ -32,13 +32,13 @@ function App() {
 	const classes = useStyles(theme);
 	
 	// for offline
-	const cookies = instanceOf(Cookies).isRequired;
-	const { getAll, add } = useIndexedDB('calen');
+	const [cookies, setCookies] = useCookies(['calen']);
+	const { getAll, add } = useIndexedDB('events');
 
 	// set user info to state
 	const setUserData = (data) => {
 		setUserInfo(data);
-		cookies.set('calen88', JSON.stringify(data), { path: '/' });
+		setCookies('calen88', JSON.stringify(data), { path: '/' });
 	}
 	
 	useEffect(() => {
@@ -50,9 +50,8 @@ function App() {
 					if (user !== undefined) {
 						setUserData({...user});
 					}
-				}
-				// check if indexDB has data
-				getAll()
+					// check if indexDB has data
+					getAll()
 					.then(data => {
 						const promises = data.map(({action, d}) => {
 							const parsedData = JSON.parse(d);
@@ -71,14 +70,15 @@ function App() {
 											...userInfo,
 											events,
 										});
-									});
-							});
+									})
+									.catch((eGetAll) => console.error(eGetAll.response));
+							}).catch(e => console.error(e.response)) ;
 					});
-
+				}
 			})
 			.catch((err) => {
 				// check if we have data in cookie
-				const userInCookie = cookies.get('calen88');
+				const userInCookie = cookies.calen88;
 				if (userInCookie === undefined) {
 					setOfflineNoData(true);
 				} else {
@@ -99,8 +99,11 @@ function App() {
 				});
 			}
 		} catch (err) {
+			// throw err;
+			if(!err.response) {
+				setOfflineNoData(true);
+			}
 			throw err;
-			setOfflineNoData(true);
 		}
 	}
 	const fnLogOut = async () => {
@@ -138,10 +141,12 @@ function App() {
 				});
 			}
 		} catch (err) {
-			console.error(err);
-			// throw err;
-			let action= updatingEvent.id ? 'put' : 'push';
-			await add({action, data: JSON.stringify(updatingEvent)});
+			// console.error(err);
+			// offline so save action in db for now
+			if(!err.response) {
+				let action= updatingEvent.id ? 'put' : 'push';
+				await add({action, data: JSON.stringify(updatingEvent)});
+			}
 		}
 	};
 	
@@ -153,12 +158,13 @@ function App() {
 				events: [...userInfo.events].filter((event) => event.id !== id)
 			});
 		} catch (err) {
-			console.error(err);
-			// throw err;
-			await add({action:'delete', data: JSON.stringify(updatingEvent)});
+			// console.error(err);
+			// offline so save action in db for now
+			if(!err.response) {
+				await add({action:'delete', data: JSON.stringify({id})});
+			}
 		}
 	};
-
 
 	const toggleSideBar = () => setShowSideBar(!showSideBar);
 	
