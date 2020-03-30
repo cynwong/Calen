@@ -15,10 +15,13 @@
 		justify-content: space-around;
 	}
 	
-	.fc-center div{
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
+	.fc-center {
+		div{
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+		
 		h2 {
 			color: $teal-700;
 			display: inline;

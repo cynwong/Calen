@@ -80,9 +80,9 @@ export default function DashBoard() {
 						<FullCalendarComponent
 							events={calendarEvents}
 							header={{
-								left: 'today',
-								center: 'prev,title,next',
-								right: ''// 'listDay,dayGridMonth,dayGridWeek,dayGridDay'
+								left: '',
+								center: 'title',
+								right: ''
 							}}
 							view='listDay'
 							eventLimit={false}
