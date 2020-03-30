@@ -24,23 +24,32 @@ export default function LoginForm() {
 	const { classes, fnLogin } = useContext(AppContext);
 	const [hasError, setHasError] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
+	const [disableButton, setDisableButton] = useState(true);
 
 	const usernameEl = useRef();
 	const passwordEl = useRef();
 
 	const history= useHistory();
-
-	const handleUsernameKeyDown = (e) => {
-		if (e.key === 'Enter') {
-			passwordEl.current.focus();
+	
+	const hasBothValues = () => {
+		if(passwordEl.current.value.trim() && usernameEl.current.value.trim()) {
+			setDisableButton(false);
 		}
-	};
+	}
 
-	const handlePasswordKeyDown = (e) => {
-		if (e.key === 'Enter') {
-			handleLoginClick(e);
-		}
-	};
+	// const handleUsernameKeyDown = (e) => {
+	// 	// if (e.key === 'Enter') {
+	// 	// 	passwordEl.current.focus();
+	// 	// }
+	// 	hasBothValues();
+	// };
+
+	// const handlePasswordKeyDown = (e) => {
+	// 	// if (e.key === 'Enter') {
+	// 	// 	handleLoginClick(e);
+	// 	// }
+	// 	hasBothValues();
+	// };
 
 	const handleLoginClick = async (e) => {
 		e.preventDefault();
@@ -60,9 +69,9 @@ export default function LoginForm() {
 		history.push(location);
 	};
 
-	useEffect(()=>{
-		usernameEl.current.focus();
-	});
+	// useEffect(()=>{
+	// 	usernameEl.current.focus();
+	// });
 
 	return (
 		<Container className={classes.container} maxWidth='sm'>
@@ -84,7 +93,7 @@ export default function LoginForm() {
 						}}
 						fullWidth
 						inputRef={usernameEl}
-						onKeyDown={handleUsernameKeyDown}
+						onKeyDown={hasBothValues}
 					/>
 					<br />
 					<FormControl className={clsx(classes.margin, classes.inputTextField, classes.fullWidth)}>
@@ -94,7 +103,7 @@ export default function LoginForm() {
 							inputRef={passwordEl}
 							type={showPassword ? 'text' : 'password'}
 							className={ classes.input }
-							onKeyDown={handlePasswordKeyDown}
+							onKeyDown={hasBothValues}
 							endAdornment={
 								<InputAdornment position="end">
 									<IconButton
@@ -111,6 +120,7 @@ export default function LoginForm() {
 					<footer className={classes.formFooter}>
 						<Button 
 							variant="outlined"
+							disabled={disableButton}
 							onClick={handleLoginClick}
 							color='primary'
 							className={classes.formButton}
