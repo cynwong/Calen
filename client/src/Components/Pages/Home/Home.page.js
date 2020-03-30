@@ -10,7 +10,6 @@ import {
 	Typography,
 	useTheme,
 	Card,
-	CardActionArea,
 	CardMedia,
 	CardContent,
 	CardActions,
