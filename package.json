@@ -6,7 +6,7 @@
 	"scripts": {
 		"lint": "eslint \"**/*.ts\" --quiet",
 		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
-		"start": "ts-node ./build/server --transpile-only",
+		"start": "ts-node ./server --transpile-only",
 		"test": "npm run lint",
 		"watch:server": "ts-node-dev ./server",
 		"watch": "concurrently \"npm run watch:server\" \"npm start --prefix=client\""
