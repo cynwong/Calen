@@ -20,7 +20,7 @@ In my daily life, I use numerous organizer tools such as Google Calendar, Asana,
 * On the left side of dashboard is list of scheduled events and diary entries and on right is Todo list.
 * To navigate to specific page such as Scheduler or Diary, click on the burger icon at the upper left corner.
 * To add new event, click on the date cell in the calendar.
-* To view individual event, click on the event.
+* To view or modify individual event, click on the event.
 
 ## Technical Instruction
 
