@@ -206,6 +206,9 @@ export default function EventForm({event, from='/calendar'}) {
 									className: classes.input,
 									shrink: true,
 								}}
+								InputProps = {{
+									className:classes.input
+								}}
 								onBlur={handleFocusOut}
 							/>
 							<br />
