@@ -34,9 +34,10 @@ export default function Header() {
 		setAnchorEl(null);
 	};
 
-	const handleLogoutClick = () => {
+	const handleLogoutClick = async () => {
 		handleClose();
-		fnLogOut();
+		await fnLogOut();
+		history.push('/');
 	}
 	// const openSettings = () => {
 	// 	handleClose();
