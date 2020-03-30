@@ -107,7 +107,7 @@ export default function SignUpForm({ submitData, goToLogin}) {
 		if(values.password !== values.repeatPassword){
 			err.needSamePassword = true;
 		}
-		if (err.length !== 0) {
+		if (Object.keys(err).length !== 0) {
 			return setErrors({
 				...err,
 			});
