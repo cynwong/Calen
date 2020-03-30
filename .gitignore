@@ -114,3 +114,4 @@ dist
 .DS_Store
 server/config/googleCredentials.ts
 server/config/googleCredentials.json
+*.pptx
