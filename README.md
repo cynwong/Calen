@@ -84,9 +84,20 @@ $ npm start
 ## Future Development
 
 * User customization of features.
+	* Mix and match
+	* User defined form
 * Connect to / integration with existing platforms such as google calendar, and trello, for better user experience.
 * Sharing/Public
+	* Online appointment form
+	* Resource sharing
 * Planner for continuous stages.
+* Project Management
+* Specific Occasions Planner
+* Goal Setter
+* Exercise/workout routine planner
+* Meal planner
+
+
 
 ## Credit
 
