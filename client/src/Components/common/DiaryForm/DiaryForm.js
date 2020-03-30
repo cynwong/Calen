@@ -52,7 +52,7 @@ export default function DiaryForm({event, from='/diary'}) {
 			const updatingEvent = {
 				...event,
 				type:1,
-				title: 'Diary entry',
+				title: '💟',
 				entry,
 				allDay: true,
 				start: formatDateTime(startTime.startOf('day')),
