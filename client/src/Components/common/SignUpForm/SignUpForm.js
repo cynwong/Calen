@@ -94,10 +94,30 @@ export default function SignUpForm({ submitData, goToLogin}) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const err = {};
+		if(!values.lastName) {
+			err.lastName = true;
+		}
+		if (!values.email) {
+			err.email = true;
+		}
+		if (!values.password ) {
+			err.passwordLength = true;
+		}
+		if(values.password !== values.repeatPassword){
+			err.needSamePassword = true;
+		}
+		if (err.length !== 0) {
+			return setErrors({
+				...err,
+			});
+		}
+
 		if(Object.keys(errors).length !== 0){
 			// has errors so cannot proceed
 			return;
 		}
+		
 		submitData({
 			firstName: values.firstName,
 			lastName: values.lastName,
@@ -143,7 +163,7 @@ export default function SignUpForm({ submitData, goToLogin}) {
 				/>
 				<FormControl className={clsx(classes.margin, classes.inputTextField, classes.fullWidth)}>
 					<InputLabel 
-						error={('password' in errors) ? true : false}
+						error={('password' in errors || 'passwordLength' in errors) ? true : false}
 						htmlFor="password"
 					>
 						Password
@@ -152,7 +172,7 @@ export default function SignUpForm({ submitData, goToLogin}) {
 						id="password"
 						type={values.showPassword ? 'text' : 'password'}
 						value={values.password}	
-						error={('password' in errors) ? true : false}
+						error={('password' in errors || 'passwordLength' in errors) ? true : false}
 						onChange={handleChange}
 						onBlur={handleFocusOut}
 						className={ classes.input }
@@ -168,7 +188,7 @@ export default function SignUpForm({ submitData, goToLogin}) {
 						}
 					/>
 					<FormHelperText 
-						error={('password' in errors) ? true : false}
+						error={('password' in errors || 'passwordLength' in errors || 'needSamePassword' in errors) ? true : false}
 						id="password-helper-text"
 					>
 						Password must have 8-16 characters. Required.
@@ -179,6 +199,7 @@ export default function SignUpForm({ submitData, goToLogin}) {
 					<Input
 						id="repeatPassword"
 						type={values.showRepeatPassword ? 'text' : 'password'}
+						error={('needSamePassword' in errors || 'repeatPassword' in errors) ? true : false}
 						value={values.repeatPassword}
 						onChange={handleChange}
 						onBlur={handleFocusOut}
