@@ -1,10 +1,6 @@
 # Calen
 
-Calen is an application aimed to server as all-in-one organizing tool. Visit [deployed site](https://calen-cw.herokuapp.com).
-
-## Project descriptions
-
-Calen is a multi-purpose planning tool that can be used as a planner, scheduler, tasks organizer, or even a diary. The vision is to aid the user in organizing their schedules and increase their productivities.
+Calen is a multi-purpose planning tool that can be used as a planner, scheduler, tasks organizer, or even a diary. The vision is to aid the user in organizing their schedules and increase their productivities. Visit [deployed site](https://calen-cw.herokuapp.com).
 
 ## The Inspiration
 
@@ -89,12 +85,13 @@ $ npm start
 * Sharing/Public
 	* Online appointment form
 	* Resource sharing
-* Planner for continuous stages.
+* Planners
+	* Meal Planner
+	* Planner for continous stages
+	* Excercise/workout routine planner
+	* Specific Occassion Planner
 * Project Management
-* Specific Occasions Planner
 * Goal Setter
-* Exercise/workout routine planner
-* Meal planner
 
 
 
