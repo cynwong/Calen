@@ -103,3 +103,6 @@ I am deeply sorry that I lost the photographers' names for the photos except Lis
 
 Background photo credit: [Lisa Fotios @ pexels](http://www.lisafotiosphotography.co.uk/?ref=pexels)
 
+## Acknowledgement
+
+I would like to acknowledge my mentors: Shahriar, Tri and Krishna, who supported me for the last six months. I would not have come this far without them. So, I would like to thank Shahriar, Tri and Krishna here.  
