@@ -95,6 +95,11 @@ $ npm start
 
 
 
-## Credit
+## Photos Credit
+
+All photo used in Calen are from [Pexels](https://www.pexels.com).
+
+I am deeply sorry that I lost the photographers' names for the photos except Lisa. But the credits are to the orginal photographers.
 
 Background photo credit: [Lisa Fotios @ pexels](http://www.lisafotiosphotography.co.uk/?ref=pexels)
+
