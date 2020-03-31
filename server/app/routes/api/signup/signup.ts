@@ -4,7 +4,7 @@ import { UserDocument, User } from '../../../../database/models/User';
 import createUser from '../../../../database/controllers/UserController';
 
 import { validateEmail, validatePassword } from '../../../lib/validate';
-import verifyEmail from '../../../auth/verifyEmail';
+// import verifyEmail from '../../../auth/verifyEmail';
 
 export default async function signUpAPI(req: Request, res: Response) {
 	try {
@@ -23,10 +23,10 @@ export default async function signUpAPI(req: Request, res: Response) {
 
 		errors = [...errors, ...validateEmail(email), ...validatePassword(password)];
 
-		const isEmailValid = await verifyEmail(email);
-		if (!isEmailValid) {
-			errors.push('A valid email address is required.');
-		}
+		// const isEmailValid = await verifyEmail(email);
+		// if (!isEmailValid) {
+		// 	errors.push('A valid email address is required.');
+		// }
 		const userWithSameEmail:UserDocument = await User.findOne({ email }) as UserDocument;
 
 		if (userWithSameEmail) {
