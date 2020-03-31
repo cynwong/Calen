@@ -105,4 +105,4 @@ Background photo credit: [Lisa Fotios @ pexels](http://www.lisafotiosphotography
 
 ## Acknowledgement
 
-I would like to acknowledge my mentors: Shahriar, Tri and Krishna, who supported me for the last six months. I would not have come this far without them, at least not in this short period of time. So, I would like to thank Shahriar, Tri and Krishna here.  
+I would like to acknowledge my mentors: Shahriar, Tri and Krishna, who supported me for the last six months. I would not have come this far in this short period without them. So, I would like to thank Shahriar, Tri and Krishna here.  
