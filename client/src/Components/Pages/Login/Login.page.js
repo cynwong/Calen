@@ -37,20 +37,6 @@ export default function LoginForm() {
 		}
 	}
 
-	// const handleUsernameKeyDown = (e) => {
-	// 	// if (e.key === 'Enter') {
-	// 	// 	passwordEl.current.focus();
-	// 	// }
-	// 	hasBothValues();
-	// };
-
-	// const handlePasswordKeyDown = (e) => {
-	// 	// if (e.key === 'Enter') {
-	// 	// 	handleLoginClick(e);
-	// 	// }
-	// 	hasBothValues();
-	// };
-
 	const handleLoginClick = async (e) => {
 		e.preventDefault();
 		const username = usernameEl.current.value;
@@ -68,10 +54,6 @@ export default function LoginForm() {
 		e.preventDefault();
 		history.push(location);
 	};
-
-	// useEffect(()=>{
-	// 	usernameEl.current.focus();
-	// });
 
 	return (
 		<Container className={classes.container} maxWidth='sm'>
