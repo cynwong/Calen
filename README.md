@@ -79,7 +79,6 @@ $ npm start
 * AXIOS / AJAX
 * moment.js
 * ESlint
-* [Quick Email Verification](https://quickemailverification.com)
 
 ## Future Development
 
