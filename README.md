@@ -1,6 +1,6 @@
 # Calen
 
-Calen is a multi-purpose planning tool that can be used as a planner, scheduler, tasks organizer, or even a diary. The vision is to aid the user in organizing their schedules and increase their productivities. Visit [deployed site](https://calen-cw.herokuapp.com).
+Calen is a multi-purpose planning tool that can be used as a planner, scheduler, tasks organizer, or even a diary. The vision is to aid the user in organizing their schedules and increase their productivities. Visit the [deployed site](https://calen-cw.herokuapp.com).
 
 ## The Inspiration
 
@@ -13,10 +13,10 @@ In my daily life, I use numerous organizer tools such as Google Calendar, Asana,
 ## User Instruction
 
 * Sign up if you have not done so yet. Otherwise, log in to your account.
-* On the left side of dashboard is list of scheduled events and diary entries and on right is Todo list.
-* To navigate to specific page such as Scheduler or Diary, click on the burger icon at the upper left corner.
-* To add new event, click on the date cell in the calendar.
-* To view or modify individual event, click on the event.
+* On the left side of the dashboard is the list of scheduled events and diary entries and on right is the Todo list.
+* To navigate to a specific page such as Scheduler or Diary, click on the burger icon at the upper left corner.
+* To add a new event, click on the date cell in the calendar.
+* To view or modify individual events, click on the event.
 
 ## Technical Instruction
 
@@ -80,26 +80,26 @@ $ npm start
 
 * User customization of features.
 	* Mix and match
-	* User defined form
-* Connect to / integration with existing platforms such as google calendar, and trello, for better user experience.
+	* User-defined form
+* Connect to / integration with existing platforms such as google calendar, and Trello, for better user experience.
 * Sharing/Public
 	* Online appointment form
 	* Resource sharing
 * Planners
 	* Meal Planner
-	* Planner for continous stages
-	* Excercise/workout routine planner
-	* Specific Occassion Planner
+	* Planner for continuous stages
+	* Exercise/workout routine planner
+	* Specific Occasion Planner
 * Project Management
-* Goal Setter
+* Goal-Setter
 
 
 
 ## Photos Credit
 
-All photo used in Calen are from [Pexels](https://www.pexels.com).
+All photographs used in Calen are from [Pexels](https://www.pexels.com).
 
-I am deeply sorry that I lost the photographers' names for the photos except Lisa. But the credits are to the orginal photographers.
+I am deeply sorry that I lost the photographers' names for the photos except Lisa. But the credits are to the original photographers.
 
 Background photo credit: [Lisa Fotios @ pexels](http://www.lisafotiosphotography.co.uk/?ref=pexels)
 
