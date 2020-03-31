@@ -25,7 +25,7 @@ export default async function signUpAPI(req: Request, res: Response) {
 
 		// const isEmailValid = await verifyEmail(email);
 		// if (!isEmailValid) {
-		// 	errors.push('A valid email address is required.');
+		// errors.push('A valid email address is required.');
 		// }
 		const userWithSameEmail:UserDocument = await User.findOne({ email }) as UserDocument;
 
