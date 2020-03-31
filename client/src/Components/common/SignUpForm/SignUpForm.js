@@ -117,7 +117,7 @@ export default function SignUpForm({ submitData, goToLogin}) {
 			// has errors so cannot proceed
 			return;
 		}
-		
+
 		submitData({
 			firstName: values.firstName,
 			lastName: values.lastName,

@@ -79,9 +79,9 @@ function App() {
 			.catch((err) => {
 				// check if we have data in cookie
 				const userInCookie = cookies.calen88;
-				if (userInCookie === undefined) {
-					setOfflineNoData(true);
-				} else {
+				if (userInCookie !== undefined) {
+				// 	setOfflineNoData(true);
+				// } else {
 					setUserInfo({ ...userInCookie });
 				}
 			});
@@ -100,9 +100,9 @@ function App() {
 			}
 		} catch (err) {
 			// throw err;
-			if(!err.response) {
-				setOfflineNoData(true);
-			}
+			// if(!err.response) {
+			// 	setOfflineNoData(true);
+			// }
 			throw err;
 		}
 	}
@@ -115,7 +115,6 @@ function App() {
 					firstName: null,
 					lastName: null,
 				});
-				return;
 			}
 		} catch (err) {
 			console.error(err);
