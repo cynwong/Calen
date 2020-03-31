@@ -27,7 +27,7 @@ function App() {
 		settings:{}
 	});
 	const [showSideBar, setShowSideBar] = useState(false);
-	const [offlineNoData, setOfflineNoData] = useState(false);
+	const [offlineData, setOfflineData] = useState(false);
 	
 	const classes = useStyles(theme);
 	
@@ -80,9 +80,10 @@ function App() {
 				// check if we have data in cookie
 				const userInCookie = cookies.calen88;
 				if (userInCookie !== undefined) {
-				// 	setOfflineNoData(true);
-				// } else {
 					setUserInfo({ ...userInCookie });
+				}
+				if(!err.response) {
+					setOfflineData(true);
 				}
 			});
 	}, []);
@@ -97,13 +98,14 @@ function App() {
 					lastName: user.lastName,
 					events: user.events ? user.events: []
 				});
+				setOfflineData(false);
 			}
 		} catch (err) {
-			// throw err;
-			// if(!err.response) {
-			// 	setOfflineNoData(true);
-			// }
-			throw err;
+			if(!err.response) {
+				setOfflineData(true);
+			} else {
+				throw err;
+			}
 		}
 	}
 	const fnLogOut = async () => {
@@ -115,10 +117,12 @@ function App() {
 					firstName: null,
 					lastName: null,
 				});
+				setOfflineData(false);
 			}
 		} catch (err) {
-			console.error(err);
-			return err;
+			if(!err.response) {
+				setOfflineData(true);
+			}
 		}
 	}
 
@@ -140,9 +144,9 @@ function App() {
 				});
 			}
 		} catch (err) {
-			// console.error(err);
 			// offline so save action in db for now
 			if(!err.response) {
+				setOfflineData(true);
 				let action= updatingEvent.id ? 'put' : 'push';
 				await add({action, data: JSON.stringify(updatingEvent)});
 			}
@@ -156,53 +160,31 @@ function App() {
 				...userInfo,
 				events: [...userInfo.events].filter((event) => event.id !== id)
 			});
+			
 		} catch (err) {
 			// console.error(err);
 			// offline so save action in db for now
 			if(!err.response) {
+				setOfflineData(true);
 				await add({action:'delete', data: JSON.stringify({id})});
+				return;
 			}
 		}
+		setOfflineData(false);
 	};
 
 	const toggleSideBar = () => setShowSideBar(!showSideBar);
-	
-	const updateSettings = async (settings) => {
-		try {
-			if(!settings._id) {
-				const { data } = await API.postSettings(settings);
-				await setUserData({
-					...userInfo,
-					settings: { ...data }
-				});
-				return;
-			} else {
-				const { data } = await API.putSettings(settings);
-				await setUserData({
-					...userInfo,
-					settings: { ...data }
-				});
-			}
-		} catch (err) {
-			console.error(err);
-			throw err;
-		}
-	}
-
-	const continueOffline = () => setOfflineNoData(false);
 
 	const appContextValues = {
 		user: userInfo,
 		showSideBar,
-		offlineNoData,
+		offlineNoData: offlineData,
 		classes,
 		fnLogin,
 		fnLogOut,
 		toggleSideBar,
 		saveEvent,
 		deleteEvent,
-		updateSettings,
-		continueOffline
 	};
 
 	return (
