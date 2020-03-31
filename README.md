@@ -1,12 +1,12 @@
 # Calen
 
-Calen is an application aimed to server as all-in-one organizing tool.
+Calen is an application aimed to server as all-in-one organizing tool. Visit [deployed site](https://calen-cw.herokuapp.com).
 
 ## Project descriptions
 
 Calen is a multi-purpose planning tool that can be used as a planner, scheduler, tasks organizer, or even a diary. The vision is to aid the user in organizing their schedules and increase their productivities.
 
-## The Inspriation
+## The Inspiration
 
 In my daily life, I use numerous organizer tools such as Google Calendar, Asana, and Trello for task management and that includes those little notes on my Fridge about various things. I asked myself what if there is a tool where I can do everything in one place.  Hence, the birth of Calen.  Calen is short for Calendar.
 
