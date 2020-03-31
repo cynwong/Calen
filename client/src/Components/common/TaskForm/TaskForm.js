@@ -238,7 +238,7 @@ export default function TaskForm({event, from='/tasks'}) {
 					name="notes"
 					label="Notes"
 					variant="standard"
-					defaultValue={updatingEvent.notes}
+					defaultValue={(updatingEvent.notes && updatingEvent.notes.length > 0) ? updatingEvent.notes.join("\n") : ''}
 					fullWidth
 					multiline
 					InputLabelProps = {{
